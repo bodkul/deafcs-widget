@@ -7,7 +7,7 @@ updates:
       interval: weekly
       day: monday
       time: "09:00"
-      timezone: America/Montevideo
+      timezone: Europe/Berlin
     open-pull-requests-limit: 5
     groups:
       production-dependencies:
