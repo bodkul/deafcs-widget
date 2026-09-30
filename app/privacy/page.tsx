@@ -5,7 +5,7 @@ import { SITE_LINKS } from "@/lib/site-links"
 import { createLandingMetadata, SITE_PATHS } from "@/lib/site-metadata"
 
 const title = "Privacy at FACEIT Widget"
-const description = "What FACEIT Widget receives, what website analytics are used, and what the widget does not collect."
+const description = "What FACEIT Widget receives and what the widget does not collect."
 
 export const metadata: Metadata = createLandingMetadata({ title, description, path: SITE_PATHS.privacy })
 
@@ -21,15 +21,6 @@ export default function PrivacyPage() {
       <p>
         FACEIT Widget does not ask for a FACEIT password, OAuth token, private account permission, or payment details. It does not
         modify a FACEIT profile. Do not put secrets or private information in a widget URL, GitHub issue, or feedback message.
-      </p>
-
-      <h2>Website analytics</h2>
-      <p>
-        The public website uses Google Analytics 4 to measure aggregate traffic and understand which pages and referral links are
-        useful. The tracked events cover page views, opening the builder, and selecting a preset. The{" "}
-        <code className="rounded bg-surface-hover px-1 py-0.5 font-mono text-[0.9em] text-foreground">/widget/</code>{" "}
-        browser-source route is excluded so an OBS source does not look like a new website visit. Campaign parameters such as
-        UTM values are removed from the address bar after they are recorded.
       </p>
 
       <h2>Technical data</h2>

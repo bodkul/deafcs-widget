@@ -3,7 +3,6 @@
 import { useRef } from "react"
 
 import { supportsWidgetRotation, usePlayerSnapshot, type WidgetConfig } from "@/lib/widget"
-import { trackEvent } from "@/lib/analytics"
 
 import { BuilderDialogs } from "./builder-dialogs"
 import { BuilderPreview } from "./builder-preview"
@@ -29,7 +28,6 @@ export function Builder({ initialConfig, initialNickname }: BuilderProps) {
 
   function handlePresetChange(preset: Parameters<typeof settings.selectPreset>[0]) {
     if (preset === settings.config.preset) return
-    trackEvent("preset_selected", { preset })
     settings.selectPreset(preset)
   }
 

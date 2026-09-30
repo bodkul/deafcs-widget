@@ -43,7 +43,7 @@ export default function AboutPage() {
 
       <h2>Privacy and affiliation</h2>
       <p>
-        The widget uses public FACEIT statistics for the nickname requested. It does not ask for a password, OAuth token, private account permission, or payment details. Hosting and security providers may process limited technical request data needed to deliver the service. See the <a href={SITE_PATHS.privacy}>privacy page</a> for the website analytics and data details.
+        The widget uses public FACEIT statistics for the nickname requested. It does not ask for a password, OAuth token, private account permission, or payment details. Hosting and security providers may process limited technical request data needed to deliver the service. See the <a href={SITE_PATHS.privacy}>privacy page</a> for details.
       </p>
       <p>
         This is an independent community project. FACEIT Widget is not affiliated with, endorsed by, or operated by FACEIT. For account, matchmaking, moderation, or platform support, contact FACEIT directly. For questions about this project, use the <a href={SITE_PATHS.contact}>contact page</a>.

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import type { ReactNode } from "react";
 
-import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { SITE_AUTHOR, SITE_METADATA, SOCIAL_IMAGE } from "@/lib/site-metadata";
 
 import "./globals.css";
@@ -50,7 +49,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en" className={`${outfit.variable} h-full antialiased`}>
       <body className="min-h-screen text-on-surface" suppressHydrationWarning>
-        <GoogleAnalytics />
         {children}
       </body>
     </html>

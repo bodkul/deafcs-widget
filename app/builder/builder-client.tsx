@@ -1,11 +1,9 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-import { useEffect } from "react"
 
 import { Builder } from "@/components/widget/builder"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { trackEvent } from "@/lib/analytics"
 import {
   createDefaultConfig,
   deserializeConfig,
@@ -24,10 +22,6 @@ export function BuilderClient() {
   const config = serializedConfig
     ? deserializeConfig(serializedConfig)
     : createDefaultConfig(getPreset(searchParams.get("preset")))
-
-  useEffect(() => {
-    trackEvent("builder_opened", { preset: config.preset })
-  }, [config.preset])
 
   return (
     <TooltipProvider>
