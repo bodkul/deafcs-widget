@@ -7,7 +7,6 @@ import { getWidgetInstanceId } from "./widget-instance"
 const widgetDataSchema = z.object({
   profile: z.object({
     nickname: z.string(),
-    avatarUrl: z.string().optional(),
     countryCode: z.string().optional(),
     verifiedBadge: z.enum(["none", "verified", "gold"]).optional(),
   }),

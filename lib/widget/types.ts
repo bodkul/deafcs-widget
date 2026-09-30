@@ -92,7 +92,6 @@ export type WidgetConfig = {
 export type WidgetData = {
   profile: {
     nickname: string
-    avatarUrl?: string
     countryCode?: string
     verifiedBadge?: VerifiedBadgeType
   }
