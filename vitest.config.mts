@@ -10,6 +10,6 @@ export default defineConfig({
   },
   test: {
     include: ["**/*.test.ts"],
-    exclude: ["node_modules/**", ".next/**", "out/**"],
+    exclude: ["node_modules/**", ".next/**"],
   },
 })

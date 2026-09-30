@@ -49,6 +49,7 @@ Read the [OBS setup guide](https://faceitwidget.com/faceit-widget-obs/?utm_sourc
 ### Requirements
 
 - Node.js 22 or newer
+- An API key for the DEAFCS API
 
 Install the dependencies:
 
@@ -56,7 +57,13 @@ Install the dependencies:
 npm install
 ```
 
-Run the frontend:
+Copy the example environment file and add your key:
+
+```bash
+cp .env.example .env.local
+```
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -64,9 +71,12 @@ npm run dev
 
 ### Environment variables
 
+Copy `.env.example` to `.env.local` and fill in the values.
+
 | Variable | Runtime | Required | Purpose |
 | --- | --- | --- | --- |
-| `NEXT_PUBLIC_WIDGET_API_BASE_URL` | Next.js build | No | Points the browser client at a separate API origin. |
+| `DEAFCS_API_URL` | Server | Yes | GraphQL endpoint of the DEAFCS API. |
+| `DEAFCS_API_KEY` | Server | Yes | API key for the DEAFCS API. Never expose it to the browser. |
 
 ## Project structure
 
@@ -83,7 +93,8 @@ public/              Level icons, flags, maps, and static assets
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start the Next.js development server. |
-| `npm run build` | Create the static export in `out/`. |
+| `npm run build` | Create a production build. |
+| `npm run start` | Start the production server (after `npm run build`). |
 | `npm test` | Run the Vitest suite. |
 | `npm run typecheck` | Check TypeScript without emitting files. |
 | `npm run lint` | Run ESLint. |

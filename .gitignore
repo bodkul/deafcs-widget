@@ -10,7 +10,6 @@
 
 # Next.js and production output
 /.next/
-/out/
 /build/
 next-env.d.ts
 *.tsbuildinfo
