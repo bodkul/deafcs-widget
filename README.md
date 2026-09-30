@@ -49,49 +49,29 @@ Read the [OBS setup guide](https://faceitwidget.com/faceit-widget-obs/?utm_sourc
 ### Requirements
 
 - Node.js 22 or newer
-- [pnpm 11](https://pnpm.io/)
-- A Cloudflare account with Workers and Durable Objects.
-- A server-side key from the [FACEIT for Developers](https://developers.faceit.com/apps) portal
 
 Install the dependencies:
 
 ```bash
-pnpm install
+npm install
 ```
 
-For local Worker development, copy `.dev.vars.example` to `.dev.vars` and set the key:
-
-```dotenv
-FACEIT_DATA_API_KEY=your-server-side-key
-```
-
-`.dev.vars` and `wrangler.jsonc` are local-only and must never be committed.
-
-Run only the frontend while working on the UI:
+Run the frontend:
 
 ```bash
-pnpm dev
-```
-
-Run the static export and the Worker together when testing real FACEIT requests, Durable Objects, or share pages:
-
-```bash
-pnpm preview
+npm run dev
 ```
 
 ### Environment variables
 
 | Variable | Runtime | Required | Purpose |
 | --- | --- | --- | --- |
-| `FACEIT_DATA_API_KEY` | Worker secret | Yes | Authenticates server-side requests to FACEIT. |
-| `PLAYER_REFRESH_INTERVAL_MS` | Worker variable | No | Widget refresh interval. Defaults to `120000` and is clamped between 60 and 300 seconds. |
-| `NEXT_PUBLIC_WIDGET_API_BASE_URL` | Next.js build | No | Points the browser client at a separate Worker origin during local development. |
+| `NEXT_PUBLIC_WIDGET_API_BASE_URL` | Next.js build | No | Points the browser client at a separate API origin. |
 
 ## Project structure
 
 ```text
 app/                 Routes, metadata, guides, builder, and widget page
-backend/             Worker routes, FACEIT gateway, Durable Objects, and caching
 components/ui/       Reusable shadcn and Base UI components
 components/widget/   Widget renderer, presets, builder, and animation
 lib/widget/          Config, types, serialization, ranking, and API client
@@ -102,13 +82,11 @@ public/              Level icons, flags, maps, and static assets
 
 | Command | Purpose |
 | --- | --- |
-| `pnpm dev` | Start the Next.js development server. |
-| `pnpm preview` | Build and run the full app through Wrangler. |
-| `pnpm build` | Create the static export in `out/`. |
-| `pnpm test` | Run the Vitest suite. |
-| `pnpm typecheck` | Check TypeScript without emitting files. |
-| `pnpm lint` | Run ESLint. |
-| `pnpm cf:typegen` | Regenerate Cloudflare binding types. |
+| `npm run dev` | Start the Next.js development server. |
+| `npm run build` | Create the static export in `out/`. |
+| `npm test` | Run the Vitest suite. |
+| `npm run typecheck` | Check TypeScript without emitting files. |
+| `npm run lint` | Run ESLint. |
 
 ## Contributing
 

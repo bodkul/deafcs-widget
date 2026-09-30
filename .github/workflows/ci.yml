@@ -20,28 +20,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 11.22.0
-
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
           node-version: 22
-          cache: pnpm
+          cache: npm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Run tests
-        run: pnpm test
+        run: npm test
 
       - name: Typecheck
-        run: pnpm typecheck
+        run: npm run typecheck
 
       - name: Lint
-        run: pnpm lint
+        run: npm run lint
 
       - name: Build
-        run: pnpm build
+        run: npm run build
