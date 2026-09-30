@@ -65,10 +65,9 @@ export class WidgetApiError extends Error {
   }
 }
 
-function apiUrl(lookup: string, timezone = "UTC") {
+function apiUrl(lookup: string) {
   const path = `/api/player/${encodeURIComponent(lookup)}`
   const url = new URL(path, window.location.origin)
-  url.searchParams.set("tz", timezone)
   return url
 }
 
@@ -77,17 +76,17 @@ export class WidgetApiClient implements WidgetDataSource {
 
   async getPlayerSnapshot(
     lookup: string,
-    options: { timezone?: string; signal?: AbortSignal; telemetry?: boolean } = {},
+    options: { signal?: AbortSignal; telemetry?: boolean } = {},
   ): Promise<WidgetSnapshot> {
     const headers = new Headers({ Accept: "application/json" })
     const instanceId = getWidgetInstanceId()
     if (instanceId) headers.set("X-Widget-Instance", instanceId)
     if (options.telemetry) headers.set("X-Widget-Usage", "widget")
-    const cacheKey = `${lookup.toLowerCase()}:${options.timezone ?? "UTC"}`
+    const cacheKey = lookup.toLowerCase()
     const cached = this.snapshotCache.get(cacheKey)
     if (cached) headers.set("If-None-Match", cached.etag)
 
-    const response = await fetch(apiUrl(lookup, options.timezone), {
+    const response = await fetch(apiUrl(lookup), {
       headers,
       signal: options.signal,
     })

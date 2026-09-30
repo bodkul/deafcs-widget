@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       <h2>What the widget uses</h2>
       <p>
         The widget uses public FACEIT profile and CS2 statistics to render the layout selected in the builder. The service may
-        receive a FACEIT nickname or player ID, a timezone, and the selected widget configuration so it can display the requested
+        receive a FACEIT nickname or player ID and the selected widget configuration so it can display the requested
         public statistics in the browser source.
       </p>
       <p>

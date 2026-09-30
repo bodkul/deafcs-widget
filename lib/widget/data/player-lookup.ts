@@ -20,20 +20,3 @@ export function parsePlayerLookup(value: string): PlayerLookup | null {
 export function playerLookupKey(lookup: PlayerLookup) {
   return `${lookup.kind}:${lookup.value.toLowerCase()}`
 }
-
-export function isValidTimezone(value: string) {
-  if (!value || value.length > 64) return false
-
-  try {
-    new Intl.DateTimeFormat("en-US", { timeZone: value }).format()
-    return true
-  } catch {
-    return false
-  }
-}
-
-export function getBrowserTimezone(fallback = "UTC") {
-  if (typeof window === "undefined") return fallback
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-  return isValidTimezone(timezone) ? timezone : fallback
-}

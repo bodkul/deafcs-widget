@@ -49,7 +49,7 @@ export {
 } from "./rank"
 export { getWidgetZoom, OBS_OUTPUT_SCALE } from "./rendering"
 export { buildWidgetUrl, deserializeConfig, serializeConfig } from "./config/serialization"
-export { getBrowserTimezone, isValidTimezone, parsePlayerLookup, playerLookupKey } from "./data/player-lookup"
+export { parsePlayerLookup, playerLookupKey } from "./data/player-lookup"
 export { WidgetApiClient, WidgetApiError, widgetApiClient } from "./data/api-client"
 export { usePlayerSnapshot } from "./data/use-player-snapshot"
 export type { PlayerSnapshotReadyState, PlayerSnapshotState } from "./data/use-player-snapshot"

@@ -3,7 +3,7 @@
 import { useEffect, useReducer } from "react"
 
 import { widgetApiClient, WidgetApiError } from "./api-client"
-import { getBrowserTimezone, parsePlayerLookup, playerLookupKey } from "./player-lookup"
+import { parsePlayerLookup, playerLookupKey } from "./player-lookup"
 import type { WidgetData, WidgetSnapshot } from "../types"
 
 const DEFAULT_REFRESH_INTERVAL_MS = 120_000
@@ -95,7 +95,7 @@ function refreshDelay(snapshot: WidgetSnapshot) {
 
 export function usePlayerSnapshot(
   lookupValue: string,
-  options: { debounceMs?: number; timezone?: string; telemetry?: boolean } = {},
+  options: { debounceMs?: number; telemetry?: boolean } = {},
 ): PlayerSnapshotState {
   const parsedLookup = parsePlayerLookup(lookupValue)
   const activeLookupKey = parsedLookup ? playerLookupKey(parsedLookup) : null
@@ -110,7 +110,6 @@ export function usePlayerSnapshot(
 
     const lookupKey = playerLookupKey(lookup)
     const lookupIdentifier = lookup.value
-    const timezone = options.timezone ?? getBrowserTimezone()
     const abortController = new AbortController()
     let scheduledTimer: number | undefined
     let retryAttempt = 0
@@ -136,7 +135,6 @@ export function usePlayerSnapshot(
 
       try {
         const snapshot = await widgetApiClient.getPlayerSnapshot(lookupIdentifier, {
-          timezone,
           signal: abortController.signal,
           telemetry: options.telemetry,
         })
@@ -161,7 +159,7 @@ export function usePlayerSnapshot(
       window.clearTimeout(initialTimer)
       if (scheduledTimer !== undefined) window.clearTimeout(scheduledTimer)
     }
-  }, [lookupValue, options.debounceMs, options.telemetry, options.timezone])
+  }, [lookupValue, options.debounceMs, options.telemetry])
 
   if (!activeLookupKey) return idleState
   if (state.lookupKey !== activeLookupKey) return { data: null, status: "loading" }

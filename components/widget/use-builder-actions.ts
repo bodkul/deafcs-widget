@@ -2,7 +2,7 @@
 
 import { useState, type RefObject } from "react"
 
-import { buildWidgetUrl, getBrowserTimezone, type WidgetConfig } from "@/lib/widget"
+import { buildWidgetUrl, type WidgetConfig } from "@/lib/widget"
 import { createWidgetPng, downloadWidgetPng } from "@/lib/widget/export-image"
 import { createWidgetShare, xShareIntent } from "@/lib/widget/sharing/share-card"
 
@@ -97,7 +97,7 @@ export function useBuilderActions({ config, nickname, playerId, previewWidgetRef
   function currentWidgetUrl() {
     const normalizedPlayerId = playerId?.trim()
     return normalizedPlayerId
-      ? buildWidgetUrl(window.location.origin, normalizedPlayerId, config, getBrowserTimezone())
+      ? buildWidgetUrl(window.location.origin, normalizedPlayerId, config)
       : null
   }
 

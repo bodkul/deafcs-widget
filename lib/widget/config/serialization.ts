@@ -272,11 +272,9 @@ export function buildWidgetUrl(
   origin: string,
   playerId: string,
   config: WidgetConfig,
-  timezone?: string,
 ) {
   const params = new URLSearchParams()
   params.set("playerId", playerId.trim())
   params.set("config", serializeConfig(config))
-  if (timezone) params.set("tz", timezone)
   return `${origin}/widget/?${params.toString()}`
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { isValidTimezone, parsePlayerLookup, playerLookupKey } from "./player-lookup"
+import { parsePlayerLookup, playerLookupKey } from "./player-lookup"
 
 describe("parsePlayerLookup", () => {
   it("distinguishes a player ID from a nickname", () => {
@@ -21,12 +21,5 @@ describe("parsePlayerLookup", () => {
   it("creates a stable cache key", () => {
     const lookup = parsePlayerLookup("Bodkul")
     expect(lookup && playerLookupKey(lookup)).toBe("nickname:bodkul")
-  })
-})
-
-describe("isValidTimezone", () => {
-  it("accepts IANA timezones and rejects arbitrary strings", () => {
-    expect(isValidTimezone("America/Montevideo")).toBe(true)
-    expect(isValidTimezone("not-a-timezone")).toBe(false)
   })
 })
