@@ -15,7 +15,7 @@ describe("widget sharing", () => {
     const image = new Blob(["png"], { type: "image/png" })
 
     await expect(createWidgetShare(image, {
-      nickname: "donk666",
+      nickname: "bodkul",
       preset: "rich-profile",
     })).resolves.toBe("https://faceitwidget.com/s/abc123def456/")
 

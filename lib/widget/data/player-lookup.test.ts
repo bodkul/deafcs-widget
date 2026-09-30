@@ -9,7 +9,7 @@ describe("parsePlayerLookup", () => {
       kind: "id",
       value: "fee75936-fca2-41fb-899e-b2e09263de50",
     })
-    expect(parsePlayerLookup(" Donk666 ")).toEqual({ kind: "nickname", value: "Donk666" })
+    expect(parsePlayerLookup(" Bodkul ")).toEqual({ kind: "nickname", value: "Bodkul" })
   })
 
   it("rejects values that cannot be sent to FACEIT", () => {
@@ -19,8 +19,8 @@ describe("parsePlayerLookup", () => {
   })
 
   it("creates a stable cache key", () => {
-    const lookup = parsePlayerLookup("Donk666")
-    expect(lookup && playerLookupKey(lookup)).toBe("nickname:donk666")
+    const lookup = parsePlayerLookup("Bodkul")
+    expect(lookup && playerLookupKey(lookup)).toBe("nickname:bodkul")
   })
 })
 

@@ -21,7 +21,7 @@ export function AnnouncementBar() {
           progress and match performance stats.
         </p>
         <Link
-          href={{ pathname: APP_PATHS.builder, query: { preset: "performance-card" } }}
+          href={{ pathname: APP_PATHS.builder, query: { nickname: "bodkul", preset: "performance-card" } }}
           className="shrink-0 text-xs font-semibold text-foreground underline decoration-white/25 underline-offset-4 transition-[color,text-decoration-color] duration-150 hover:decoration-white/70 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 sm:text-sm"
         >
           Try it

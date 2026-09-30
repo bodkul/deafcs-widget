@@ -7,7 +7,7 @@ import { AnnouncementBar } from "@/components/site/announcement-bar"
 import { SITE_LINKS } from "@/lib/site-links"
 import { SITE_AUTHOR, SITE_LAST_MODIFIED, SITE_METADATA, SITE_PATHS } from "@/lib/site-metadata"
 
-const examplePlayer = "donk666"
+const examplePlayer = "bodkul"
 
 export const metadata: Metadata = {
   title: { absolute: SITE_METADATA.title },

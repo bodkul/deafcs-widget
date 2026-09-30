@@ -87,7 +87,7 @@ export function SitePage({
           </p>
           {showBuilderCta ? (
             <Button
-              render={<Link href={`${APP_PATHS.builder}?nickname=donk666`} />}
+              render={<Link href={`${APP_PATHS.builder}?nickname=bodkul`} />}
               nativeButton={false}
               className="mt-5"
               icon={<ArrowRight />}
