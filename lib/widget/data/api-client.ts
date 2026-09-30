@@ -43,7 +43,7 @@ const widgetDataSchema = z.object({
   }).optional(),
 })
 
-const widgetSnapshotSchema = z.object({
+export const widgetSnapshotSchema = z.object({
   data: widgetDataSchema,
   meta: z.object({
     playerId: z.string(),
@@ -65,14 +65,9 @@ export class WidgetApiError extends Error {
   }
 }
 
-function apiBaseUrl() {
-  return process.env.NEXT_PUBLIC_WIDGET_API_BASE_URL?.replace(/\/$/, "") ?? ""
-}
-
 function apiUrl(lookup: string, timezone = "UTC") {
-  const route = "snapshot"
-  const path = `/api/v1/players/${encodeURIComponent(lookup)}/${route}`
-  const url = new URL(`${apiBaseUrl()}${path}`, window.location.origin)
+  const path = `/api/player/${encodeURIComponent(lookup)}`
+  const url = new URL(path, window.location.origin)
   url.searchParams.set("tz", timezone)
   return url
 }
@@ -121,7 +116,6 @@ export class WidgetApiClient implements WidgetDataSource {
 
     return snapshot
   }
-
 }
 
 export const widgetApiClient = new WidgetApiClient()
