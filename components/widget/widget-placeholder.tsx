@@ -1,5 +1,5 @@
 import { DotsRing } from "@/components/ui/dots-ring"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 type WidgetSkeletonProps = {
   className?: string

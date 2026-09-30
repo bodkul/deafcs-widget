@@ -31,7 +31,7 @@ import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { SITE_METADATA, SITE_PATHS } from "@/lib/site-metadata"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 import { BackdropControl } from "./background"
 

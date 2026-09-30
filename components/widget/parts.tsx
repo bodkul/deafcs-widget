@@ -10,7 +10,7 @@ import {
   type WidgetVisibility,
 } from "@/lib/widget"
 import { formatNumber } from "@/lib/format"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 import { AnimatedNumber } from "./animated-number"
 import { ChallengerMark } from "./challenger-mark"

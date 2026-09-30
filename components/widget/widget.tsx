@@ -3,7 +3,7 @@
 import type { CSSProperties, Ref } from "react"
 
 import { getWidgetZoom, normalizeConfig, type WidgetConfig, type WidgetData } from "@/lib/widget"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 import { BackdropLayer } from "./background"
 import { PresetView } from "./preset-view"

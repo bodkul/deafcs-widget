@@ -6,7 +6,7 @@ import { useState } from "react"
 
 import { SITE_PATHS } from "@/lib/site-metadata"
 import { SITE_LINKS } from "@/lib/site-links"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 const FAQS = [
   {

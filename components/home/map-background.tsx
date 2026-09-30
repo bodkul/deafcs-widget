@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 
 import { WIDGET_MAPS } from "@/lib/widget/maps"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 const mapSources = WIDGET_MAPS.flatMap((map) => (map.src ? [{ id: map.id, src: map.src }] : []))
 

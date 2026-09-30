@@ -3,7 +3,7 @@ import {
   type WidgetConfig,
   type WidgetData,
 } from "@/lib/widget"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 import {
   ChallengerRankBadge,

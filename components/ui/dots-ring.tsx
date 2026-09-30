@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 const DOT_COUNT = 8
 const DOT_STEP_DEGREES = 45

@@ -8,7 +8,7 @@ import {
   type WidgetBackdropConfig,
   type WidgetBackdropPosition,
 } from "@/lib/widget"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 type BackdropLayerProps = {
   config: WidgetBackdropConfig

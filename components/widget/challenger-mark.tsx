@@ -1,6 +1,6 @@
 import type { CSSProperties, SVGProps } from "react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 type ChallengerMarkProps = Omit<SVGProps<SVGSVGElement>, "color"> & {
   accentColor?: string

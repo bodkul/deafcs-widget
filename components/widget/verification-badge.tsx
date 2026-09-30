@@ -1,7 +1,7 @@
 import { useId } from "react"
 
 import type { VerifiedBadgeType } from "@/lib/widget"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 type BadgeIconProps = {
   className?: string

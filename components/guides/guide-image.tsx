@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 export const GUIDE_IMAGES = {
   builderSettings: { src: "/guides/faceit-widget-builder-settings.webp", width: 351, height: 910 },
