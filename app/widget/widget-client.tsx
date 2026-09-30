@@ -10,9 +10,7 @@ export function WidgetClient() {
   const searchParams = useSearchParams()
   const lookup = searchParams.get("playerId")?.trim() || searchParams.get("nickname")?.trim() || ""
   const config = deserializeConfig(searchParams.get("config") ?? undefined)
-  const snapshot = usePlayerSnapshot(lookup, {
-    telemetry: true,
-  })
+  const snapshot = usePlayerSnapshot(lookup)
 
   return (
     <PlayerDataBoundary state={snapshot} pending={null}>

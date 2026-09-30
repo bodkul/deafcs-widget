@@ -94,7 +94,6 @@ describe("widget config serialization", () => {
       "https://faceitwidget.com",
       "fee75936-fca2-41fb-899e-b2e09263de50",
       createDefaultConfig("rich-profile"),
-      "America/Montevideo",
     )
 
     expect(url).toContain("playerId=fee75936-fca2-41fb-899e-b2e09263de50")

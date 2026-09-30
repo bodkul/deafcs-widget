@@ -95,7 +95,7 @@ function refreshDelay(snapshot: WidgetSnapshot) {
 
 export function usePlayerSnapshot(
   lookupValue: string,
-  options: { debounceMs?: number; telemetry?: boolean } = {},
+  options: { debounceMs?: number; } = {},
 ): PlayerSnapshotState {
   const parsedLookup = parsePlayerLookup(lookupValue)
   const activeLookupKey = parsedLookup ? playerLookupKey(parsedLookup) : null
@@ -136,7 +136,6 @@ export function usePlayerSnapshot(
       try {
         const snapshot = await widgetApiClient.getPlayerSnapshot(lookupIdentifier, {
           signal: abortController.signal,
-          telemetry: options.telemetry,
         })
         if (disposed) return
 
@@ -159,7 +158,7 @@ export function usePlayerSnapshot(
       window.clearTimeout(initialTimer)
       if (scheduledTimer !== undefined) window.clearTimeout(scheduledTimer)
     }
-  }, [lookupValue, options.debounceMs, options.telemetry])
+  }, [lookupValue, options.debounceMs])
 
   if (!activeLookupKey) return idleState
   if (state.lookupKey !== activeLookupKey) return { data: null, status: "loading" }

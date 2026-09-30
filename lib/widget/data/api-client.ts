@@ -76,12 +76,11 @@ export class WidgetApiClient implements WidgetDataSource {
 
   async getPlayerSnapshot(
     lookup: string,
-    options: { signal?: AbortSignal; telemetry?: boolean } = {},
+    options: { signal?: AbortSignal; } = {},
   ): Promise<WidgetSnapshot> {
     const headers = new Headers({ Accept: "application/json" })
     const instanceId = getWidgetInstanceId()
     if (instanceId) headers.set("X-Widget-Instance", instanceId)
-    if (options.telemetry) headers.set("X-Widget-Usage", "widget")
     const cacheKey = lookup.toLowerCase()
     const cached = this.snapshotCache.get(cacheKey)
     if (cached) headers.set("If-None-Match", cached.etag)
