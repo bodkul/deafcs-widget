@@ -4,7 +4,7 @@ import type { PresetViewProps } from "./types"
 
 export function EloPillPreset({ data, config }: PresetViewProps) {
   return (
-    <div className="flex min-w-[116px] items-center justify-center gap-2">
+    <div className="flex min-w-29 items-center justify-center gap-2">
       <CoreLine
         data={data}
         config={config}

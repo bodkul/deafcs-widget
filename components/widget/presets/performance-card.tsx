@@ -24,7 +24,7 @@ function RankProgressBar({ data }: Pick<PresetViewProps, "data">) {
 
   return (
     <div
-      className="h-[3px] w-full overflow-hidden rounded-full bg-[color:var(--widget-surface-muted)]"
+      className="h-0.75 w-full overflow-hidden rounded-full bg-(--widget-surface-muted)"
       role="progressbar"
       aria-label={`${progress.label} progress`}
       aria-valuemin={0}
@@ -33,7 +33,7 @@ function RankProgressBar({ data }: Pick<PresetViewProps, "data">) {
       style={style}
     >
       <div
-        className="h-full rounded-full bg-[color:var(--performance-progress-color)] transition-[width,background-color] duration-200 ease-[var(--ease-out)]"
+        className="h-full rounded-full bg-(--performance-progress-color) transition-[width,background-color] duration-200 ease-out"
         style={{ width }}
       />
     </div>
@@ -60,9 +60,9 @@ export function PerformanceCardPreset({ data, config }: PresetViewProps) {
   ].filter((metric): metric is NonNullable<typeof metric> => metric !== null)
 
   return (
-    <div className="flex min-w-[320px] max-w-full flex-col gap-[var(--widget-layout-gap)]">
+    <div className="flex min-w-[320px] max-w-full flex-col gap-(--widget-layout-gap)">
       <div className={config.visibility.todayStats
-        ? "grid min-w-0 grid-cols-[repeat(4,minmax(0,1fr))] gap-2"
+        ? "grid min-w-0 grid-cols-4 gap-2"
         : "flex min-w-0 items-center"}
       >
         <div className={config.visibility.todayStats
@@ -80,11 +80,11 @@ export function PerformanceCardPreset({ data, config }: PresetViewProps) {
           ) : (
             <LevelMark data={data} visibility={config.visibility} className="size-10" />
           )}
-          <div className="flex min-w-0 flex-col gap-[5px]">
+          <div className="flex min-w-0 flex-col gap-1.25">
             {config.visibility.nickname ? (
               <PlayerNickname
                 data={data}
-                className="max-w-[13rem] truncate text-[16px] font-extrabold tracking-[-0.03em]"
+                className="max-w-52 truncate text-[16px] font-extrabold tracking-[-0.03em]"
                 showVerifiedBadge={config.visibility.verifiedBadge}
               />
             ) : null}
@@ -99,26 +99,26 @@ export function PerformanceCardPreset({ data, config }: PresetViewProps) {
               visibility={config.visibility}
               className="gap-[4px] leading-none"
               flagClassName="h-3 w-[17px]"
-              valueClassName="text-[10px] font-bold text-[color:var(--widget-muted)]"
+              valueClassName="text-[10px] font-bold text-(--widget-muted)"
             />
           </div>
         </div>
 
         {config.visibility.todayStats ? (
-          <div className="col-start-4 flex shrink-0 items-start justify-start gap-[5px]" aria-label="Wins and losses">
+          <div className="col-start-4 flex shrink-0 items-start justify-start gap-1.25" aria-label="Wins and losses">
             <RecordStat
               label="wins"
               value={data.today?.wins}
               tone="positive"
               showLabel={config.visibility.recordLabels}
-              className="w-[34px]"
+              className="w-8.5"
             />
             <RecordStat
               label="losses"
               value={data.today?.losses}
               tone="negative"
               showLabel={config.visibility.recordLabels}
-              className="w-[34px]"
+              className="w-8.5"
             />
           </div>
         ) : null}

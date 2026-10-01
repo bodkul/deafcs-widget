@@ -44,9 +44,9 @@ function BackdropCard({ backdrop, selected, onSelect }: {
       aria-label={backdrop.label}
       aria-pressed={selected}
       className={cn(
-        "group relative min-w-0 overflow-hidden rounded-lg border bg-surface/30 p-1 outline-none transition-[border-color,background-color,box-shadow,transform] duration-150 ease-[var(--ease-out)] hover:border-foreground/40 hover:bg-surface-2 focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 active:scale-[0.98]",
+        "group relative min-w-0 overflow-hidden rounded-lg border bg-surface/30 p-1 outline-none transition-[border-color,background-color,box-shadow,transform] duration-150 ease-out hover:border-foreground/40 hover:bg-surface-2 focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 active:scale-[0.98]",
         selected
-          ? "border-foreground/80 bg-surface-2 shadow-[0_0_0_1px_rgb(255_255_255_/_20%)]"
+          ? "border-foreground/80 bg-surface-2 shadow-[0_0_0_1px_rgb(255_255_255/20%)]"
           : "border-border/70",
       )}
       data-selected={selected}
@@ -61,7 +61,7 @@ function BackdropCard({ backdrop, selected, onSelect }: {
             fill
             sizes="96px"
             unoptimized
-            className="object-cover transition-transform duration-300 ease-[var(--ease-out)] group-hover:scale-105"
+            className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
           />
         ) : (
           <span className="absolute inset-0 grid place-items-center">
@@ -79,7 +79,7 @@ function BackdropCard({ backdrop, selected, onSelect }: {
         <span
           aria-hidden="true"
           className={cn(
-            "absolute right-1.5 top-1.5 flex size-5 items-center justify-center rounded-full bg-foreground text-background opacity-0 shadow-[0_2px_8px_rgb(0_0_0_/_35%)] transition-opacity duration-150",
+            "absolute right-1.5 top-1.5 flex size-5 items-center justify-center rounded-full bg-foreground text-background opacity-0 shadow-[0_2px_8px_rgb(0_0_0/35%)] transition-opacity duration-150",
             selected && "opacity-100",
           )}
         >

@@ -54,11 +54,11 @@ export function Widget({
   const surfaceBorderClass =
     config.style.background === "none" || !config.style.borderEnabled
       ? "border-transparent"
-      : "border-[color:var(--widget-border)]"
+      : "border-(--widget-border)"
   const surfaceBackgroundClass =
     config.style.background === "none"
       ? "bg-transparent"
-      : "bg-[color:var(--widget-surface)]"
+      : "bg-(--widget-surface)"
   const surfaceStyle: CSSProperties | undefined =
     config.style.background === "none"
       ? { backgroundColor: `rgb(12 12 12 / ${config.style.opacity * transparentSurfaceBaseOpacity})` }
@@ -75,7 +75,7 @@ export function Widget({
     <div
       ref={ref}
       className={cn(
-        "inline-block max-w-full text-[12px] font-normal leading-none text-[color:var(--widget-text)] [font-family:var(--widget-font)] [zoom:var(--widget-zoom)]",
+        "inline-block max-w-full text-[12px] font-normal leading-none text-(--widget-text) [font-family:var(--widget-font)] zoom-(--widget-zoom)",
         className,
       )}
       style={style}
@@ -85,7 +85,7 @@ export function Widget({
       <div
         data-widget-surface
         className={cn(
-          "relative isolate block w-max max-w-full overflow-hidden rounded-[var(--widget-radius)] border",
+          "relative isolate block w-max max-w-full overflow-hidden rounded-(--widget-radius) border",
           surfacePaddingClass,
           surfaceBorderClass,
           surfaceBackgroundClass,
@@ -94,7 +94,7 @@ export function Widget({
         style={surfaceStyle}
       >
         <BackdropLayer config={config.backdrop} interaction={backdropInteraction} />
-        <div className="relative z-[1]">
+        <div className="relative z-1">
           <PresetView data={data} config={config} />
         </div>
       </div>

@@ -63,7 +63,7 @@ function CopyDialog({ open, widgetUrl, copied, onOpenChange, onCopy }: CopyDialo
               className="h-10 min-w-0 flex-1 truncate bg-background/60 text-left text-xs [direction:ltr] focus-visible:border-input focus-visible:ring-0"
             />
             <Button
-              className="h-10 rounded-lg font-semibold shadow-[0_1px_0_rgb(0_0_0_/_18%)]"
+              className="h-10 rounded-lg font-semibold shadow-[0_1px_0_rgb(0_0_0/18%)]"
               size="default"
               icon={copied ? <Check className="text-emerald-500" /> : <Copy />}
               iconPosition="end"
@@ -101,7 +101,7 @@ function ExternalLink({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="group inline-flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm text-muted-foreground outline-none transition-[background-color,color] duration-150 ease-[var(--ease-out)] hover:bg-control-hover hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60"
+      className="group inline-flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm text-muted-foreground outline-none transition-[background-color,color] duration-150 ease-out hover:bg-control-hover hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60"
     >
       {icon}
       <span>{children}</span>
@@ -117,7 +117,7 @@ type FeedbackDialogProps = {
 function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[520px]">
+      <DialogContent className="sm:max-w-130">
         <DialogHeader>
           <DialogTitle>Share your feedback</DialogTitle>
           <DialogDescription>Suggest an idea or report a problem through GitHub.</DialogDescription>
@@ -150,7 +150,7 @@ function FeedbackLink({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="group flex min-h-[126px] flex-col rounded-lg border border-border bg-background/45 p-3.5 text-left outline-none transition-[background-color,border-color,transform] duration-150 ease-[var(--ease-out)] hover:border-border-strong hover:bg-control-hover focus-visible:ring-2 focus-visible:ring-ring/60 active:scale-[0.98]"
+      className="group flex min-h-31.5 flex-col rounded-lg border border-border bg-background/45 p-3.5 text-left outline-none transition-[background-color,border-color,transform] duration-150 ease-out hover:border-border-strong hover:bg-control-hover focus-visible:ring-2 focus-visible:ring-ring/60 active:scale-[0.98]"
     >
       <div className="flex items-center justify-between">
         <span className="flex size-8 items-center justify-center rounded-md bg-control-selected text-foreground">
@@ -158,7 +158,7 @@ function FeedbackLink({
         </span>
         <ArrowUpRight
           aria-hidden="true"
-          className="size-4 text-muted-foreground transition-transform duration-150 ease-[var(--ease-out)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          className="size-4 text-muted-foreground transition-transform duration-150 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
         />
       </div>
       <span className="mt-auto pt-5 text-sm font-semibold text-foreground">{children}</span>

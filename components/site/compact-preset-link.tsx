@@ -103,7 +103,7 @@ export function CompactPresetLink() {
           aria-label="Compact preset preview"
           aria-hidden={!isOpen}
         >
-          <div className="overflow-hidden rounded-xl border border-border/80 bg-background p-2 shadow-[0_16px_40px_rgb(0_0_0_/_45%)]">
+          <div className="overflow-hidden rounded-xl border border-border/80 bg-background p-2 shadow-[0_16px_40px_rgb(0_0_0/45%)]">
             {isMounted ? (
               <div className="flex justify-center">
                 <Widget data={previewData} config={previewConfig} shadow="none" />

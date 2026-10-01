@@ -56,7 +56,7 @@ export function SitePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replaceAll("<", "\\u003c") }}
       />
-      <article className="mx-auto w-full max-w-[760px] px-5 py-10 sm:px-8 sm:py-16">
+      <article className="mx-auto w-full max-w-190 px-5 py-10 sm:px-8 sm:py-16">
         <Link
           href={SITE_PATHS.home}
           className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -67,10 +67,10 @@ export function SitePage({
 
         <header className="mt-12 border-b border-border pb-10">
           <h1 className="text-4xl font-semibold leading-tight tracking-[-0.045em] sm:text-5xl">{title}</h1>
-          <p className="mt-5 max-w-[640px] text-base leading-7 text-muted-foreground">{description}</p>
+          <p className="mt-5 max-w-160 text-base leading-7 text-muted-foreground">{description}</p>
         </header>
 
-        <div className="py-10 text-[15px] leading-7 text-muted-foreground [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-[-0.025em] [&_h2]:text-foreground [&_h3]:mb-2 [&_h3]:mt-7 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-foreground [&_li]:pl-2 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:space-y-3 [&_ol]:pl-5 [&_p+p]:mt-4 [&_strong]:font-semibold [&_strong]:text-foreground [&_ul]:my-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
+        <div className="py-10 text-[15px] leading-7 text-muted-foreground [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h3]:mb-2 [&_h3]:mt-7 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-foreground [&_li]:pl-2 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:space-y-3 [&_ol]:pl-5 [&_p+p]:mt-4 [&_strong]:font-semibold [&_strong]:text-foreground [&_ul]:my-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
           {children}
         </div>
 

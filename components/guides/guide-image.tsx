@@ -20,7 +20,7 @@ type GuideImageProps = {
 
 export function GuideImage({ image, alt, caption, compact = false }: GuideImageProps) {
   return (
-    <figure className={cn("my-8", compact && "mx-auto max-w-[351px]")}>
+    <figure className={cn("my-8", compact && "mx-auto max-w-87.75")}>
       <div className="overflow-hidden rounded-lg border border-border bg-card">
         <Image
           src={image.src}

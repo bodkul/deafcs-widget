@@ -7,11 +7,11 @@ import { APP_PATHS, SITE_PATHS } from "@/lib/site-metadata"
 export function HomeStory() {
   return (
     <section aria-labelledby="story-title" className="relative">
-      <div className="mx-auto w-full max-w-[960px] px-4 pt-24 text-center sm:px-6 sm:pt-32 lg:px-10 lg:pt-40">
+      <div className="mx-auto w-full max-w-240 px-4 pt-24 text-center sm:px-6 sm:pt-32 lg:px-10 lg:pt-40">
         <div className="mx-auto max-w-3xl">
           <h2
             id="story-title"
-            className="mx-auto max-w-3xl text-3xl font-semibold leading-[1.05] tracking-[-0.05em] text-foreground sm:text-5xl"
+            className="mx-auto max-w-3xl text-3xl font-semibold leading-[1.05] tracking-tighter text-foreground sm:text-5xl"
           >
             FACEIT stats for OBS, without a plugin.
           </h2>
@@ -19,18 +19,18 @@ export function HomeStory() {
             Keep the overlay readable, quiet, and ready for the next round. Set it up once, then let the stats follow the game.
           </p>
           <div className="mx-auto mt-10 max-w-3xl space-y-4">
-          <p className="text-sm leading-7 text-muted-foreground sm:text-base">
-            <strong className="font-semibold text-foreground">FACEIT Widget is a free CS2 statistics overlay for OBS and Streamlabs.</strong>{" "}
-            It turns a public FACEIT nickname into a browser-source URL that can show ELO, level, rank, country, K/D, and recent match results on a live stream.
-          </p>
-          <p className="text-sm leading-7 text-muted-foreground sm:text-base">
-            The widget does not require a FACEIT password, plugin, or account login. Open the <Link className="text-foreground underline underline-offset-4" href={APP_PATHS.builder}>widget builder</Link>, choose a preset, adjust the layout, and copy the URL into an OBS Browser source.
-          </p>
+            <p className="text-sm leading-7 text-muted-foreground sm:text-base">
+              <strong className="font-semibold text-foreground">FACEIT Widget is a free CS2 statistics overlay for OBS and Streamlabs.</strong>{" "}
+              It turns a public FACEIT nickname into a browser-source URL that can show ELO, level, rank, country, K/D, and recent match results on a live stream.
+            </p>
+            <p className="text-sm leading-7 text-muted-foreground sm:text-base">
+              The widget does not require a FACEIT password, plugin, or account login. Open the <Link className="text-foreground underline underline-offset-4" href={APP_PATHS.builder}>widget builder</Link>, choose a preset, adjust the layout, and copy the URL into an OBS Browser source.
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1440px] px-4 pb-28 sm:px-6 sm:pb-40 lg:px-10">
+      <div className="mx-auto w-full max-w-360 px-4 pb-28 sm:px-6 sm:pb-40 lg:px-10">
         <div className="mx-auto mt-20 max-w-5xl text-center sm:mt-24">
           <h2 className="mx-auto text-2xl font-semibold leading-tight tracking-[-0.04em] text-foreground sm:text-3xl">
             Choose the information your viewers need.
@@ -40,7 +40,7 @@ export function HomeStory() {
           </p>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            <article className="h-full min-h-[240px] rounded-xl border border-border bg-secondary p-6 text-center shadow-[inset_0_1px_rgb(255_255_255_/_5%)]">
+            <article className="h-full min-h-60 rounded-xl border border-border bg-secondary p-6 text-center shadow-[inset_0_1px_rgb(255_255_255/5%)]">
               <div className="mx-auto flex size-12 items-center justify-center rounded-xl border border-border-strong bg-background/45 text-foreground">
                 <Trophy aria-hidden="true" className="size-6" strokeWidth={1.7} />
               </div>
@@ -49,7 +49,7 @@ export function HomeStory() {
                 Show current ELO, FACEIT level, Challenger status, regional ranking, and country rank in a small footprint.
               </p>
             </article>
-            <article className="h-full min-h-[240px] rounded-xl border border-border bg-secondary p-6 text-center shadow-[inset_0_1px_rgb(255_255_255_/_5%)]">
+            <article className="h-full min-h-60 rounded-xl border border-border bg-secondary p-6 text-center shadow-[inset_0_1px_rgb(255_255_255/5%)]">
               <div className="mx-auto flex size-12 items-center justify-center rounded-xl border border-border-strong bg-background/45 text-foreground">
                 <BarChart3 aria-hidden="true" className="size-6" strokeWidth={1.7} />
               </div>
@@ -58,7 +58,7 @@ export function HomeStory() {
                 Add K/D, wins and losses for today, recent form, or averages from the latest 30 completed matches.
               </p>
             </article>
-            <article className="h-full min-h-[240px] rounded-xl border border-border bg-secondary p-6 text-center shadow-[inset_0_1px_rgb(255_255_255_/_5%)]">
+            <article className="h-full min-h-60 rounded-xl border border-border bg-secondary p-6 text-center shadow-[inset_0_1px_rgb(255_255_255/5%)]">
               <div className="mx-auto flex size-12 items-center justify-center rounded-xl border border-border-strong bg-background/45 text-foreground">
                 <SlidersHorizontal aria-hidden="true" className="size-6" strokeWidth={1.7} />
               </div>

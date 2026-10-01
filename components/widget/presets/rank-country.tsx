@@ -9,7 +9,7 @@ export function RankCountryPreset({ data, config }: PresetViewProps) {
   const showRegionRank = config.visibility.regionRank && !challenger
 
   return (
-    <div className="flex min-w-[232px] flex-row items-center gap-2">
+    <div className="flex min-w-58 flex-row items-center gap-2">
       <CoreLine
         data={data}
         config={config}

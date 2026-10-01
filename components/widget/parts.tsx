@@ -37,7 +37,7 @@ export function PlayerNickname({
   return (
     <strong
       className={cn(
-        "inline-flex min-w-0 shrink-0 items-center gap-1 whitespace-nowrap text-[13px] font-bold leading-none text-[color:var(--widget-text)]",
+        "inline-flex min-w-0 shrink-0 items-center gap-1 whitespace-nowrap text-[13px] font-bold leading-none text-(--widget-text)",
         className,
       )}
       data-widget-nickname
@@ -128,10 +128,10 @@ export function EloValue({
   }
 
   return (
-    <span className={cn("inline-flex flex-col gap-[3px]", className)}>
+    <span className={cn("inline-flex flex-col gap-0.75", className)}>
       <strong
         className={cn(
-          "whitespace-nowrap text-[20px] font-extrabold leading-none tracking-[-0.04em] text-[color:var(--widget-text)] tabular-nums",
+          "whitespace-nowrap text-[20px] font-extrabold leading-none tracking-[-0.04em] text-(--widget-text) tabular-nums",
           valueClassName,
         )}
       >
@@ -162,8 +162,8 @@ export function EloSummary({
   const eloChange = data.rank.eloChange
 
   return (
-    <span className={cn("inline-flex min-w-0 items-center gap-[3px] whitespace-nowrap text-[9px] leading-none text-[color:var(--widget-muted)]", className)}>
-      <strong className="inline-flex items-center font-bold leading-none text-[color:var(--widget-text)] tabular-nums">
+    <span className={cn("inline-flex min-w-0 items-center gap-0.75 whitespace-nowrap text-[9px] leading-none text-(--widget-muted)", className)}>
+      <strong className="inline-flex items-center font-bold leading-none text-(--widget-text) tabular-nums">
         <span className="inline-flex items-center gap-[2px] leading-none">
           {visibility.eloIcon ? <EloIcon small /> : null}
           <AnimatedNumber value={data.rank.elo} />
@@ -211,10 +211,10 @@ export function RankValue({
   format?: (value: number | undefined) => string
 }) {
   return (
-    <span className={cn("inline-flex flex-col gap-[3px]", className)}>
+    <span className={cn("inline-flex flex-col gap-0.75", className)}>
       <strong
         className={cn(
-          "text-[16px] font-extrabold leading-none text-[color:var(--widget-text)] tabular-nums",
+          "text-[16px] font-extrabold leading-none text-(--widget-text) tabular-nums",
           valueClassName,
         )}
       >
@@ -248,7 +248,7 @@ export function ChallengerRankBadge({
     <span
       className={cn(
         showRankNumber
-          ? "inline-flex min-h-7 shrink-0 items-center gap-[5px] rounded-full border border-[color:var(--challenger-rank-color)] bg-[color:var(--challenger-rank-color)] px-2 py-1 leading-none text-[#090909] shadow-[0_1px_0_rgb(0_0_0_/_28%)]"
+          ? "inline-flex min-h-7 shrink-0 items-center gap-1.25 rounded-full border border-(--challenger-rank-color) bg-(--challenger-rank-color) px-2 py-1 leading-none text-[#090909] shadow-[0_1px_0_rgb(0_0_0/28%)]"
           : "inline-flex size-7 shrink-0 items-center justify-center",
         className,
       )}
@@ -279,7 +279,7 @@ export function LevelRankBadge({
   visibility: WidgetVisibility
 }) {
   return (
-    <span className="inline-flex min-h-7 shrink-0 items-center gap-[5px] rounded-full border border-[color:var(--widget-border)] bg-[color:var(--widget-surface-muted)] px-2 py-1 leading-none text-[color:var(--widget-text)] shadow-[0_1px_0_rgb(0_0_0_/_28%)]">
+    <span className="inline-flex min-h-7 shrink-0 items-center gap-1.25 rounded-full border border-(--widget-border) bg-(--widget-surface-muted) px-2 py-1 leading-none text-(--widget-text) shadow-[0_1px_0_rgb(0_0_0/28%)]">
       <strong className="font-system text-[13px] font-extrabold tabular-nums">
         #{formatNumber(data.rank.level)}
       </strong>
@@ -338,10 +338,10 @@ export function KdrValue({
   }
 
   return (
-    <span className={cn("inline-flex flex-col items-end gap-[3px]", className)}>
+    <span className={cn("inline-flex flex-col items-end gap-0.75", className)}>
       <strong
         className={cn(
-          "text-[18px] font-extrabold leading-none text-[color:var(--widget-text)] tabular-nums",
+          "text-[18px] font-extrabold leading-none text-(--widget-text) tabular-nums",
           valueClassName,
         )}
       >
@@ -349,7 +349,7 @@ export function KdrValue({
       </strong>
       <small
         className={cn(
-          "text-[9px] font-bold uppercase leading-none tracking-[0.08em] text-[color:var(--widget-muted)]",
+          "text-[9px] font-bold uppercase leading-none tracking-[0.08em] text-(--widget-muted)",
           labelClassName,
         )}
       >
@@ -360,7 +360,7 @@ export function KdrValue({
 }
 
 const statValueStyles = {
-  default: "text-[color:var(--widget-text)]",
+  default: "text-(--widget-text)",
   positive: "text-[#58d68d]",
   negative: "text-[#ff5b67]",
 } as const
@@ -384,7 +384,7 @@ function Stat({
       >
         {value}
       </strong>
-      <small className="whitespace-nowrap text-[8px] font-medium leading-[1.1] text-[color:var(--widget-muted)]">
+      <small className="whitespace-nowrap text-[8px] font-medium leading-[1.1] text-(--widget-muted)">
         {label}
       </small>
     </span>
@@ -411,7 +411,7 @@ function AnimatedMetricPair({
 
 function StatGrid({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("grid grid-cols-[repeat(3,minmax(0,1fr))] gap-[6px]", className)}>
+    <div className={cn("grid grid-cols-3 gap-1.5", className)}>
       {children}
     </div>
   )
@@ -438,7 +438,7 @@ export function RecordStat({
   return (
     <span
       className={cn(
-        "flex min-h-10 flex-col items-center justify-center gap-[3px] rounded-[5px] border bg-[color:var(--widget-surface)] px-[3px] py-1 shadow-[inset_0_1px_0_rgb(255_255_255_/_4%)]",
+        "flex min-h-10 flex-col items-center justify-center gap-0.75 rounded-[5px] border bg-(--widget-surface) px-0.75 py-1 shadow-[inset_0_1px_0_rgb(255_255_255/4%)]",
         toneStyles,
         className,
       )}
@@ -447,7 +447,7 @@ export function RecordStat({
         <AnimatedNumber value={value} />
       </strong>
       {showLabel ? (
-        <small className="text-[7px] font-bold lowercase leading-none text-[color:var(--widget-muted)]">
+        <small className="text-[7px] font-bold lowercase leading-none text-(--widget-muted)">
           {label}
         </small>
       ) : null}
@@ -493,7 +493,7 @@ export function Last30Stats({ data }: { data: WidgetData }) {
 
 export function PerformanceStats({ data }: { data: WidgetData }) {
   return (
-    <StatGrid className="grid-cols-[repeat(4,minmax(0,1fr))]">
+    <StatGrid className="grid-cols-4">
       <Stat label="AVG" value={<AnimatedNumber value={data.lifetime?.avgKills} maximumFractionDigits={2} />} />
       <Stat
         label="HS"
@@ -524,7 +524,7 @@ export function LastFiveResults({
   if (results.length === 0) return null
 
   return (
-    <div className={cn("flex shrink-0 items-center gap-[3px]", className)} aria-label="Last 5 matches">
+    <div className={cn("flex shrink-0 items-center gap-0.75", className)} aria-label="Last 5 matches">
       {results.map((result, index) => (
         <span
           key={`${result}-${index}`}
@@ -552,7 +552,7 @@ export function StatsPanel({
   return (
     <section
       className={cn(
-        "flex flex-col gap-[7px] border-t border-[color:var(--widget-border)] pt-[7px]",
+        "flex flex-col gap-1.75 border-t border-(--widget-border) pt-1.75",
         className,
       )}
       aria-label={title}
@@ -560,7 +560,7 @@ export function StatsPanel({
       {title ? (
         <span
           className={cn(
-            "text-[9px] font-bold uppercase leading-none tracking-[0.08em] text-[color:var(--widget-muted)]",
+            "text-[9px] font-bold uppercase leading-none tracking-[0.08em] text-(--widget-muted)",
             labelClassName,
           )}
         >
@@ -659,7 +659,7 @@ export function CountryRank({
       label="Country rank"
       value={data.rank.countryRank}
       icon={<CountryFlag data={data} className={flagClassName} />}
-      className={cn("gap-[5px]", className)}
+      className={cn("gap-1.25", className)}
       valueClassName={valueClassName}
     />
   )

@@ -83,10 +83,10 @@ function LayoutPreview({ state, presetId }: { state: PlayerSnapshotState; preset
   const placeholder = <WidgetSkeleton size={WIDGET_PRESET_MAP[presetId].previewSize} />
 
   return (
-    <div className="relative flex h-[104px] w-full items-center justify-center overflow-hidden rounded-[calc(var(--radius-md)-2px)] bg-background/70">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(255_255_255_/_5%),transparent_68%)]" />
+    <div className="relative flex h-26 w-full items-center justify-center overflow-hidden rounded-[calc(var(--radius-md)-2px)] bg-background/70">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(255_255_255/5%),transparent_68%)]" />
       <div
-        className="relative z-[1] origin-center transition-transform duration-200 ease-[var(--ease-out)]"
+        className="relative z-1 origin-center transition-transform duration-200 ease-out"
         style={{ transform: `scale(${layoutPreviewScales[presetId]})` }}
       >
         <PlayerDataBoundary state={state} pending={placeholder} failed={() => placeholder}>
@@ -133,7 +133,7 @@ function PreviewStage({
   return (
     <div
       className={cn(
-        "relative isolate grid min-h-[500px] place-items-center overflow-hidden rounded-md border border-border max-[520px]:min-h-[360px]",
+        "relative isolate grid min-h-125 place-items-center overflow-hidden rounded-md border border-border max-[520px]:min-h-90",
         previewBackgrounds[config.style.background],
       )}
       data-background={config.style.background}
@@ -141,10 +141,10 @@ function PreviewStage({
       style={style}
     >
       <div
-        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center [background-image:linear-gradient(180deg,rgb(8_8_8_/_52%),rgb(8_8_8_/_78%)),var(--builder-map-image,none)] [filter:saturate(.55)_brightness(.62)] data-[map=none]:hidden"
+        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-[linear-gradient(180deg,rgb(8_8_8/52%),rgb(8_8_8/78%)),var(--builder-map-image,none)] filter-[saturate(.55)_brightness(.62)] data-[map=none]:hidden"
         data-map={activeMap.id}
       />
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgb(0_0_0_/_18%)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgb(0_0_0/18%)_100%)]" />
       <PreviewActions
         previewData={previewData}
         previewScale={previewScale}
@@ -155,7 +155,7 @@ function PreviewStage({
         onShare={onShare}
       />
       <div
-        className="relative z-[1] origin-center transition-transform duration-200 ease-[var(--ease-out)]"
+        className="relative z-1 origin-center transition-transform duration-200 ease-out"
         style={{ transform: `scale(${previewScale})` }}
       >
         <PlayerDataBoundary
@@ -275,7 +275,7 @@ function PreviewActions({
   onShare,
 }: PreviewActionProps) {
   return (
-    <div className="absolute right-3 top-3 z-10 flex items-center gap-0.5 rounded-lg border border-border/80 bg-surface/90 p-1 shadow-[0_8px_24px_rgb(0_0_0_/_24%)] backdrop-blur-sm">
+    <div className="absolute right-3 top-3 z-10 flex items-center gap-0.5 rounded-lg border border-border/80 bg-surface/90 p-1 shadow-[0_8px_24px_rgb(0_0_0/24%)] backdrop-blur-sm">
       <ExportButton previewData={previewData} exportingImage={exportingImage} onDownload={onDownload} />
       <ShareButton previewData={previewData} shareStatus={shareStatus} onShare={onShare} />
       <span aria-hidden="true" className="mx-1 h-5 w-px bg-border" />
@@ -298,7 +298,7 @@ function LayoutGrid({ state, selectedPreset, onPresetChange }: LayoutGridProps) 
 
         return (
           <div
-            className="group rounded-md border border-border bg-surface p-1.5 text-on-surface transition-[border-color,background-color,transform,box-shadow] duration-150 ease-[var(--ease-out)] hover:border-foreground/40 hover:bg-surface-2 active:scale-[0.985] focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40 data-[active=true]:border-primary data-[active=true]:bg-surface-2 data-[active=true]:shadow-[inset_0_0_0_1px_var(--primary)]"
+            className="group rounded-md border border-border bg-surface p-1.5 text-on-surface transition-[border-color,background-color,transform,box-shadow] duration-150 ease-out hover:border-foreground/40 hover:bg-surface-2 active:scale-[0.985] focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40 data-[active=true]:border-primary data-[active=true]:bg-surface-2 data-[active=true]:shadow-[inset_0_0_0_1px_var(--primary)]"
             data-active={selected}
             aria-pressed={selected}
             aria-label={preset.label}
@@ -372,7 +372,7 @@ function PreviewHeader({
               if (WIDGET_MAPS.some((map) => map.id === value)) onMapChange(value as WidgetMapId)
             }}
           >
-            <SelectTrigger id="preview-map" className="h-8 w-[132px]">
+            <SelectTrigger id="preview-map" className="h-8 w-33">
               <MapPreviewIcon map={activeMap} />
               <SelectValue />
             </SelectTrigger>
@@ -414,7 +414,7 @@ export function BuilderPreview({
     <section className="min-w-0 flex-1 bg-background">
       <MapIconPreloads />
       <BackdropPosterPreloads />
-      <div className="mx-auto w-full max-w-[1280px] px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
+      <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
         <PreviewHeader
           selectedMap={selectedMap}
           activeMap={activeMap}

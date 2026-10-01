@@ -13,10 +13,10 @@ export function WidgetSkeleton({ className, size = "pill" }: WidgetSkeletonProps
       className={cn(
         "flex items-center gap-2 rounded-lg border border-border/70 bg-surface-raised/75 p-2 motion-safe:animate-pulse",
         size === "compact"
-          ? "h-[116px] w-[464px]"
+          ? "h-29 w-116"
           : size === "card"
-            ? "h-[72px] w-[230px]"
-            : "h-10 w-[150px]",
+            ? "h-18 w-57.5"
+            : "h-10 w-37.5",
         className,
       )}
     >
@@ -34,7 +34,7 @@ type WidgetDataStatusProps = {
 
 export function WidgetDataStatus({ message, loading = false }: WidgetDataStatusProps) {
   return (
-    <div className="flex max-w-[280px] flex-col items-center gap-2 text-center text-sm text-muted-foreground" role="status">
+    <div className="flex max-w-70 flex-col items-center gap-2 text-center text-sm text-muted-foreground" role="status">
       {loading ? <DotsRing decorative /> : <span>{message}</span>}
     </div>
   )

@@ -19,7 +19,7 @@ function LiveBadge() {
     >
       <Badge
         variant="outline"
-        className="h-7 gap-2 rounded-full border-border-muted bg-surface-raised/80 px-3 text-[11px] font-medium tracking-[-0.01em] text-text-secondary shadow-sm backdrop-blur-sm transition-[border-color,background-color,color] duration-150 ease-[var(--ease-out)] group-hover/live-badge:border-foreground/25 group-hover/live-badge:bg-surface-hover group-hover/live-badge:text-foreground"
+        className="h-7 gap-2 rounded-full border-border-muted bg-surface-raised/80 px-3 text-[11px] font-medium tracking-[-0.01em] text-text-secondary shadow-sm backdrop-blur-sm transition-[border-color,background-color,color] duration-150 ease-out group-hover/live-badge:border-foreground/25 group-hover/live-badge:bg-surface-hover group-hover/live-badge:text-foreground"
       >
         <span className="relative flex size-3 items-center justify-center">
           <span className="absolute size-3 rounded-full bg-emerald-400/25 motion-safe:animate-ping motion-reduce:animate-none" />
@@ -33,16 +33,16 @@ function LiveBadge() {
 
 function HeroTitle() {
   return (
-    <h1 id="hero-title" className="mt-6 max-w-[620px] text-[clamp(3rem,6.5vw,6.5rem)] font-semibold leading-[0.96] tracking-[-0.075em] text-foreground">
+    <h1 id="hero-title" className="mt-6 max-w-155 text-[clamp(3rem,6.5vw,6.5rem)] font-semibold leading-[0.96] tracking-[-0.075em] text-foreground">
       <span className="block whitespace-nowrap">FACEIT Widget</span>
       <span className="mt-2 flex max-w-full items-center gap-[0.18em] whitespace-nowrap text-[0.7em] leading-[0.92] text-muted-foreground">
         <span aria-hidden="true">for</span>
-        <span className="inline-flex shrink-0 items-center gap-[0.12em] rounded-[0.2em] border border-border-strong bg-surface-raised/70 px-[0.14em] py-[0.09em] text-foreground shadow-[inset_0_1px_rgb(255_255_255_/_6%)]">
+        <span className="inline-flex shrink-0 items-center gap-[0.12em] rounded-[0.2em] border border-border-strong bg-surface-raised/70 px-[0.14em] py-[0.09em] text-foreground shadow-[inset_0_1px_rgb(255_255_255/6%)]">
           <ObsMark className="size-[0.6em]" />
           <span className="text-[0.36em] font-semibold leading-none tracking-[-0.01em]">OBS</span>
         </span>
         <span aria-hidden="true">and</span>
-        <span className="inline-flex shrink-0 items-center gap-[0.12em] rounded-[0.2em] border border-border-strong bg-surface-raised/70 px-[0.14em] py-[0.09em] text-foreground shadow-[inset_0_1px_rgb(255_255_255_/_6%)]">
+        <span className="inline-flex shrink-0 items-center gap-[0.12em] rounded-[0.2em] border border-border-strong bg-surface-raised/70 px-[0.14em] py-[0.09em] text-foreground shadow-[inset_0_1px_rgb(255_255_255/6%)]">
           <StreamlabsMark className="size-[0.6em]" />
           <span className="text-[0.36em] font-semibold leading-none tracking-[-0.01em]">Streamlabs</span>
         </span>
@@ -57,12 +57,12 @@ type HeroProps = {
 
 export function Hero({ player }: HeroProps) {
   return (
-    <section className="relative mx-auto flex min-h-0 w-full max-w-[1440px] items-center px-4 py-10 pb-16 sm:px-6 sm:pb-24 lg:min-h-svh lg:px-10 lg:py-14 lg:pb-24" aria-labelledby="hero-title">
+    <section className="relative mx-auto flex min-h-0 w-full max-w-360 items-center px-4 py-10 pb-16 sm:px-6 sm:pb-24 lg:min-h-svh lg:px-10 lg:py-14 lg:pb-24" aria-labelledby="hero-title">
       <div className="grid w-full items-center gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(560px,1.22fr)] lg:gap-8">
-        <div className="relative z-10 max-w-[600px]">
+        <div className="relative z-10 max-w-150">
           <LiveBadge />
           <HeroTitle />
-          <p className="mt-6 max-w-[500px] text-[14px] leading-6 text-muted-foreground sm:text-[15px]">
+          <p className="mt-6 max-w-125 text-[14px] leading-6 text-muted-foreground sm:text-[15px]">
             Build a free{" "}
             <Link
               href={SITE_PATHS.faceitWidgetObsGuide}
@@ -85,8 +85,8 @@ export function Hero({ player }: HeroProps) {
           </Button>
         </div>
 
-        <div className="relative min-h-[360px] lg:min-h-[480px]">
-          <MapBackground className="inset-[4%_0_0_6%] opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_28%,transparent_76%)]" />
+        <div className="relative min-h-90 lg:min-h-120">
+          <MapBackground className="inset-[4%_0_0_6%] opacity-30 mask-[radial-gradient(ellipse_at_center,black_28%,transparent_76%)]" />
           <Showcase nickname={player} />
         </div>
       </div>

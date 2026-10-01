@@ -12,7 +12,7 @@ function CompactLast30Metrics({ data }: Pick<PresetViewProps, "data">) {
   ]
 
   return (
-    <div className="col-start-2 grid w-full max-w-[230px] min-w-0 grid-cols-4 items-center gap-1 justify-self-start">
+    <div className="col-start-2 grid w-full max-w-57.5 min-w-0 grid-cols-4 items-center gap-1 justify-self-start">
       {metrics.map((metric) => (
         <PerformanceMetric
           key={metric.label}
@@ -31,22 +31,22 @@ export function CompactPreset({ data, config }: PresetViewProps) {
   const hasFooter = hasRanks || config.visibility.last5Results
 
   return (
-    <div className="flex w-[420px] max-w-full flex-col gap-2">
-      <div className="grid min-h-[62px] grid-cols-[190px_minmax(0,1fr)] items-center gap-2">
+    <div className="flex w-105 max-w-full flex-col gap-2">
+      <div className="grid min-h-15.5 grid-cols-[190px_minmax(0,1fr)] items-center gap-2">
         <div className="col-start-1 flex min-w-0 items-center gap-2">
           {config.visibility.level || config.visibility.challenger ? (
             <LevelMark data={data} visibility={config.visibility} className="size-12" />
           ) : null}
-          <div className="flex min-w-0 flex-col items-start gap-[5px]">
+          <div className="flex min-w-0 flex-col items-start gap-1.25">
             {config.visibility.nickname ? (
               <PlayerNickname
                 data={data}
-                className="max-w-[132px] shrink truncate text-[15px] font-bold text-[color:var(--widget-muted)]"
+                className="max-w-33 shrink truncate text-[15px] font-bold text-(--widget-muted)"
                 showVerifiedBadge={config.visibility.verifiedBadge}
               />
             ) : null}
             {config.visibility.elo ? (
-              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[24px] font-extrabold leading-none tracking-[-0.035em] text-[color:var(--widget-text)] tabular-nums">
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[24px] font-extrabold leading-none tracking-[-0.035em] text-(--widget-text) tabular-nums">
                 {config.visibility.eloIcon ? <EloIcon /> : null}
                 <AnimatedNumber value={data.rank.elo} />
               </span>
@@ -79,7 +79,7 @@ export function CompactPreset({ data, config }: PresetViewProps) {
             ) : null}
           </div>
           {config.visibility.last5Results ? (
-            <LastFiveResults data={data} className="mr-2 gap-[5px]" resultClassName="text-[20px] tracking-wide" />
+            <LastFiveResults data={data} className="mr-2 gap-1.25" resultClassName="text-[20px] tracking-wide" />
           ) : null}
         </div>
       ) : null}

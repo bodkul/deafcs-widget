@@ -46,7 +46,7 @@ export function Rotation({ items, enabled, intervalMs }: RotationProps) {
     >
       <div
         key={activeItem.id}
-        className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2 motion-safe:zoom-in-95 motion-safe:duration-200 motion-safe:ease-[var(--ease-out)]"
+        className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2 motion-safe:zoom-in-95 motion-safe:duration-200 motion-safe:ease-out"
       >
         {activeItem.content}
       </div>

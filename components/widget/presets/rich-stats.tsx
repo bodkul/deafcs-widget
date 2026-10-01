@@ -20,7 +20,7 @@ function RichHeader({ data, config }: PresetViewProps) {
           data={data}
           config={config}
           showFocusRank={challenger && config.visibility.challengerRank}
-          className="gap-[6px]"
+          className="gap-1.5"
           levelClassName="size-6"
           eloValueClassName="text-[18px] tracking-[-0.03em]"
         />
@@ -48,7 +48,7 @@ function RichHeader({ data, config }: PresetViewProps) {
 
 export function RichStatsPreset({ data, config }: PresetViewProps) {
   return (
-    <div className="flex min-w-[280px] flex-col gap-[var(--widget-layout-gap)]">
+    <div className="flex min-w-70 flex-col gap-(--widget-layout-gap)">
       <RichHeader data={data} config={config} />
       <RotatingDetails data={data} config={config} />
     </div>

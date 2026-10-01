@@ -114,8 +114,8 @@ export function BackdropLayer({ config, interaction }: BackdropLayerProps) {
           </video>
         </>
       )}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(0_0_0_/_34%),rgb(0_0_0_/_68%))]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgb(0_0_0_/_22%)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(0_0_0/34%),rgb(0_0_0/68%))]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgb(0_0_0/22%)_100%)]" />
     </div>
   )
 }

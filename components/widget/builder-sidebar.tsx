@@ -38,7 +38,7 @@ import { BackdropControl } from "./background"
 const controlLabelClass = "text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground"
 const sectionHeadingClass = "text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/80"
 const fieldLabelClass = "text-[12px] font-medium text-muted-foreground"
-const fieldRowClass = "flex items-center justify-between gap-2 rounded-md border border-transparent px-2 py-2 text-xs text-muted-foreground transition-[border-color,background-color,color] duration-150 ease-[var(--ease-out)] hover:border-border hover:bg-surface-2 hover:text-foreground"
+const fieldRowClass = "flex items-center justify-between gap-2 rounded-md border border-transparent px-2 py-2 text-xs text-muted-foreground transition-[border-color,background-color,color] duration-150 ease-out hover:border-border hover:bg-surface-2 hover:text-foreground"
 
 const visibilityLabels: Array<[WidgetVisibilityKey, string]> = [
   ["nickname", "Nickname"],
@@ -196,7 +196,7 @@ function ContentTab({ config, rank, verifiedBadge, onPresetChange, onVisibilityC
           <div className="flex flex-col gap-4">
             {groupedFields.map(({ group, fields: groupFields }) => (
               <div className="flex flex-col gap-2" key={group}>
-                <span className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground/70">
+                <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground/70">
                   {group}
                 </span>
                 <div className="grid grid-cols-2 gap-1.5">
@@ -340,13 +340,13 @@ function ColorControls({ config, onStyleChange }: StyleControlsProps) {
     <div className="grid grid-cols-2 gap-2">
       {styleColors.map(([key, label]) => (
         <label
-          className="relative flex h-11 items-center gap-2 overflow-hidden rounded-md border border-border/70 bg-surface/30 px-2 transition-[border-color,background-color] duration-150 ease-[var(--ease-out)] hover:border-foreground/35 hover:bg-surface-2"
+          className="relative flex h-11 items-center gap-2 overflow-hidden rounded-md border border-border/70 bg-surface/30 px-2 transition-[border-color,background-color] duration-150 ease-out hover:border-foreground/35 hover:bg-surface-2"
           htmlFor={`color-${key}`}
           key={key}
         >
           <span
             aria-hidden="true"
-            className="size-6 shrink-0 rounded-sm border border-white/15 shadow-[inset_0_0_0_1px_rgb(0_0_0_/_20%)]"
+            className="size-6 shrink-0 rounded-sm border border-white/15 shadow-[inset_0_0_0_1px_rgb(0_0_0/20%)]"
             style={{ backgroundColor: config.style[key] }}
           />
           <span className="min-w-0 truncate text-xs font-medium text-foreground">{label}</span>
@@ -355,7 +355,7 @@ function ColorControls({ config, onStyleChange }: StyleControlsProps) {
             id={`color-${key}`}
             type="color"
             aria-label={`Change ${label} color`}
-            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+            className="absolute inset-0 size-full cursor-pointer opacity-0"
             value={config.style[key]}
             onChange={(event) => onStyleChange({ [key]: event.target.value })}
           />
@@ -633,7 +633,7 @@ function SidebarActions({
         </Tooltip>
       </div>
       <Button
-        className="h-10 w-full justify-center rounded-lg font-semibold shadow-[0_1px_0_rgb(0_0_0_/_18%)]"
+        className="h-10 w-full justify-center rounded-lg font-semibold shadow-[0_1px_0_rgb(0_0_0/18%)]"
         size="default"
         icon={copied ? <Check className="text-emerald-500" /> : <Copy />}
         iconPosition="end"
@@ -676,7 +676,7 @@ export function BuilderSidebar({
   onFeedback,
 }: BuilderSidebarProps) {
   return (
-    <aside className="scrollbar-hidden border-b border-border/70 bg-surface/55 lg:sticky lg:top-12 lg:h-[calc(100vh-3rem)] lg:w-[360px] lg:shrink-0 lg:overflow-y-auto lg:overscroll-contain lg:border-b-0 lg:border-r">
+    <aside className="scrollbar-hidden border-b border-border/70 bg-surface/55 lg:sticky lg:top-12 lg:h-[calc(100vh-3rem)] lg:w-90 lg:shrink-0 lg:overflow-y-auto lg:overscroll-contain lg:border-b-0 lg:border-r">
       <div className="flex min-h-full flex-col px-4 py-5 sm:px-6 lg:px-7 lg:py-6">
         <header>
           <h1 className="inline-flex items-center text-2xl font-semibold tracking-[-0.03em] text-on-surface">

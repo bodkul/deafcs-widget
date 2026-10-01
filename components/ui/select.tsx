@@ -87,7 +87,7 @@ function SelectContent({
           data-slot="select-content"
           data-align-trigger={alignItemWithTrigger}
           className={cn(
-            "panel-scrollbar relative isolate z-50 max-h-[min(22rem,var(--available-height))] w-[var(--anchor-width)] min-w-36 max-w-[calc(100vw-1rem)] overflow-x-hidden overflow-y-auto rounded-lg border border-border-muted bg-surface-raised p-1 text-on-surface shadow-[0_18px_45px_rgb(0_0_0_/_45%),0_2px_8px_rgb(0_0_0_/_30%)] outline-none origin-[var(--transform-origin)] duration-150 data-[side=bottom]:origin-top data-[side=top]:origin-bottom data-[side=left]:origin-right data-[side=right]:origin-left data-[side=inline-end]:origin-left data-[side=inline-start]:origin-right data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+            "panel-scrollbar relative isolate z-50 max-h-[min(22rem,var(--available-height))] w-(--anchor-width) min-w-36 max-w-[calc(100vw-1rem)] overflow-x-hidden overflow-y-auto rounded-lg border border-border-muted bg-surface-raised p-1 text-on-surface shadow-[0_18px_45px_rgb(0_0_0/45%),0_2px_8px_rgb(0_0_0/30%)] outline-none origin-(--transform-origin) duration-150 data-[side=bottom]:origin-top data-[side=top]:origin-bottom data-[side=left]:origin-right data-[side=right]:origin-left data-[side=inline-end]:origin-left data-[side=inline-start]:origin-right data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
             className,
           )}
           {...props}
@@ -127,7 +127,7 @@ function SelectItem({
       data-slot="select-item"
       label={itemLabel}
       className={cn(
-        "relative flex min-h-8 w-full cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 pr-8 text-[13px] leading-5 font-medium text-on-surface outline-none select-none transition-colors duration-100 hover:bg-control-hover focus:bg-control-selected focus:text-foreground data-[highlighted]:bg-control-selected data-[highlighted]:text-foreground data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+        "relative flex min-h-8 w-full cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 pr-8 text-[13px] leading-5 font-medium text-on-surface outline-none select-none transition-colors duration-100 hover:bg-control-hover focus:bg-control-selected focus:text-foreground data-highlighted:bg-control-selected data-highlighted:text-foreground data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
         className,
       )}
       {...props}

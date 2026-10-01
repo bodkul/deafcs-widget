@@ -57,7 +57,7 @@ export function FaqAccordion() {
           <article
             key={faq.id}
             className={cn(
-              "overflow-hidden rounded-xl border border-border/70 bg-secondary/60 shadow-[inset_0_1px_rgb(255_255_255_/_3%)]",
+              "overflow-hidden rounded-xl border border-border/70 bg-secondary/60 shadow-[inset_0_1px_rgb(255_255_255/3%)]",
               open && "bg-secondary/80",
             )}
           >
@@ -73,7 +73,7 @@ export function FaqAccordion() {
               <ChevronDown
                 aria-hidden="true"
                 className={cn(
-                  "absolute right-5 size-5 shrink-0 text-muted-foreground transition-transform duration-[220ms] ease-[var(--ease-out)] motion-reduce:transition-none",
+                  "absolute right-5 size-5 shrink-0 text-muted-foreground transition-transform duration-220 ease-out motion-reduce:transition-none",
                   open && "rotate-180",
                 )}
               />
@@ -85,7 +85,7 @@ export function FaqAccordion() {
               aria-hidden={!open}
               inert={!open}
               className={cn(
-                "grid transition-[grid-template-rows] duration-[220ms] ease-[var(--ease-out)] motion-reduce:transition-none",
+                "grid transition-[grid-template-rows] duration-220 ease-out motion-reduce:transition-none",
                 open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
               )}
             >

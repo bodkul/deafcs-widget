@@ -33,6 +33,6 @@ describe("ELO icon preset setting", () => {
   })
 
   it.each(["performance-card", "profile-card"] as const)("aligns the ELO value and label in %s", (preset) => {
-    expect(renderPreset(preset, true)).toContain("inline-flex min-w-0 items-center gap-[3px]")
+    expect(renderPreset(preset, true)).toContain("inline-flex min-w-0 items-center gap-0.75")
   })
 })

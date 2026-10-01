@@ -18,7 +18,7 @@ export function ChallengerMark({
       fill="none"
       aria-hidden="true"
       focusable="false"
-      className={cn("text-[color:var(--challenger-icon-color)]", className)}
+      className={cn("text-(--challenger-icon-color)", className)}
       style={
         {
           ...style,

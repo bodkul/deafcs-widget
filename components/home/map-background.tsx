@@ -39,7 +39,7 @@ export function MapBackground({ className }: MapBackgroundProps) {
         fetchPriority={index === 0 ? "high" : "auto"}
         loading={index === 0 ? "eager" : "lazy"}
         sizes="(min-width: 1024px) 50vw, 100vw"
-        className="object-cover object-center [filter:saturate(.4)_brightness(.48)] motion-safe:animate-in motion-safe:fade-in-0 motion-safe:duration-500 motion-safe:ease-[var(--ease-out)]"
+        className="object-cover object-center filter-[saturate(.4)_brightness(.48)] motion-safe:animate-in motion-safe:fade-in-0 motion-safe:duration-500 motion-safe:ease-out"
       />
     </div>
   )

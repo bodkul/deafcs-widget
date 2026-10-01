@@ -7,7 +7,7 @@ import type { PresetViewProps } from "./types"
 
 export function TodayStatsPreset({ data, config }: PresetViewProps) {
   return (
-    <div className="flex min-w-[264px] flex-col gap-[var(--widget-layout-gap)]">
+    <div className="flex min-w-66 flex-col gap-(--widget-layout-gap)">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <CoreLine
           data={data}
@@ -17,7 +17,7 @@ export function TodayStatsPreset({ data, config }: PresetViewProps) {
         {config.visibility.nickname ? (
           <PlayerNickname
             data={data}
-            className="max-w-[9rem] truncate text-right"
+            className="max-w-36 truncate text-right"
             showVerifiedBadge={config.visibility.verifiedBadge}
           />
         ) : null}

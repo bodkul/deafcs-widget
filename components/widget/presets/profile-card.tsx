@@ -18,10 +18,10 @@ export function ProfileCardPreset({ data, config }: PresetViewProps) {
   const showCountryRank = config.visibility.countryRank
   const showAnyRank = showCountryRank || showRegionRank
   const compactRankClass = "gap-1"
-  const compactRankValueClass = "text-[9px] font-bold text-[color:var(--widget-muted)]"
+  const compactRankValueClass = "text-[9px] font-bold text-(--widget-muted)"
 
   return (
-    <div className="flex min-w-[252px] flex-row items-center justify-between gap-3">
+    <div className="flex min-w-63 flex-row items-center justify-between gap-3">
       <div className="flex min-w-0 items-center gap-2">
         {showRankMark ? (
           <ChallengerRankBadge
@@ -30,11 +30,11 @@ export function ProfileCardPreset({ data, config }: PresetViewProps) {
             showRankNumber={showChallengerRank}
           />
         ) : (
-          <LevelMark data={data} visibility={config.visibility} className="size-[34px]" />
+          <LevelMark data={data} visibility={config.visibility} className="size-8.5" />
         )}
-        <div className="flex min-w-0 flex-col gap-[5px]">
+        <div className="flex min-w-0 flex-col gap-1.25">
           {config.visibility.nickname ? (
-            <div className="flex min-w-0 items-center gap-[6px]">
+            <div className="flex min-w-0 items-center gap-1.5">
               <PlayerNickname
                 data={data}
                 className="text-[14px] font-extrabold"
@@ -42,7 +42,7 @@ export function ProfileCardPreset({ data, config }: PresetViewProps) {
               />
             </div>
           ) : null}
-          <div className="flex min-w-0 items-center gap-1 whitespace-nowrap text-[9px] leading-none text-[color:var(--widget-muted)]">
+          <div className="flex min-w-0 items-center gap-1 whitespace-nowrap text-[9px] leading-none text-(--widget-muted)">
             {showRegionRank ? (
               <RegionRank
                 data={data}
@@ -68,7 +68,7 @@ export function ProfileCardPreset({ data, config }: PresetViewProps) {
         </div>
       </div>
       {config.visibility.todayStats ? (
-        <div className="grid shrink-0 grid-cols-[repeat(2,34px)] gap-[5px]" aria-label="Wins and losses">
+        <div className="grid shrink-0 grid-cols-[repeat(2,34px)] gap-1.25" aria-label="Wins and losses">
           <RecordStat label="wins" value={data.today?.wins} tone="positive" />
           <RecordStat label="losses" value={data.today?.losses} tone="negative" />
         </div>
