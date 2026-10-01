@@ -23,6 +23,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { cn } from "cn"
 
 import { useCustomBackdrops } from "./use-custom-backdrops"
+import { BackgroundSuggestionCard } from "../background-suggestion-card"
 
 type BackdropControlProps = {
   value: WidgetBackdropConfig
@@ -116,6 +117,7 @@ function BackdropPicker({ value, customBackdrops, onChange }: BackdropControlPro
           onSelect={() => selectBackdrop(backdrop, onChange)}
         />
       ))}
+      <BackgroundSuggestionCard />
     </div>
   )
 }
@@ -249,7 +251,6 @@ export function BackdropControl({ value, onChange, nickname }: BackdropControlPr
         <p className={sectionHeadingClass}>Backgrounds</p>
         <p className="mt-1 text-[11px] leading-4 text-muted-foreground">A subtle layer behind the stats.</p>
       </div>
-      <UploadCard uploading={uploading} progress={progress} error={error} onFile={handleFile} />
       <BackdropPicker value={value} customBackdrops={backdrops} onChange={onChange} />
       <PositionControls value={value} onChange={onChange} />
     </div>

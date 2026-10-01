@@ -1,0 +1,28 @@
+name: Background suggestion
+description: Suggest a new image or video background for the widget.
+title: "[Background]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a background. Please suggest one background per issue.
+
+  - type: textarea
+    id: media
+    attributes:
+      label: Background
+      description: Drag and drop an image or video (10 seconds or shorter, .mp4 or .webm), or paste a link.
+      placeholder: Drag the file here or paste a link...
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source and author
+      description: Where it comes from and who made it. Write "own work" if you made it yourself.
+      placeholder: Own work / https://...
+    validations:
+      required: true
