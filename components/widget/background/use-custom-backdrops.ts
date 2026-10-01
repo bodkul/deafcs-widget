@@ -9,7 +9,7 @@ import {
   type CustomBackdropRecord,
 } from "@/lib/widget"
 
-const CHANGE_EVENT = "faceitwidget:custom-backgrounds"
+const CHANGE_EVENT = "deafcs-widget:custom-backgrounds"
 
 function subscribe(listener: () => void) {
   if (typeof window === "undefined") return () => undefined

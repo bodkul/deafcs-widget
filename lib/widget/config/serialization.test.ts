@@ -109,13 +109,13 @@ describe("widget config serialization", () => {
     })
     const serialized = serializeConfig(config)
 
-    expect(serialized).not.toContain("assets.faceitwidget.com")
+    expect(serialized).not.toContain("assets.deafcs-widget.vercel.app")
     expect(deserializeConfig(serialized).backdrop).toEqual(config.backdrop)
   })
 
   it("builds short widget URLs", () => {
     const url = buildWidgetUrl(
-      "https://faceitwidget.com",
+      "https://deafcs-widget.vercel.app",
       "fee75936-fca2-41fb-899e-b2e09263de50",
       createDefaultConfig("rich-profile"),
     )

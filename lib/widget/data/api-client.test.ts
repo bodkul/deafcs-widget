@@ -28,7 +28,7 @@ describe("WidgetApiClient", () => {
       }),
     )
     vi.stubGlobal("fetch", fetcher)
-    vi.stubGlobal("window", { location: { origin: "https://faceitwidget.com" } })
+    vi.stubGlobal("window", { location: { origin: "https://deafcs-widget.vercel.app" } })
 
     await new WidgetApiClient().getPlayerSnapshot("Carbonero20050")
 
@@ -46,7 +46,7 @@ describe("WidgetApiClient", () => {
       },
     }
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(JSON.stringify(verifiedSnapshot))))
-    vi.stubGlobal("window", { location: { origin: "https://faceitwidget.com" } })
+    vi.stubGlobal("window", { location: { origin: "https://deafcs-widget.vercel.app" } })
 
     const result = await new WidgetApiClient().getPlayerSnapshot("nachete")
 
@@ -63,7 +63,7 @@ describe("WidgetApiClient", () => {
       )
       .mockResolvedValueOnce(new Response(null, { status: 304 }))
     vi.stubGlobal("fetch", fetcher)
-    vi.stubGlobal("window", { location: { origin: "https://faceitwidget.com" } })
+    vi.stubGlobal("window", { location: { origin: "https://deafcs-widget.vercel.app" } })
 
     const client = new WidgetApiClient()
     const first = await client.getPlayerSnapshot("Carbonero20050")

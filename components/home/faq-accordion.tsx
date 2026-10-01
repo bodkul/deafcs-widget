@@ -15,7 +15,7 @@ const FAQS = [
     answer: (
       <>
         Yes. The generated page is intended for a Browser source, so it works in OBS Studio and Streamlabs Desktop without installing a separate plugin. Follow the{" "}
-        <Link className="text-foreground underline underline-offset-4" href={SITE_PATHS.faceitWidgetObsGuide}>
+        <Link className="text-foreground underline underline-offset-4" href={SITE_PATHS.deafcsWidgetObsGuide}>
           OBS setup guide
         </Link>{" "}
         for the recommended source settings.
@@ -24,16 +24,16 @@ const FAQS = [
   },
   {
     id: "account",
-    question: "Does FACEIT Widget need my account?",
+    question: "Does DEAFCS Widget need my account?",
     answer:
       "No. It uses the public statistics associated with the nickname you enter. Do not put passwords, API keys, or private tokens in the URL or in a support request.",
   },
   {
     id: "open-source",
-    question: "Is FACEIT Widget open source?",
+    question: "Is DEAFCS Widget open source?",
     answer: (
       <>
-        Yes. FACEIT Widget is an independent open-source community project. You can inspect the source code, report bugs, suggest improvements, and propose changes in the{" "}
+        Yes. DEAFCS Widget is an independent open-source community project. You can inspect the source code, report bugs, suggest improvements, and propose changes in the{" "}
         <a target="_blank" rel="noreferrer" className="text-foreground underline underline-offset-4" href={SITE_LINKS.github}>
           public GitHub repository
         </a>

@@ -7,6 +7,6 @@ describe("robots.txt", () => {
     const config = robots()
 
     expect(Object.keys(config).sort()).toEqual(["rules", "sitemap"])
-    expect(config.sitemap).toBe("https://faceitwidget.com/sitemap.xml")
+    expect(config.sitemap).toBe("https://deafcs-widget.vercel.app/sitemap.xml")
   })
 })

@@ -1,21 +1,21 @@
 {
-  "name": "faceitwidget",
+  "name": "csdeaf-widget",
   "version": "0.1.0",
-  "description": "Customizable live FACEIT stats overlays for OBS.",
+  "description": "Customizable live CSDEAF stats overlays for OBS.",
   "author": {
-    "name": "nachodeluca",
-    "url": "https://github.com/nachodeluca"
+    "name": "bodkul",
+    "url": "https://github.com/bodkul"
   },
-  "homepage": "https://faceitwidget.com",
+  "homepage": "https://deafcs-widget.vercel.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nachodeluca/faceitwidget.git"
+    "url": "https://github.com/bodkul/deafcs-widget.git"
   },
   "bugs": {
-    "url": "https://github.com/nachodeluca/faceitwidget/issues"
+    "url": "https://github.com/bodkul/deafcs-widget/issues"
   },
   "keywords": [
-    "faceit",
+    "deafcs",
     "obs",
     "obs-browser-source",
     "streaming",
@@ -23,8 +23,8 @@
     "widget",
     "cs2",
     "live-stats",
-    "faceit-widget",
-    "faceit-stats"
+    "deafcs-widget",
+    "deafcs-stats"
   ],
   "license": "MIT",
   "engines": {

@@ -34,7 +34,7 @@ function LiveBadge() {
 function HeroTitle() {
   return (
     <h1 id="hero-title" className="mt-6 max-w-155 text-[clamp(3rem,6.5vw,6.5rem)] font-semibold leading-[0.96] tracking-[-0.075em] text-foreground">
-      <span className="block whitespace-nowrap">FACEIT Widget</span>
+      <span className="block whitespace-nowrap">DEAFCS Widget</span>
       <span className="mt-2 flex max-w-full items-center gap-[0.18em] whitespace-nowrap text-[0.7em] leading-[0.92] text-muted-foreground">
         <span aria-hidden="true">for</span>
         <span className="inline-flex shrink-0 items-center gap-[0.12em] rounded-[0.2em] border border-border-strong bg-surface-raised/70 px-[0.14em] py-[0.09em] text-foreground shadow-[inset_0_1px_rgb(255_255_255/6%)]">
@@ -65,11 +65,11 @@ export function Hero({ player }: HeroProps) {
           <p className="mt-6 max-w-125 text-[14px] leading-6 text-muted-foreground sm:text-[15px]">
             Build a free{" "}
             <Link
-              href={SITE_PATHS.faceitWidgetObsGuide}
+              href={SITE_PATHS.deafcsWidgetObsGuide}
               prefetch={false}
               className="text-text-secondary underline decoration-white/25 underline-offset-4 transition-[color,text-decoration-color] duration-150 hover:text-foreground hover:decoration-white/70"
             >
-              FACEIT widget for OBS
+              DEAFCS Widget for OBS
             </Link>
             . Show live ELO, rank, K/D, and recent matches with one browser-source URL.
           </p>

@@ -1,4 +1,4 @@
-const STORAGE_KEY = "faceitwidget.widget-instance.v1"
+const STORAGE_KEY = "deafcs-widget.widget-instance.v1"
 
 function fallbackId() {
   if (typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function") {

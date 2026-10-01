@@ -1,34 +1,40 @@
 <div align="center">
-  <a href="https://faceitwidget.com/?utm_source=github&utm_medium=referral">
-    <img src=".github/assets/preview.png" alt="FACEIT Widget preview" width="920">
+  <a href="https://deafcs-widget.vercel.app">
+    <img src=".github/assets/preview.png" alt="DEAFCS Widget preview" width="920">
   </a>
 
-  <h1>FACEIT Widget — Free FACEIT Stats Widget for OBS</h1>
+  <h1>DEAFCS Widget — Free FACEIT Stats Widget for OBS</h1>
 
   <p>Live FACEIT CS2 stats for OBS browser sources.</p>
 
   <p>
-    <a href="https://faceitwidget.com/?utm_source=github&utm_medium=referral">Create your widget</a>
+    <a href="https://deafcs-widget.vercel.app">Create your widget</a>
     &middot;
-    <a href="https://faceitwidget.com/faceit-widget-obs/?utm_source=github&utm_medium=referral">OBS setup</a>
+    <a href="https://deafcs-widget.vercel.app/deafcs-widget-obs">OBS setup</a>
     &middot;
-    <a href="https://github.com/nachodeluca/faceitwidget">Source code</a>
+    <a href="https://github.com/bodkul/deafcs-widget">Source code</a>
   </p>
 
   <p>
-    <a href="https://faceitwidget.com/?utm_source=github&utm_medium=referral"><img src="https://img.shields.io/badge/website-faceitwidget.com-111111?style=flat-square" alt="Website"></a>
-    <a href="https://github.com/nachodeluca/faceitwidget"><img src="https://img.shields.io/badge/open%20source-GitHub-111111?style=flat-square&logo=github&logoColor=white" alt="Open source on GitHub"></a>
-    <a href="https://github.com/nachodeluca/faceitwidget/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license"></a>
+    <a href="https://deafcs-widget.vercel.app">
+      <img src="https://img.shields.io/badge/website-deafcs--widget.vercel.app-111111?style=flat-square" alt="Website">
+    </a>
+    <a href="https://github.com/bodkul/deafcs-widget">
+      <img src="https://img.shields.io/badge/open%20source-GitHub-111111?style=flat-square&logo=github&logoColor=white" alt="Open source on GitHub">
+    </a>
+    <a href="https://github.com/bodkul/deafcs-widget/blob/main/LICENSE">
+      <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
+    </a>
   </p>
 </div>
 
-The official project website is [faceitwidget.com](https://faceitwidget.com/). This repository contains the source code for FACEIT Widget, a free open-source FACEIT stats widget for OBS Studio and Streamlabs Desktop. Build an overlay, choose the stats you want to show, and add the generated URL to OBS. No plugin or FACEIT login is required.
+The official project website is [deafcs-widget.vercel.app](https://deafcs-widget.vercel.app). This repository contains the source code for DEAFCS Widget, a free open-source FACEIT stats widget for OBS Studio and Streamlabs Desktop. Build an overlay, choose the stats you want to show, and add the generated URL to OBS. No plugin or FACEIT login is required.
 
-FACEIT Widget turns a public FACEIT nickname into a browser-source overlay for CS2. It can show ELO, FACEIT level, Challenger status, regional ranking, country ranking, K/D, and recent match results while you stream.
+DEAFCS Widget turns a public FACEIT nickname into a browser-source overlay for CS2. It can show ELO, FACEIT level, Challenger status, regional ranking, country ranking, K/D, and recent match results while you stream.
 
 ## Use it
 
-1. Open the [widget builder](https://faceitwidget.com/builder/?utm_source=github&utm_medium=referral).
+1. Open the [widget builder](https://deafcs-widget.vercel.app/builder).
 2. Enter your FACEIT nickname and choose a preset.
 3. Adjust the content, style, map, and motion settings.
 4. Copy the generated URL.
@@ -36,7 +42,7 @@ FACEIT Widget turns a public FACEIT nickname into a browser-source overlay for C
 
 The widget page is transparent and starts at the top-left corner. Position and crop it in OBS without changing the URL.
 
-Read the [OBS setup guide](https://faceitwidget.com/faceit-widget-obs/?utm_source=github&utm_medium=referral) for the browser-source settings. The [live stats guide](https://faceitwidget.com/live-faceit-stats/?utm_source=github&utm_medium=referral) explains caching and match refreshes. The [About page](https://faceitwidget.com/about/?utm_source=github&utm_medium=referral) explains how the independent open-source project works and how to contribute.
+Read the [OBS setup guide](https://deafcs-widget.vercel.app/deafcs-widget-obs) for the browser-source settings. The [live stats guide](https://deafcs-widget.vercel.app/live-faceit-stats) explains caching and match refreshes. The [About page](https://deafcs-widget.vercel.app/about) explains how the independent open-source project works and how to contribute.
 
 ## What you can configure
 
@@ -101,10 +107,10 @@ public/              Level icons, flags, maps, and static assets
 
 ## Contributing
 
-Bug reports and focused pull requests are welcome. Use the [bug report template](https://github.com/nachodeluca/faceitwidget/issues/new?template=bug_report.yml) and include the OBS or streaming-software version, widget URL, browser, and clear reproduction steps for rendering issues.
+Bug reports and focused pull requests are welcome. Use the [bug report template](https://github.com/bodkul/deafcs-widget/issues/new?template=bug_report.yml) and include the OBS or streaming-software version, widget URL, browser, and clear reproduction steps for rendering issues.
 
 ## License
 
-MIT. See the [license file](https://github.com/nachodeluca/faceitwidget/blob/main/LICENSE).
+MIT. See the [license file](https://github.com/bodkul/deafcs-widget/blob/main/LICENSE).
 
-FACEIT Widget is an unofficial community project. It is not affiliated with or endorsed by [FACEIT](https://faceit.com).
+DEAFCS Widget is an unofficial community project. It is not affiliated with or endorsed by [FACEIT](https://faceit.com).

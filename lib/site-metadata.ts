@@ -1,30 +1,30 @@
 import type { Metadata } from "next"
 
 export const SITE_METADATA = {
-  name: "FACEIT Widget",
-  url: "https://faceitwidget.com",
-  title: "FACEIT Widget | CS2 FACEIT Stats for OBS & Streamers",
+  name: "DEAFCS Widget",
+  url: "https://deafcs-widget.vercel.app",
+  title: "DEAFCS Widget | CS2 FACEIT Stats for OBS & Streamers",
   description:
-    "Create a free FACEIT Widget for OBS and Streamlabs. Show live CS2 ELO, level, rank, K/D, and recent matches in a browser source with no plugin or login.",
+    "Create a free DEAFCS Widget for OBS and Streamlabs. Show live CS2 ELO, level, rank, K/D, and recent matches in a browser source with no plugin or login.",
 } as const
 
 export const SITE_LAST_MODIFIED = "2026-09-20"
 
 export const SITE_AUTHOR = {
-  name: "Nacho",
-  url: "https://github.com/nachodeluca",
+  name: "bodkul",
+  url: "https://github.com/bodkul",
 } as const
 
 export const SOCIAL_IMAGE = {
   url: "/opengraph-image?v=2",
   width: 1200,
   height: 630,
-  alt: "FACEIT Widget for OBS",
+  alt: "DEAFCS Widget for OBS",
 } as const
 
 export const SITE_PATHS = {
   home: "/",
-  faceitWidgetObsGuide: "/faceit-widget-obs/",
+  deafcsWidgetObsGuide: "/deafcs-widget-obs/",
   liveFaceitStatsGuide: "/live-faceit-stats/",
   about: "/about/",
   contact: "/contact/",
@@ -39,7 +39,7 @@ export const APP_PATHS = {
 export const INDEXABLE_PATHS = [
   SITE_PATHS.home,
   APP_PATHS.builder,
-  SITE_PATHS.faceitWidgetObsGuide,
+  SITE_PATHS.deafcsWidgetObsGuide,
   SITE_PATHS.liveFaceitStatsGuide,
   SITE_PATHS.about,
   SITE_PATHS.contact,

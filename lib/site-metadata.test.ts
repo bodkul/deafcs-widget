@@ -24,13 +24,13 @@ describe("indexable routes", () => {
 
   it("generates absolute HTTPS URLs for the sitemap", () => {
     expect(INDEXABLE_PATHS.map(absoluteSiteUrl)).toEqual([
-      "https://faceitwidget.com/",
-      "https://faceitwidget.com/builder/",
-      "https://faceitwidget.com/faceit-widget-obs/",
-      "https://faceitwidget.com/live-faceit-stats/",
-      "https://faceitwidget.com/about/",
-      "https://faceitwidget.com/contact/",
-      "https://faceitwidget.com/privacy/",
+      "https://deafcs-widget.vercel.app/",
+      "https://deafcs-widget.vercel.app/builder/",
+      "https://deafcs-widget.vercel.app/deafcs-widget-obs/",
+      "https://deafcs-widget.vercel.app/live-faceit-stats/",
+      "https://deafcs-widget.vercel.app/about/",
+      "https://deafcs-widget.vercel.app/contact/",
+      "https://deafcs-widget.vercel.app/privacy/",
     ])
   })
 
@@ -38,13 +38,13 @@ describe("indexable routes", () => {
     const metadata = createLandingMetadata({
       title: "Example guide",
       description: "Example description",
-      path: SITE_PATHS.faceitWidgetObsGuide,
+      path: SITE_PATHS.deafcsWidgetObsGuide,
     })
 
-    const canonical = "https://faceitwidget.com/faceit-widget-obs/"
+    const canonical = "https://deafcs-widget.vercel.app/deafcs-widget-obs/"
     expect(metadata.alternates?.canonical).toBe(canonical)
     expect(metadata.openGraph?.url).toBe(canonical)
-    expect(metadata.openGraph?.title).toBe("Example guide | FACEIT Widget")
+    expect(metadata.openGraph?.title).toBe("Example guide | DEAFCS Widget")
     expect(metadata.openGraph?.images).toEqual([SOCIAL_IMAGE])
     expect(metadata.twitter?.images).toEqual([SOCIAL_IMAGE.url])
   })

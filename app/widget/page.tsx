@@ -6,7 +6,7 @@ import { APP_PATHS } from "@/lib/site-metadata"
 import { WidgetClient } from "./widget-client"
 
 export const metadata: Metadata = {
-  title: "FACEIT widget",
+  title: "DEAFCS Widget",
   alternates: { canonical: APP_PATHS.widget },
   robots: { index: false, follow: true, nocache: true },
 }

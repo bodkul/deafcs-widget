@@ -5,10 +5,10 @@ import type {
 } from "./types"
 import { isCustomBackdropId } from "./custom-contract"
 
-export const CUSTOM_BACKDROP_STORAGE_KEY = "faceitwidget.custom-backgrounds.v1"
+export const CUSTOM_BACKDROP_STORAGE_KEY = "deafcs-widget.custom-backgrounds.v1"
 export const CUSTOM_BACKDROP_LIMIT = 10
 
-const DEFAULT_PUBLIC_BASE_URL = "https://assets.faceitwidget.com"
+const DEFAULT_PUBLIC_BASE_URL = "https://assets.deafcs-widget.vercel.app"
 
 export type CustomBackdropRecord = {
   id: CustomWidgetBackdropId

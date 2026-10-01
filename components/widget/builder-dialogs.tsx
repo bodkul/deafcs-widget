@@ -40,7 +40,7 @@ function CopyDialog({ open, widgetUrl, copied, onOpenChange, onCopy }: CopyDialo
           <p className="text-xs text-muted-foreground">
             Need help adding it to OBS?{" "}
             <Link
-              href={SITE_PATHS.faceitWidgetObsGuide}
+              href={SITE_PATHS.deafcsWidgetObsGuide}
               className="text-foreground underline decoration-border-strong underline-offset-4 transition-colors hover:decoration-foreground"
             >
               Read the setup guide

@@ -5,13 +5,13 @@ import sitemap from "./sitemap"
 describe("sitemap.xml", () => {
   it("contains only canonical URLs", () => {
     expect(sitemap()).toEqual([
-      { url: "https://faceitwidget.com/" },
-      { url: "https://faceitwidget.com/builder/" },
-      { url: "https://faceitwidget.com/faceit-widget-obs/" },
-      { url: "https://faceitwidget.com/live-faceit-stats/" },
-      { url: "https://faceitwidget.com/about/" },
-      { url: "https://faceitwidget.com/contact/" },
-      { url: "https://faceitwidget.com/privacy/" },
+      { url: "https://deafcs-widget.vercel.app/" },
+      { url: "https://deafcs-widget.vercel.app/builder/" },
+      { url: "https://deafcs-widget.vercel.app/deafcs-widget-obs/" },
+      { url: "https://deafcs-widget.vercel.app/live-faceit-stats/" },
+      { url: "https://deafcs-widget.vercel.app/about/" },
+      { url: "https://deafcs-widget.vercel.app/contact/" },
+      { url: "https://deafcs-widget.vercel.app/privacy/" },
     ])
   })
 })

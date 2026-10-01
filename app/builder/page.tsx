@@ -7,9 +7,9 @@ import { APP_PATHS, createLandingMetadata } from "@/lib/site-metadata"
 
 import { BuilderClient } from "./builder-client"
 
-const title = "FACEIT Widget Builder for OBS"
+const title = "DEAFCS Widget Builder for OBS"
 const description =
-  "Build a free FACEIT widget for OBS or Streamlabs. Customize live CS2 ELO, rank, K/D, recent matches, colors, layout, and animation."
+  "Build a free DEAFCS Widget for OBS or Streamlabs. Customize live CS2 ELO, rank, K/D, recent matches, colors, layout, and animation."
 
 export const metadata: Metadata = {
   ...createLandingMetadata({ title, description, path: APP_PATHS.builder }),

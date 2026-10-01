@@ -77,13 +77,13 @@ export function SitePage({
         <footer className="border-t border-border pt-8">
           <nav aria-label="Site pages" className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
             <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.about}>About</Link>
-            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.faceitWidgetObsGuide}>OBS setup</Link>
+            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup</Link>
             <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.liveFaceitStatsGuide}>Live stats</Link>
             <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.contact}>Contact</Link>
             <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.privacy}>Privacy</Link>
           </nav>
           <p className="mt-6 text-sm leading-6 text-muted-foreground">
-            FACEIT Widget is an unofficial community project and is not affiliated with FACEIT.
+            DEAFCS Widget is an unofficial community project and is not affiliated with FACEIT.
           </p>
           {showBuilderCta ? (
             <Button

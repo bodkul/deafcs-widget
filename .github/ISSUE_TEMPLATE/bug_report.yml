@@ -50,7 +50,7 @@ body:
     attributes:
       label: Widget URL
       description: If the issue occurs in the overlay, paste the generated widget URL here. Optional.
-      placeholder: https://faceitwidget.com/widget/?...
+      placeholder: https://deafcs-widget.vercel.app/widget/?...
 
   - type: textarea
     id: additional-context

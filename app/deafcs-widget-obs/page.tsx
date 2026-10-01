@@ -5,14 +5,14 @@ import { GuideImage, GUIDE_IMAGES } from "@/components/guides/guide-image"
 import { GuidePage } from "@/components/guides/guide-page"
 import { createLandingMetadata, SITE_PATHS } from "@/lib/site-metadata"
 
-const path = SITE_PATHS.faceitWidgetObsGuide
-const title = "How to add a FACEIT widget to OBS"
+const path = SITE_PATHS.deafcsWidgetObsGuide
+const title = "How to add a DEAFCS Widget to OBS"
 const description =
   "Add a free FACEIT stats widget to OBS as a Browser source. Create a transparent CS2 overlay with live ELO, rank, K/D, and recent match stats, without a plugin."
 
 export const metadata: Metadata = createLandingMetadata({ title, description, path })
 
-export default function FaceitWidgetObsGuide() {
+export default function DeafcsWidgetObsGuide() {
   return (
     <GuidePage
       title={title}
@@ -28,7 +28,7 @@ export default function FaceitWidgetObsGuide() {
       </ol>
       <GuideImage
         image={GUIDE_IMAGES.builderSettings}
-        alt="FACEIT Widget builder settings with the Rank and ELO preset selected"
+        alt="DEAFCS Widget builder settings with the Rank and ELO preset selected"
         caption="Choose a preset and keep only the fields you want viewers to see."
         compact
       />
@@ -52,7 +52,7 @@ export default function FaceitWidgetObsGuide() {
       />
       <GuideImage
         image={GUIDE_IMAGES.browserSettings}
-        alt="OBS Browser source properties with a FACEIT Widget URL and an 800 by 300 canvas"
+        alt="OBS Browser source properties with a DEAFCS Widget URL and an 800 by 300 canvas"
         caption="Paste the widget URL and start with an 800 × 300 Browser source."
       />
       <p>

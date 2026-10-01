@@ -20,7 +20,7 @@ function record(index: number) {
   return {
     id,
     media: "image" as const,
-    sourceUrl: `https://assets.faceitwidget.com/custom/${id}/source`,
+    sourceUrl: `https://assets.deafcs-widget.vercel.app/custom/${id}/source`,
     createdAt: new Date(2026, 0, index + 1).toISOString(),
   }
 }
@@ -41,8 +41,8 @@ describe("custom background catalog", () => {
 
     expect(asset).toMatchObject({
       media: "video",
-      src: "https://assets.faceitwidget.com/custom/00000000-0000-4000-8000-000000000001/source",
-      posterSrc: "https://assets.faceitwidget.com/custom/00000000-0000-4000-8000-000000000001/poster.webp",
+      src: "https://assets.deafcs-widget.vercel.app/custom/00000000-0000-4000-8000-000000000001/source",
+      posterSrc: "https://assets.deafcs-widget.vercel.app/custom/00000000-0000-4000-8000-000000000001/poster.webp",
     })
   })
 
@@ -50,7 +50,7 @@ describe("custom background catalog", () => {
     const target = storage()
     const image = record(0)
     target.setItem(
-      "faceitwidget.custom-backgrounds.v1",
+      "deafcs-widget.custom-backgrounds.v1",
       JSON.stringify([{ ...image, posterUrl: image.sourceUrl }]),
     )
 

@@ -20,7 +20,7 @@ export function HomeStory() {
           </p>
           <div className="mx-auto mt-10 max-w-3xl space-y-4">
             <p className="text-sm leading-7 text-muted-foreground sm:text-base">
-              <strong className="font-semibold text-foreground">FACEIT Widget is a free CS2 statistics overlay for OBS and Streamlabs.</strong>{" "}
+              <strong className="font-semibold text-foreground">DEAFCS Widget is a free CS2 statistics overlay for OBS and Streamlabs.</strong>{" "}
               It turns a public FACEIT nickname into a browser-source URL that can show ELO, level, rank, country, K/D, and recent match results on a live stream.
             </p>
             <p className="text-sm leading-7 text-muted-foreground sm:text-base">
@@ -70,7 +70,7 @@ export function HomeStory() {
           </div>
 
           <h2 className="mx-auto mt-20 text-2xl font-semibold leading-tight tracking-[-0.04em] text-foreground sm:text-3xl">
-            How to create a FACEIT Widget
+            How to create a DEAFCS Widget
           </h2>
           <ol className="mx-auto mt-5 max-w-2xl list-inside list-decimal space-y-3 text-sm leading-7 text-muted-foreground sm:text-base">
             <li>Enter the exact public FACEIT nickname in the <Link className="text-foreground underline underline-offset-4" href={APP_PATHS.builder}>builder</Link>.</li>
@@ -83,7 +83,7 @@ export function HomeStory() {
             How live updates work
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-            FACEIT Widget reads public player statistics and checks for changed values about every two minutes while the browser source is open. After a match, FACEIT may need time to publish the completed result. The previous values remain visible until newer data is available. The <Link className="text-foreground underline underline-offset-4" href={SITE_PATHS.liveFaceitStatsGuide}>live stats guide</Link> explains what each refresh can update.
+            DEAFCS Widget reads public player statistics and checks for changed values about every two minutes while the browser source is open. After a match, FACEIT may need time to publish the completed result. The previous values remain visible until newer data is available. The <Link className="text-foreground underline underline-offset-4" href={SITE_PATHS.liveFaceitStatsGuide}>live stats guide</Link> explains what each refresh can update.
           </p>
 
           <h2 className="mx-auto mt-20 text-2xl font-semibold leading-tight tracking-[-0.04em] text-foreground sm:text-3xl">

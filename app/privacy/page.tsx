@@ -4,8 +4,8 @@ import { SitePage } from "@/components/site/site-page"
 import { SITE_LINKS } from "@/lib/site-links"
 import { createLandingMetadata, SITE_PATHS } from "@/lib/site-metadata"
 
-const title = "Privacy at FACEIT Widget"
-const description = "What FACEIT Widget receives and what the widget does not collect."
+const title = "Privacy at DEAFCS Widget"
+const description = "What DEAFCS Widget receives and what the widget does not collect."
 
 export const metadata: Metadata = createLandingMetadata({ title, description, path: SITE_PATHS.privacy })
 
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
         public statistics in the browser source.
       </p>
       <p>
-        FACEIT Widget does not ask for a FACEIT password, OAuth token, private account permission, or payment details. It does not
+        DEAFCS Widget does not ask for a FACEIT password, OAuth token, private account permission, or payment details. It does not
         modify a FACEIT profile. Do not put secrets or private information in a widget URL, GitHub issue, or feedback message.
       </p>
 

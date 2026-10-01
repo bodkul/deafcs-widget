@@ -12,11 +12,11 @@ export default function NotFound() {
       <div className="mx-auto flex min-h-screen w-full max-w-190 flex-col items-center justify-center px-5 py-10 text-center sm:px-8">
         <Link
           href={SITE_PATHS.home}
-          aria-label="FACEIT Widget home"
+          aria-label="DEAFCS Widget home"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <Image src="/logo.svg" alt="" width={22} height={22} priority />
-          <span>FACEIT Widget</span>
+          <span>DEAFCS Widget</span>
         </Link>
         <p className="mt-16 text-sm font-medium tracking-[0.18em] text-muted-foreground">404</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tighter sm:text-5xl">Page not found</h1>
@@ -26,7 +26,7 @@ export default function NotFound() {
         <nav aria-label="Recovery links" className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3">
           <Link className={recoveryLinkClass} href={SITE_PATHS.home}>Homepage</Link>
           <Link className={recoveryLinkClass} href={APP_PATHS.builder}>Widget builder</Link>
-          <Link className={recoveryLinkClass} href={SITE_PATHS.faceitWidgetObsGuide}>OBS setup</Link>
+          <Link className={recoveryLinkClass} href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup</Link>
           <Link className={recoveryLinkClass} href={SITE_PATHS.liveFaceitStatsGuide}>Live stats</Link>
           <Link className={recoveryLinkClass} href="/sitemap.xml">Sitemap</Link>
           <Link className={recoveryLinkClass} href="/llms.txt">llms.txt</Link>

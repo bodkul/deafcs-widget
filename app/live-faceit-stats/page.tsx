@@ -8,7 +8,7 @@ import { createLandingMetadata, SITE_PATHS } from "@/lib/site-metadata"
 const path = SITE_PATHS.liveFaceitStatsGuide
 const title = "How FACEIT stats update"
 const description =
-  "Learn when FACEIT Widget refreshes CS2 ELO, rank, K/D, and recent match stats in OBS, and what to check if a completed match is not visible yet."
+  "Learn when DEAFCS Widget refreshes CS2 ELO, rank, K/D, and recent match stats in OBS, and what to check if a completed match is not visible yet."
 
 export const metadata: Metadata = createLandingMetadata({ title, description, path })
 
@@ -49,7 +49,7 @@ export default function LiveFaceitStatsGuide() {
 
       <h2>Use the widget on stream</h2>
       <p>
-        Follow the <Link href={SITE_PATHS.faceitWidgetObsGuide}>FACEIT Widget setup for OBS</Link> to add the generated URL as a browser source.
+        Follow the <Link href={SITE_PATHS.deafcsWidgetObsGuide}>DEAFCS Widget setup for OBS</Link> to add the generated URL as a browser source.
       </p>
     </GuidePage>
   )
