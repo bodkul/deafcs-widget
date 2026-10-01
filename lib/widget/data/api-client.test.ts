@@ -34,7 +34,7 @@ describe("WidgetApiClient", () => {
 
     const requestUrl = fetcher.mock.calls[0]?.[0]
     expect(requestUrl).toBeInstanceOf(URL)
-    expect((requestUrl as URL).pathname).toBe("/api/v1/players/Carbonero20050/snapshot")
+    expect((requestUrl as URL).pathname).toBe("/api/v1/players/Carbonero20050")
   })
 
   it("preserves the detected verification badge from the snapshot", async () => {

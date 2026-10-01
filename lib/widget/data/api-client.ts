@@ -70,7 +70,7 @@ export class WidgetApiError extends Error {
 }
 
 function apiUrl(lookup: string) {
-  const path = `/api/player/${encodeURIComponent(lookup)}`
+  const path = `/api/v1/players/${encodeURIComponent(lookup)}`
   const url = new URL(path, window.location.origin)
   return url
 }
