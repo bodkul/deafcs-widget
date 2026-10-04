@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 import { SitePage } from "@/components/site/site-page"
 import { SITE_LINKS } from "@/lib/site-links"
@@ -33,8 +34,8 @@ export default function ContactPage() {
 
       <h2>Before opening an issue</h2>
       <ul>
-        <li>Check the <a href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup guide</a> for browser-source settings.</li>
-        <li>Check the <a href={SITE_PATHS.liveFaceitStatsGuide}>live stats guide</a> when a completed match is not visible yet.</li>
+        <li>Check the <Link href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup guide</Link> for browser-source settings.</li>
+        <li>Check the <Link href={SITE_PATHS.liveFaceitStatsGuide}>live stats guide</Link> when a completed match is not visible yet.</li>
         <li>Confirm that the nickname resolves to the intended public FACEIT CS2 profile.</li>
       </ul>
       <p>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 import { SitePage } from "@/components/site/site-page"
 import { SITE_LINKS } from "@/lib/site-links"
@@ -34,7 +35,7 @@ export default function PrivacyPage() {
       <p>
         This is an independent open-source project and is not affiliated with FACEIT. For questions about the site or a request to
         correct project content, use the <a href={SITE_LINKS.github} target="_blank" rel="noreferrer">GitHub repository</a>. FACEIT account and platform requests
-        should go to FACEIT support. See the <a href={SITE_PATHS.contact}>contact page</a> for issue templates and the information
+        should go to FACEIT support. See the <Link href={SITE_PATHS.contact}>contact page</Link> for issue templates and the information
         that helps reproduce a widget problem.
       </p>
     </SitePage>
