@@ -1,5 +1,9 @@
 import type { WidgetData } from "./types"
 
+// DEAFCS has no skill levels yet; the API returns a placeholder level.
+// Flip this on once DEAFCS ships its own levels.
+export const LEVELS_ENABLED = false
+
 export const FACEIT_LEVEL_COLORS = {
   1: "#CDCDCD",
   2: "#1CE400",

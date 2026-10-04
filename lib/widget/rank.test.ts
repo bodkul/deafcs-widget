@@ -101,8 +101,13 @@ describe("rank preset defaults", () => {
       "avgKills",
       "headshotRate",
       "winRate",
-      "rankProgress",
     ]))
+    expect(getEditableFields("performance-card", rank())).not.toContain("rankProgress")
+  })
+
+  it("hides level controls while DEAFCS has no levels", () => {
+    expect(getEditableFields("elo-pill", rank())).not.toContain("level")
+    expect(getEditableFields("today-stats", rank())).not.toContain("level")
   })
 
   it("keeps Regional Ranking configurable for Profile Card", () => {

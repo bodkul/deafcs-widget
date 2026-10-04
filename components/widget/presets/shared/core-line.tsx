@@ -1,5 +1,7 @@
 import { cn } from "cn"
 
+import { LEVELS_ENABLED } from "@/lib/widget"
+
 import {
   EloValue,
   LevelMark,
@@ -22,7 +24,7 @@ export function CoreLine({
   eloValueClassName,
   showFocusRank = false,
 }: CoreLineProps) {
-  const showLevelRankBadge = showFocusRank && config.visibility.level
+  const showLevelRankBadge = showFocusRank && LEVELS_ENABLED && config.visibility.level
 
   return (
     <div className={cn("flex items-center gap-2", className)}>

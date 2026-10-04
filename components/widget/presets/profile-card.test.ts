@@ -39,10 +39,10 @@ describe("ProfileCardPreset ranks", () => {
     expect(markup).toContain("#38")
   })
 
-  it("shows the level mark", () => {
+  it("hides the level mark while DEAFCS has no levels", () => {
     const markup = renderProfileCard()
 
-    expect(markup).toContain("/levels/10.svg")
+    expect(markup).not.toContain("/levels/")
   })
 
   it("hides the flag and country ranking together", () => {

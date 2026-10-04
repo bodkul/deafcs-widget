@@ -30,6 +30,7 @@ export {
   FACEIT_LEVEL_COLORS,
   getRankProgress,
   hasEloChange,
+  LEVELS_ENABLED,
 } from "./rank"
 export { getWidgetZoom, OBS_OUTPUT_SCALE } from "./rendering"
 export { buildWidgetUrl, deserializeConfig, serializeConfig } from "./config/serialization"

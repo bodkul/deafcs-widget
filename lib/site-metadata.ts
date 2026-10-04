@@ -5,7 +5,7 @@ export const SITE_METADATA = {
   url: "https://deafcs-widget.vercel.app",
   title: "DEAFCS Widget | CS2 DEAFCS Stats for OBS & Streamers",
   description:
-    "Create a free DEAFCS Widget for OBS and Streamlabs. Show live CS2 ELO, level, rank, K/D, and recent matches in a browser source with no plugin or login.",
+    "Create a free DEAFCS Widget for OBS and Streamlabs. Show live CS2 ELO, rank, K/D, and recent matches in a browser source with no plugin or login.",
 } as const
 
 export const SITE_LAST_MODIFIED = "2026-09-20"

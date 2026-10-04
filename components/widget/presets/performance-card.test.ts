@@ -33,7 +33,7 @@ describe("PerformanceCardPreset", () => {
     })).toBe(18)
   })
 
-  it("renders the performance metrics and level progress bar", () => {
+  it("renders the performance metrics without the level progress bar", () => {
     const markup = renderPerformanceCard({ countryRank: true })
 
     expect(markup).toContain("data-widget-nickname")
@@ -44,9 +44,8 @@ describe("PerformanceCardPreset", () => {
     expect(markup).toContain("/flags/kr.svg")
     expect(markup).toContain("#1,337")
     expect(markup).toContain("w-8.5")
-    expect(markup).toContain('aria-label="Level 8 progress"')
-    expect(markup).toContain('aria-valuenow="50"')
-    expect(markup).toContain("--performance-progress-color:#FF6309")
+    expect(markup).not.toContain('role="progressbar"')
+    expect(markup).not.toContain("/levels/")
   })
 
   it("keeps the country rank line off by default", () => {

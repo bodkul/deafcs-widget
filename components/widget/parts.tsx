@@ -4,6 +4,7 @@ import { cn } from "cn"
 
 import {
   hasEloChange,
+  LEVELS_ENABLED,
   type WidgetData,
   type WidgetVisibility,
 } from "@/lib/widget"
@@ -53,7 +54,7 @@ export function LevelMark({
   visibility: WidgetVisibility
   className?: string
 }) {
-  if (!visibility.level) {
+  if (!LEVELS_ENABLED || !visibility.level) {
     return null
   }
 

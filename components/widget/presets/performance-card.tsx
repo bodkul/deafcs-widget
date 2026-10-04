@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react"
 
-import { getRankProgress } from "@/lib/widget"
+import { getRankProgress, LEVELS_ENABLED } from "@/lib/widget"
 
 import {
   CountryRank,
@@ -121,7 +121,7 @@ export function PerformanceCardPreset({ data, config }: PresetViewProps) {
         </div>
       ) : null}
 
-      {config.visibility.rankProgress ? <RankProgressBar data={data} /> : null}
+      {LEVELS_ENABLED && config.visibility.rankProgress ? <RankProgressBar data={data} /> : null}
     </div>
   )
 }

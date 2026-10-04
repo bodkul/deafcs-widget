@@ -7,6 +7,7 @@ import type {
   WidgetVisibilityKey,
   WidgetVisibility,
 } from "../types"
+import { LEVELS_ENABLED } from "../rank"
 
 export type WidgetPreset = {
   id: WidgetPresetId
@@ -47,7 +48,7 @@ export const WIDGET_PRESETS: WidgetPreset[] = [
   {
     id: "elo-pill",
     label: "ELO Pill",
-    description: "Level and ELO",
+    description: "ELO and recent results",
     previewSize: "pill",
     supportsRotation: false,
     defaultVisibility: { ...hiddenStats, eloIcon: false },
@@ -56,7 +57,7 @@ export const WIDGET_PRESETS: WidgetPreset[] = [
   {
     id: "rank-elo",
     label: "Rank + ELO",
-    description: "Rank, KDR, level, ELO",
+    description: "Rank, KDR, ELO",
     previewSize: "pill",
     supportsRotation: false,
     defaultVisibility: { ...hiddenStats, countryRank: true, kdr: true, eloIcon: false },
@@ -158,7 +159,7 @@ export const WIDGET_PRESETS: WidgetPreset[] = [
   {
     id: "performance-card",
     label: "Performance Card",
-    description: "Rank progress and match performance",
+    description: "ELO and match performance",
     previewSize: "card",
     supportsRotation: false,
     defaultVisibility: {
@@ -205,10 +206,10 @@ export function supportsWidgetRotation(preset: WidgetPresetId) {
   return WIDGET_PRESET_MAP[preset]?.supportsRotation === true
 }
 
-const levelOnlyFields = new Set<WidgetVisibilityKey>(["level"])
+const levelFields: WidgetVisibilityKey[] = ["level", "rankProgress"]
 
 function getUnavailableFields(rank?: WidgetData["rank"]) {
-  return rank ? new Set<WidgetVisibilityKey>() : levelOnlyFields
+  return new Set<WidgetVisibilityKey>(LEVELS_ENABLED ? (rank ? [] : ["level"]) : levelFields)
 }
 
 export function getEditableFields(

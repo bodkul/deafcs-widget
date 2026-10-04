@@ -21,7 +21,7 @@ export default function LiveDeafcsStatsGuide() {
     >
       <h2>What updates</h2>
       <p>
-        The widget can show DEAFCS ELO, skill level, leaderboard position, country rank, lifetime K/D, today&apos;s record, and averages from the latest 30 completed matches.
+        The widget can show DEAFCS ELO, leaderboard position, country rank, lifetime K/D, today&apos;s record, and averages from the latest 30 completed matches.
       </p>
       <GuideImage
         image={GUIDE_IMAGES.liveStats}
