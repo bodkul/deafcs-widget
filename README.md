@@ -49,7 +49,7 @@ Read the [OBS setup guide](https://deafcs-widget.vercel.app/deafcs-widget-obs) f
 - Presets for ELO, DEAFCS level, Challenger rank, regional and country rankings, K/D, recent matches, and session stats.
 - Visible fields, fonts, colors, scale, radius, borders, background mode, and map artwork.
 - Automatic stat rotation on the larger presets.
-- PNG export and share links with a generated preview image.
+- PNG export.
 - Live updates after DEAFCS publishes the result of a completed match.
 
 ### Requirements

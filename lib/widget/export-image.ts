@@ -139,5 +139,5 @@ export async function downloadWidgetPng(
 
   const nickname = safeFileSegment(options.nickname) || "player"
   const preset = safeFileSegment(options.preset) || "widget"
-  downloadBlob(blob, `faceit-${nickname}-${preset}.png`)
+  downloadBlob(blob, `deafcs-${nickname}-${preset}.png`)
 }

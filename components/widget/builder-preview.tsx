@@ -30,7 +30,6 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { cn } from "cn"
 
 import { PlayerDataBoundary } from "./player-data-boundary"
-import type { ShareStatus } from "./builder-types"
 import { BackdropPosterPreloads } from "./background"
 import { MapIconPreloads } from "./map-icon-preloads"
 import { PresetSuggestionCard } from "./preset-suggestion-card"
@@ -38,7 +37,6 @@ import { Widget } from "./widget"
 import { WidgetDataStatus, WidgetSkeleton } from "./widget-placeholder"
 
 export const DOWNLOAD_WIDGET_LABEL = "Download widget as PNG"
-export const SHARE_WIDGET_LABEL = "Copy widget URL and share on X"
 
 const layoutPreviewScales: Record<WidgetPresetId, number> = {
   "elo-pill": 0.92,
@@ -105,11 +103,9 @@ type PreviewStageProps = {
   activeMap: (typeof WIDGET_MAPS)[number]
   previewWidgetRef: RefObject<HTMLDivElement | null>
   exportingImage: boolean
-  shareStatus: ShareStatus
   onPreviewScaleChange: (delta: number) => void
   onBackdropPositionChange: (position: WidgetBackdropPosition) => void
   onDownload: () => void
-  onShare: () => void
 }
 
 function PreviewStage({
@@ -120,11 +116,9 @@ function PreviewStage({
   activeMap,
   previewWidgetRef,
   exportingImage,
-  shareStatus,
   onPreviewScaleChange,
   onBackdropPositionChange,
   onDownload,
-  onShare,
 }: PreviewStageProps) {
   const style = {
     "--builder-map-image": activeMap.src ? `url("${activeMap.src}")` : "none",
@@ -149,10 +143,8 @@ function PreviewStage({
         previewData={previewData}
         previewScale={previewScale}
         exportingImage={exportingImage}
-        shareStatus={shareStatus}
         onPreviewScaleChange={onPreviewScaleChange}
         onDownload={onDownload}
-        onShare={onShare}
       />
       <div
         className="relative z-1 origin-center transition-transform duration-200 ease-out"
@@ -185,7 +177,7 @@ function PreviewStage({
 
 type PreviewActionProps = Pick<
   PreviewStageProps,
-  "previewData" | "previewScale" | "exportingImage" | "shareStatus" | "onPreviewScaleChange" | "onDownload" | "onShare"
+  "previewData" | "previewScale" | "exportingImage" | "onPreviewScaleChange" | "onDownload"
 >
 
 function ExportButton({ previewData, exportingImage, onDownload }: Pick<PreviewActionProps, "previewData" | "exportingImage" | "onDownload">) {
@@ -204,35 +196,6 @@ function ExportButton({ previewData, exportingImage, onDownload }: Pick<PreviewA
         }
       />
       <TooltipContent>{DOWNLOAD_WIDGET_LABEL}</TooltipContent>
-    </Tooltip>
-  )
-}
-
-function ShareButton({ previewData, shareStatus, onShare }: Pick<PreviewActionProps, "previewData" | "shareStatus" | "onShare">) {
-  const icon =
-    shareStatus === "preparing" ? (
-      <LoaderCircle className="animate-spin motion-reduce:animate-none" />
-    ) : shareStatus === "opened" ? (
-      <Check className="text-emerald-400" />
-    ) : (
-      <Share2 className={shareStatus === "error" ? "text-destructive" : undefined} />
-    )
-
-  return (
-    <Tooltip>
-      <TooltipTrigger
-        render={
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            icon={icon}
-            onClick={onShare}
-            disabled={!previewData || shareStatus === "preparing"}
-            aria-label={SHARE_WIDGET_LABEL}
-          />
-        }
-      />
-      <TooltipContent>{SHARE_WIDGET_LABEL}</TooltipContent>
     </Tooltip>
   )
 }
@@ -269,15 +232,12 @@ function PreviewActions({
   previewData,
   previewScale,
   exportingImage,
-  shareStatus,
   onPreviewScaleChange,
   onDownload,
-  onShare,
 }: PreviewActionProps) {
   return (
     <div className="absolute right-3 top-3 z-10 flex items-center gap-0.5 rounded-lg border border-border/80 bg-surface/90 p-1 shadow-[0_8px_24px_rgb(0_0_0/24%)] backdrop-blur-sm">
       <ExportButton previewData={previewData} exportingImage={exportingImage} onDownload={onDownload} />
-      <ShareButton previewData={previewData} shareStatus={shareStatus} onShare={onShare} />
       <span aria-hidden="true" className="mx-1 h-5 w-px bg-border" />
       <ScaleControls previewScale={previewScale} onPreviewScaleChange={onPreviewScaleChange} />
     </div>
@@ -330,12 +290,10 @@ type BuilderPreviewProps = {
   selectedMap: WidgetMapId
   previewWidgetRef: RefObject<HTMLDivElement | null>
   exportingImage: boolean
-  shareStatus: ShareStatus
   onMapChange: (map: WidgetMapId) => void
   onBackdropPositionChange: (position: WidgetBackdropPosition) => void
   onPreviewScaleChange: (delta: number) => void
   onDownload: () => void
-  onShare: () => void
   onPresetChange: (preset: WidgetPresetId) => void
 }
 
@@ -399,12 +357,10 @@ export function BuilderPreview({
   selectedMap,
   previewWidgetRef,
   exportingImage,
-  shareStatus,
   onMapChange,
   onBackdropPositionChange,
   onPreviewScaleChange,
   onDownload,
-  onShare,
   onPresetChange,
 }: BuilderPreviewProps) {
   const activeMap = WIDGET_MAPS.find((map) => map.id === selectedMap) ?? WIDGET_MAPS[0]
@@ -430,11 +386,9 @@ export function BuilderPreview({
           activeMap={activeMap}
           previewWidgetRef={previewWidgetRef}
           exportingImage={exportingImage}
-          shareStatus={shareStatus}
           onPreviewScaleChange={onPreviewScaleChange}
           onBackdropPositionChange={onBackdropPositionChange}
           onDownload={onDownload}
-          onShare={onShare}
         />
 
         <div className="mt-5 flex items-center justify-between border-b border-border/70 pb-2">

@@ -72,12 +72,10 @@ export function Builder({ initialConfig, initialNickname }: BuilderProps) {
           selectedMap={settings.selectedMap}
           previewWidgetRef={previewWidgetRef}
           exportingImage={actions.exportingImage}
-          shareStatus={actions.shareStatus}
           onMapChange={settings.setSelectedMap}
           onBackdropPositionChange={(position) => settings.updateBackdrop({ position })}
           onPreviewScaleChange={settings.updatePreviewScale}
           onDownload={() => void actions.downloadPreview()}
-          onShare={() => void actions.shareOnX()}
           onPresetChange={handlePresetChange}
         />
       </div>

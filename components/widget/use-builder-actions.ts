@@ -3,10 +3,7 @@
 import { useState, type RefObject } from "react"
 
 import { buildWidgetUrl, type WidgetConfig } from "@/lib/widget"
-import { createWidgetPng, downloadWidgetPng } from "@/lib/widget/export-image"
-import { createWidgetShare, xShareIntent } from "@/lib/widget/sharing/share-card"
-
-import type { ShareStatus } from "./builder-types"
+import { downloadWidgetPng } from "@/lib/widget/export-image"
 
 function useClipboard() {
   const [copied, setCopied] = useState(false)
@@ -53,46 +50,12 @@ function useWidgetExport({ config, nickname, previewWidgetRef }: PreviewActionOp
   return { exportingImage, downloadPreview }
 }
 
-function useWidgetShare({ config, nickname, previewWidgetRef }: PreviewActionOptions) {
-  const [shareStatus, setShareStatus] = useState<ShareStatus>("idle")
-
-  async function shareOnX() {
-    const node = previewWidgetRef.current
-    if (!node || shareStatus === "preparing") return
-
-    const shareWindow = window.open("about:blank", "faceit-widget-share", "popup,width=720,height=640")
-    if (shareWindow) shareWindow.opener = null
-
-    setShareStatus("preparing")
-    try {
-      const image = await createWidgetPng(node)
-      const shareUrl = await createWidgetShare(image, { nickname, preset: config.preset })
-      const shareIntent = xShareIntent(shareUrl)
-      if (shareWindow && !shareWindow.closed) shareWindow.location.replace(shareIntent)
-      else window.location.assign(shareIntent)
-
-      const copyShareUrl = navigator.clipboard?.writeText(shareUrl)
-      void copyShareUrl?.catch(() => undefined)
-      setShareStatus("opened")
-      window.setTimeout(() => setShareStatus("idle"), 1_800)
-    } catch (error) {
-      shareWindow?.close()
-      console.error("Unable to share widget image", error)
-      setShareStatus("error")
-      window.setTimeout(() => setShareStatus("idle"), 1_800)
-    }
-  }
-
-  return { shareStatus, shareOnX }
-}
-
 export function useBuilderActions({ config, nickname, playerId, previewWidgetRef }: PreviewActionOptions) {
   const [copyDialogOpen, setCopyDialogOpen] = useState(false)
   const [feedbackDialogOpen, setFeedbackDialogOpen] = useState(false)
   const [widgetUrl, setWidgetUrl] = useState("")
   const clipboard = useClipboard()
   const widgetExport = useWidgetExport({ config, nickname, previewWidgetRef })
-  const widgetShare = useWidgetShare({ config, nickname, previewWidgetRef })
 
   function currentWidgetUrl() {
     const normalizedPlayerId = playerId?.trim()
@@ -112,7 +75,6 @@ export function useBuilderActions({ config, nickname, playerId, previewWidgetRef
   return {
     ...clipboard,
     ...widgetExport,
-    ...widgetShare,
     canCopy: Boolean(playerId?.trim()),
     copyDialogOpen,
     feedbackDialogOpen,
