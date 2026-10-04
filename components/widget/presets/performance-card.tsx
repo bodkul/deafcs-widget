@@ -1,11 +1,10 @@
 import type { CSSProperties } from "react"
 
-import { getRankProgress, isChallengerRank } from "@/lib/widget"
+import { getRankProgress } from "@/lib/widget"
 
 import {
   CountryRank,
   EloSummary,
-  ChallengerRankBadge,
   LevelMark,
   PlayerNickname,
   RecordStat,
@@ -41,9 +40,6 @@ function RankProgressBar({ data }: Pick<PresetViewProps, "data">) {
 }
 
 export function PerformanceCardPreset({ data, config }: PresetViewProps) {
-  const challenger = isChallengerRank(data.rank)
-  const showChallenger = challenger && config.visibility.challenger
-  const challengerRank = data.rank.regionRank
   const metrics = [
     config.visibility.avgKills
       ? { label: "Kills", value: getPerformanceKills(data), maximumFractionDigits: 0 }
@@ -69,17 +65,7 @@ export function PerformanceCardPreset({ data, config }: PresetViewProps) {
           ? "col-span-3 flex min-w-0 items-center gap-2"
           : "flex min-w-0 items-center gap-2"}
         >
-          {showChallenger ? (
-            <ChallengerRankBadge
-              value={challengerRank}
-              regionCode={data.profile.regionCode}
-              showRankNumber={config.visibility.challengerRank}
-              className={config.visibility.challengerRank ? "min-h-10" : "size-10"}
-              markClassName={config.visibility.challengerRank ? "size-7" : "size-8"}
-            />
-          ) : (
-            <LevelMark data={data} visibility={config.visibility} className="size-10" />
-          )}
+          <LevelMark data={data} visibility={config.visibility} className="size-10" />
           <div className="flex min-w-0 flex-col gap-1.25">
             {config.visibility.nickname ? (
               <PlayerNickname

@@ -4,10 +4,8 @@ import { createDefaultConfig, normalizeConfig, updateVisibilityConfig } from "./
 import { getEditableFields, getRotationFields } from "./config/presets"
 import {
   FACEIT_LEVEL_COLORS,
-  getChallengerRankColor,
   getRankProgress,
   hasEloChange,
-  isChallengerRank,
 } from "./rank"
 import type { WidgetData } from "./types"
 
@@ -19,51 +17,6 @@ function rank(overrides: Partial<WidgetData["rank"]> = {}): WidgetData["rank"] {
     ...overrides,
   }
 }
-
-describe("isChallengerRank", () => {
-  it("includes level 10 players through regional rank 1000", () => {
-    expect(isChallengerRank(rank())).toBe(true)
-  })
-
-  it("rejects players outside the regional top 1000", () => {
-    expect(isChallengerRank(rank({ regionRank: 2_486 }))).toBe(false)
-  })
-
-  it("does not trust a contradictory Challenger flag", () => {
-    expect(isChallengerRank(rank({ regionRank: 2_486, isChallenger: true }))).toBe(false)
-  })
-
-  it("hides Challenger controls for non-Challenger players", () => {
-    const fields = getEditableFields("rich-profile", rank({ regionRank: 2_486 }))
-
-    expect(fields).not.toContain("challenger")
-    expect(fields).not.toContain("challengerRank")
-  })
-
-  it("hides the unused Regional Ranking control for Challenger Rank + Country", () => {
-    const fields = getEditableFields("rank-country", rank())
-
-    expect(fields).not.toContain("regionRank")
-  })
-
-  it("hides the unused Regional Ranking control for Challenger Rank + ELO", () => {
-    const fields = getEditableFields("rank-elo", rank())
-
-    expect(fields).not.toContain("regionRank")
-  })
-
-  it("hides the unused Regional Ranking control for Challenger Rich Profile", () => {
-    const fields = getEditableFields("rich-profile", rank())
-
-    expect(fields).not.toContain("regionRank")
-  })
-
-  it("keeps Regional Ranking for non-Challenger Rank + Country", () => {
-    const fields = getEditableFields("rank-country", rank({ regionRank: 2_486 }))
-
-    expect(fields).toContain("regionRank")
-  })
-})
 
 describe("hasEloChange", () => {
   it("hides missing and unchanged ELO", () => {
@@ -95,16 +48,11 @@ describe("getRankProgress", () => {
     expect(getRankProgress(rank({ level: 4, elo: 2_500 })).percentage).toBe(100)
   })
 
-  it("keeps Level 10 and Challenger progress full", () => {
+  it("keeps Level 10", () => {
     expect(getRankProgress(rank({ level: 10, elo: 2_001, regionRank: 2_500 }))).toMatchObject({
       percentage: 100,
       color: FACEIT_LEVEL_COLORS[10],
       label: "Level 10",
-    })
-    expect(getRankProgress(rank({ level: 10, elo: 2_100, regionRank: 1 }))).toMatchObject({
-      percentage: 100,
-      color: getChallengerRankColor(1),
-      label: "Challenger",
     })
   })
 })
@@ -127,7 +75,6 @@ describe("rank preset defaults", () => {
     const config = createDefaultConfig("profile-card")
 
     expect(config.visibility.regionRank).toBe(false)
-    expect(config.visibility.challengerRank).toBe(false)
   })
 
   it("starts Performance Card with its full performance layout", () => {
@@ -137,7 +84,6 @@ describe("rank preset defaults", () => {
       nickname: true,
       level: true,
       elo: true,
-      challengerRank: true,
       countryRank: false,
       eloChange: false,
       todayStats: true,
@@ -159,7 +105,7 @@ describe("rank preset defaults", () => {
     ]))
   })
 
-  it("keeps Regional Ranking configurable for Challenger Profile Card", () => {
+  it("keeps Regional Ranking configurable for Profile Card", () => {
     const fields = getEditableFields("profile-card", rank())
 
     expect(fields).toContain("regionRank")
@@ -169,13 +115,11 @@ describe("rank preset defaults", () => {
     expect(createDefaultConfig("today-stats").visibility.nickname).toBe(true)
   })
 
-  it("exposes Challenger rank without exposing the unused K/D switch", () => {
+  it("does not expose the unused K/D switch for Today Stats", () => {
     const fields = getEditableFields("today-stats", rank())
 
-    expect(fields).toContain("challengerRank")
     expect(fields).not.toContain("kdr")
     expect(getRotationFields("today-stats")).not.toContain("lifetime")
-    expect(createDefaultConfig("today-stats").visibility.challengerRank).toBe(false)
 
     const legacyConfig = normalizeConfig({
       preset: "today-stats",
@@ -185,7 +129,7 @@ describe("rank preset defaults", () => {
     expect(legacyConfig.rotation.fields).not.toContain("lifetime")
   })
 
-  it("keeps the Challenger badge behind the Regional Ranking switch", () => {
+  it("enables Regional Ranking through its switch", () => {
     const config = createDefaultConfig("rank-country")
     const enabled = updateVisibilityConfig(config, "regionRank", true)
 

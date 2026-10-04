@@ -30,7 +30,7 @@
 
 The official project website is [deafcs-widget.vercel.app](https://deafcs-widget.vercel.app). This repository contains the source code for DEAFCS Widget, a free open-source DEAFCS stats widget for OBS Studio and Streamlabs Desktop. Build an overlay, choose the stats you want to show, and add the generated URL to OBS. No plugin or DEAFCS login is required.
 
-DEAFCS Widget turns a public DEAFCS nickname into a browser-source overlay for CS2. It can show ELO, DEAFCS level, Challenger status, regional ranking, country ranking, K/D, and recent match results while you stream.
+DEAFCS Widget turns a public DEAFCS nickname into a browser-source overlay for CS2. It can show ELO, DEAFCS level, regional ranking, country ranking, K/D, and recent match results while you stream.
 
 ## Use it
 
@@ -46,7 +46,7 @@ Read the [OBS setup guide](https://deafcs-widget.vercel.app/deafcs-widget-obs) f
 
 ## What you can configure
 
-- Presets for ELO, DEAFCS level, Challenger rank, regional and country rankings, K/D, recent matches, and session stats.
+- Presets for ELO, DEAFCS level, regional and country rankings, K/D, recent matches, and session stats.
 - Visible fields, fonts, colors, scale, radius, borders, background mode, and map artwork.
 - Automatic stat rotation on the larger presets.
 - PNG export.

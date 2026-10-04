@@ -1,36 +1,16 @@
-import {
-  isChallengerRank,
-  type WidgetConfig,
-  type WidgetData,
-} from "@/lib/widget"
 import { cn } from "cn"
 
 import {
-  ChallengerRankBadge,
   EloValue,
   LevelMark,
   LevelRankBadge,
 } from "../../parts"
 import type { PresetViewProps } from "../types"
 
-export function showsChallengerRegionRank(data: WidgetData, config: WidgetConfig) {
-  return config.visibility.regionRank
-    && config.visibility.challenger
-    && isChallengerRank(data.rank)
-}
-
-export function showsChallengerFocusRank(data: WidgetData, config: WidgetConfig) {
-  return !config.visibility.regionRank
-    && config.visibility.challenger
-    && config.visibility.challengerRank
-    && isChallengerRank(data.rank)
-}
-
 type CoreLineProps = PresetViewProps & {
   className?: string
   levelClassName?: string
   eloValueClassName?: string
-  hideChallengerMark?: boolean
   showFocusRank?: boolean
 }
 
@@ -40,26 +20,17 @@ export function CoreLine({
   className,
   levelClassName,
   eloValueClassName,
-  hideChallengerMark = false,
   showFocusRank = false,
 }: CoreLineProps) {
-  const challenger = isChallengerRank(data.rank)
-  const showChallengerRankBadge = showFocusRank && challenger && config.visibility.challenger
-  const showLevelRankBadge = showFocusRank && !challenger && config.visibility.level
+  const showLevelRankBadge = showFocusRank && config.visibility.level
 
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      {showChallengerRankBadge ? (
-        <ChallengerRankBadge
-          value={data.rank.regionRank}
-          regionCode={data.profile.regionCode}
-          showRankNumber={config.visibility.challengerRank}
-        />
-      ) : showLevelRankBadge ? (
+      {showLevelRankBadge ? (
         <LevelRankBadge data={data} visibility={config.visibility} />
-      ) : !(hideChallengerMark && challenger) ? (
+      ) : (
         <LevelMark data={data} visibility={config.visibility} className={levelClassName} />
-      ) : null}
+      )}
       <EloValue data={data} visibility={config.visibility} valueClassName={eloValueClassName} />
     </div>
   )

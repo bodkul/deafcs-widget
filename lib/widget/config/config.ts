@@ -16,8 +16,6 @@ import {
   type WidgetVisibilityKey,
 } from "../types"
 
-export { CHALLENGER_RANK_COLORS } from "../rank"
-
 const DEFAULT_COLORS = {
   accent: "#3a3a3a",
   text: "#f1f1f1",
@@ -69,8 +67,6 @@ const VISIBILITY_KEYS = [
   "eloIcon",
   "regionRank",
   "countryRank",
-  "challenger",
-  "challengerRank",
   "kdr",
   "todayStats",
   "last30Stats",

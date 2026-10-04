@@ -1,5 +1,4 @@
 import {
-  ChallengerRankBadge,
   CountryRank,
   EloSummary,
   LevelMark,
@@ -7,13 +6,9 @@ import {
   RecordStat,
   RegionRank,
 } from "../parts"
-import { isChallengerRank } from "@/lib/widget"
 import type { PresetViewProps } from "./types"
 
 export function ProfileCardPreset({ data, config }: PresetViewProps) {
-  const challenger = isChallengerRank(data.rank)
-  const showRankMark = challenger && config.visibility.challenger
-  const showChallengerRank = challenger && config.visibility.challengerRank
   const showRegionRank = config.visibility.regionRank
   const showCountryRank = config.visibility.countryRank
   const showAnyRank = showCountryRank || showRegionRank
@@ -23,15 +18,7 @@ export function ProfileCardPreset({ data, config }: PresetViewProps) {
   return (
     <div className="flex min-w-63 flex-row items-center justify-between gap-3">
       <div className="flex min-w-0 items-center gap-2">
-        {showRankMark ? (
-          <ChallengerRankBadge
-            value={data.rank.regionRank}
-            regionCode={data.profile.regionCode}
-            showRankNumber={showChallengerRank}
-          />
-        ) : (
-          <LevelMark data={data} visibility={config.visibility} className="size-8.5" />
-        )}
+        <LevelMark data={data} visibility={config.visibility} className="size-8.5" />
         <div className="flex min-w-0 flex-col gap-1.25">
           {config.visibility.nickname ? (
             <div className="flex min-w-0 items-center gap-1.5">
@@ -47,7 +34,6 @@ export function ProfileCardPreset({ data, config }: PresetViewProps) {
               <RegionRank
                 data={data}
                 visibility={config.visibility}
-                showChallengerBadge={false}
                 className={compactRankClass}
                 valueClassName={compactRankValueClass}
               />

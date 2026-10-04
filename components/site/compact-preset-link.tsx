@@ -18,7 +18,6 @@ const previewData: WidgetData = {
     elo: 5_053,
     regionRank: 1,
     countryRank: 1,
-    isChallenger: true,
   },
   last30: {
     avgKills: 25,

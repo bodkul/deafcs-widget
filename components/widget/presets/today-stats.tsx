@@ -1,5 +1,3 @@
-import { isChallengerRank } from "@/lib/widget"
-
 import { PlayerNickname } from "../parts"
 import { CoreLine } from "./shared/core-line"
 import { RotatingDetails } from "./shared/rotation-details"
@@ -9,11 +7,7 @@ export function TodayStatsPreset({ data, config }: PresetViewProps) {
   return (
     <div className="flex min-w-66 flex-col gap-(--widget-layout-gap)">
       <div className="flex min-w-0 items-center justify-between gap-3">
-        <CoreLine
-          data={data}
-          config={config}
-          showFocusRank={isChallengerRank(data.rank) && config.visibility.challengerRank}
-        />
+        <CoreLine data={data} config={config} />
         {config.visibility.nickname ? (
           <PlayerNickname
             data={data}

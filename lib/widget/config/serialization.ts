@@ -18,8 +18,6 @@ const VISIBILITY_MASK_KEYS = [
   "regionRank",
   null,
   "countryRank",
-  "challenger",
-  "challengerRank",
   "kdr",
   "todayStats",
   "last30Stats",

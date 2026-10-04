@@ -81,30 +81,6 @@ describe("PerformanceCardPreset", () => {
     expect(markup).not.toContain("progressbar")
   })
 
-  it("uses the Challenger color and a full bar for Challenger players", () => {
-    const markup = renderPerformanceCard({}, {
-      ...data,
-      rank: { ...data.rank, level: 10, regionRank: 174 },
-    })
-
-    expect(markup).toContain("--challenger-icon-color")
-    expect(markup).toContain(">#174<")
-    expect(markup).toContain('aria-label="Challenger progress"')
-    expect(markup).toContain('aria-valuenow="100"')
-    expect(markup).toContain("--performance-progress-color:#E80129")
-  })
-
-  it("keeps the Challenger icon while hiding its rank number when disabled", () => {
-    const markup = renderPerformanceCard({ challengerRank: false }, {
-      ...data,
-      rank: { ...data.rank, level: 10, regionRank: 174 },
-    })
-
-    expect(markup).toContain("--challenger-icon-color")
-    expect(markup).toContain("size-8")
-    expect(markup).not.toContain(">#174<")
-  })
-
   it("can hide the country rank line", () => {
     const markup = renderPerformanceCard({ countryRank: false })
 

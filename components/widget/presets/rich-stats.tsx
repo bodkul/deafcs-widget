@@ -3,23 +3,18 @@ import {
   KdrValue,
   RegionRank,
 } from "../parts"
-import { isChallengerRank } from "@/lib/widget"
 
 import { CoreLine } from "./shared/core-line"
 import { RotatingDetails } from "./shared/rotation-details"
 import type { PresetViewProps } from "./types"
 
 function RichHeader({ data, config }: PresetViewProps) {
-  const challenger = isChallengerRank(data.rank)
-  const showRegionRank = config.visibility.regionRank && !challenger
-
   return (
     <div className="flex min-w-0 items-center gap-2">
       <div className="flex min-w-0 items-center gap-2">
         <CoreLine
           data={data}
           config={config}
-          showFocusRank={challenger && config.visibility.challengerRank}
           className="gap-1.5"
           levelClassName="size-6"
           eloValueClassName="text-[18px] tracking-[-0.03em]"
@@ -38,9 +33,7 @@ function RichHeader({ data, config }: PresetViewProps) {
           : "ml-auto flex min-w-0 shrink-0 items-center justify-end gap-2"}
       >
         <CountryRank data={data} visibility={config.visibility} />
-        {showRegionRank ? (
-          <RegionRank data={data} visibility={config.visibility} showChallengerBadge={false} />
-        ) : null}
+        <RegionRank data={data} visibility={config.visibility} />
       </div>
     </div>
   )

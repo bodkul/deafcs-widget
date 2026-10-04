@@ -21,7 +21,7 @@ export default function AboutPage() {
     >
       <h2>What DEAFCS Widget does</h2>
       <p>
-        DEAFCS Widget is a free, open-source web application for creating DEAFCS CS2 statistics overlays. Streamers can use the generated page as a Browser source in OBS Studio or Streamlabs Desktop to show public player information such as ELO, DEAFCS level, Challenger status, regional ranking, country ranking, K/D, and recent match results.
+        DEAFCS Widget is a free, open-source web application for creating DEAFCS CS2 statistics overlays. Streamers can use the generated page as a Browser source in OBS Studio or Streamlabs Desktop to show public player information such as ELO, DEAFCS level, regional ranking, country ranking, K/D, and recent match results.
       </p>
       <p>
         The project is designed to stay simple: choose a preset, select the fields that belong in your scene, tune the visual style, and copy one URL. It does not require a desktop plugin or a DEAFCS password, and it is not an account-management or matchmaking tool.

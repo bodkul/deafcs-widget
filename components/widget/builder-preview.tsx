@@ -1,13 +1,11 @@
 import Image from "next/image"
 import type { CSSProperties, RefObject } from "react"
 import {
-  Check,
   ImageDown,
   LoaderCircle,
   Map as MapIcon,
   Minus,
   Plus,
-  Share2,
 } from "lucide-react"
 
 import {

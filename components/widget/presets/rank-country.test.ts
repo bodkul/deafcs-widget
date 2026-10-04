@@ -12,7 +12,7 @@ const data: WidgetData = {
 }
 
 describe("RankCountryPreset", () => {
-  it("keeps Regional Ranking in the right-side rank group for non-Challengers", () => {
+  it("keeps Regional Ranking in the right-side rank group", () => {
     const config = createDefaultConfig("rank-country")
     config.visibility.regionRank = true
 

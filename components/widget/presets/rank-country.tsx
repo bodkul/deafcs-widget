@@ -1,25 +1,14 @@
-import { isChallengerRank } from "@/lib/widget"
-
 import { CountryRank, RegionRank } from "../parts"
 import { CoreLine } from "./shared/core-line"
 import type { PresetViewProps } from "./types"
 
 export function RankCountryPreset({ data, config }: PresetViewProps) {
-  const challenger = isChallengerRank(data.rank)
-  const showRegionRank = config.visibility.regionRank && !challenger
-
   return (
     <div className="flex min-w-58 flex-row items-center gap-2">
-      <CoreLine
-        data={data}
-        config={config}
-        showFocusRank={challenger && config.visibility.challengerRank}
-      />
+      <CoreLine data={data} config={config} />
       <div className="ml-auto flex items-center justify-end gap-2">
         <CountryRank data={data} visibility={config.visibility} />
-        {showRegionRank ? (
-          <RegionRank data={data} visibility={config.visibility} showChallengerBadge={false} />
-        ) : null}
+        <RegionRank data={data} visibility={config.visibility} />
       </div>
     </div>
   )

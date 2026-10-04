@@ -1,5 +1,4 @@
 export {
-  CHALLENGER_RANK_COLORS,
   createDefaultConfig,
   DEFAULT_WIDGET_CONFIG,
   normalizeConfig,
@@ -40,12 +39,9 @@ export {
 } from "./config/presets"
 export type { WidgetPreset } from "./config/presets"
 export {
-  CHALLENGER_RANK_LIMIT,
   FACEIT_LEVEL_COLORS,
-  getChallengerRankColor,
   getRankProgress,
   hasEloChange,
-  isChallengerRank,
 } from "./rank"
 export { getWidgetZoom, OBS_OUTPUT_SCALE } from "./rendering"
 export { buildWidgetUrl, deserializeConfig, serializeConfig } from "./config/serialization"

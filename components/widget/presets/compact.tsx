@@ -34,7 +34,7 @@ export function CompactPreset({ data, config }: PresetViewProps) {
     <div className="flex w-105 max-w-full flex-col gap-2">
       <div className="grid min-h-15.5 grid-cols-[190px_minmax(0,1fr)] items-center gap-2">
         <div className="col-start-1 flex min-w-0 items-center gap-2">
-          {config.visibility.level || config.visibility.challenger ? (
+          {config.visibility.level ? (
             <LevelMark data={data} visibility={config.visibility} className="size-12" />
           ) : null}
           <div className="flex min-w-0 flex-col items-start gap-1.25">
@@ -63,7 +63,6 @@ export function CompactPreset({ data, config }: PresetViewProps) {
               <RegionRank
                 data={data}
                 visibility={config.visibility}
-                showChallengerBadge={false}
                 iconSize={20}
                 className="gap-1.5"
                 valueClassName="text-[14px] font-bold"

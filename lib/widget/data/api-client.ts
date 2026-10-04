@@ -18,7 +18,6 @@ const widgetDataSchema = z.object({
     regionRank: z.number().optional(),
     worldRank: z.number().optional(),
     countryRank: z.number().optional(),
-    isChallenger: z.boolean().optional(),
   }).transform(({ worldRank, ...rank }) => ({
     ...rank,
     regionRank: rank.regionRank ?? worldRank,

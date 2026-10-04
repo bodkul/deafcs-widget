@@ -46,7 +46,7 @@ export function HomeStory() {
               </div>
               <h3 className="mt-6 text-xl font-semibold text-foreground">Rank and ELO</h3>
               <p className="mt-3 text-base leading-7 text-muted-foreground">
-                Show current ELO, DEAFCS level, Challenger status, regional ranking, and country rank in a small footprint.
+                Show current ELO, DEAFCS level, regional ranking, and country rank in a small footprint.
               </p>
             </article>
             <article className="h-full min-h-60 rounded-xl border border-border bg-secondary p-6 text-center shadow-[inset_0_1px_rgb(255_255_255/5%)]">

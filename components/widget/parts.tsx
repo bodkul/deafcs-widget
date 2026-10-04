@@ -1,23 +1,18 @@
-import type { CSSProperties, ReactNode } from "react"
+import type { ReactNode } from "react"
 import Image from "next/image"
 import { cn } from "cn"
 
 import {
-  getChallengerRankColor,
   hasEloChange,
-  isChallengerRank,
   type WidgetData,
   type WidgetVisibility,
 } from "@/lib/widget"
 import { formatNumber, formatRankNumber } from "@/lib/format"
 
 import { AnimatedNumber } from "./animated-number"
-import { ChallengerMark } from "./challenger-mark"
 import { getWinRateTone } from "./stat-tone"
 import { VerificationBadge } from "./verification-badge"
 import { RegionLogo } from "./region-logo"
-
-export { ChallengerMark } from "./challenger-mark"
 
 const levelAsset = (data: WidgetData) => {
   const level = Math.min(10, Math.max(1, Math.round(data.rank.level || 1)))
@@ -58,34 +53,23 @@ export function LevelMark({
   visibility: WidgetVisibility
   className?: string
 }) {
-  const challenger = isChallengerRank(data.rank)
-  const showChallenger = challenger && visibility.challenger
-  const showLevel = visibility.level && (!challenger || !visibility.challenger)
-
-  if (!showChallenger && !showLevel) {
+  if (!visibility.level) {
     return null
   }
 
   return (
     <span
       className={cn("relative inline-flex size-7 shrink-0 items-center justify-center", className)}
-      title={challenger ? "Challenger" : `Level ${data.rank.level}`}
+      title={`Level ${data.rank.level}`}
     >
-      {showChallenger ? (
-        <ChallengerMark
-          className="size-full object-contain"
-          accentColor={getChallengerRankColor(data.rank.regionRank)}
-        />
-      ) : (
-        <Image
-          src={levelAsset(data)}
-          alt=""
-          className="size-full object-contain"
-          width={28}
-          height={28}
-          unoptimized
-        />
-      )}
+      <Image
+        src={levelAsset(data)}
+        alt=""
+        className="size-full object-contain"
+        width={28}
+        height={28}
+        unoptimized
+      />
     </span>
   )
 }
@@ -98,7 +82,7 @@ export function Identity({
   visibility: WidgetVisibility
   className?: string
 }) {
-  if (!visibility.nickname && !visibility.level && !visibility.challenger) {
+  if (!visibility.nickname && !visibility.level) {
     return null
   }
 
@@ -220,53 +204,6 @@ export function RankValue({
       >
         #{format(value)}
       </strong>
-    </span>
-  )
-}
-
-export function ChallengerRankBadge({
-  value,
-  showRankNumber = true,
-  regionCode,
-  className,
-  markClassName,
-}: {
-  value?: number
-  showRankNumber?: boolean
-  regionCode?: string
-  className?: string
-  markClassName?: string
-}) {
-  const color = getChallengerRankColor(value)
-  const label = `#${formatRankNumber(value)}`
-  const rankLabel = `Regional Ranking${regionCode ? ` (${regionCode.toUpperCase()})` : ""} ${label}`
-  const style = {
-    "--challenger-rank-color": color,
-  } as CSSProperties
-
-  return (
-    <span
-      className={cn(
-        showRankNumber
-          ? "inline-flex min-h-7 shrink-0 items-center gap-1.25 rounded-full border border-(--challenger-rank-color) bg-(--challenger-rank-color) px-2 py-1 leading-none text-[#090909] shadow-[0_1px_0_rgb(0_0_0/28%)]"
-          : "inline-flex size-7 shrink-0 items-center justify-center",
-        className,
-      )}
-      style={style}
-      title={rankLabel}
-      aria-label={rankLabel}
-    >
-      {showRankNumber ? (
-        <strong className="font-system text-[13px] font-extrabold text-[#090909] tabular-nums">{label}</strong>
-      ) : null}
-      <ChallengerMark
-        className={cn(
-          "block shrink-0 object-contain",
-          showRankNumber ? "size-5" : "size-7",
-          markClassName,
-        )}
-        accentColor={color}
-      />
     </span>
   )
 }
@@ -598,30 +535,18 @@ function RankItem({
 export function RegionRank({
   data,
   visibility,
-  showChallengerBadge = true,
   iconSize = 14,
   className,
   valueClassName,
 }: {
   data: WidgetData
   visibility: WidgetVisibility
-  showChallengerBadge?: boolean
   iconSize?: number
   className?: string
   valueClassName?: string
 }) {
   if (!visibility.regionRank) {
     return null
-  }
-
-  if (showChallengerBadge && visibility.challenger && isChallengerRank(data.rank)) {
-    return (
-      <ChallengerRankBadge
-        value={data.rank.regionRank}
-        regionCode={data.profile.regionCode}
-        showRankNumber={visibility.challengerRank}
-      />
-    )
   }
 
   return (

@@ -1,14 +1,5 @@
 import type { WidgetData } from "./types"
 
-export const CHALLENGER_RANK_LIMIT = 1000
-
-export const CHALLENGER_RANK_COLORS = {
-  gold: "#FFD335",
-  silver: "#DEF5FF",
-  bronze: "#FF7236",
-  top: "#E80129",
-} as const
-
 export const FACEIT_LEVEL_COLORS = {
   1: "#CDCDCD",
   2: "#1CE400",
@@ -35,19 +26,6 @@ const FACEIT_LEVEL_RANGES = {
   10: { min: 2_001, max: 2_001 },
 } as const
 
-type ChallengerRankTier = keyof typeof CHALLENGER_RANK_COLORS
-
-function challengerRankTier(value?: number): ChallengerRankTier {
-  if (value === 1) return "gold"
-  if (value === 2) return "silver"
-  if (value === 3) return "bronze"
-  return "top"
-}
-
-export function getChallengerRankColor(value?: number) {
-  return CHALLENGER_RANK_COLORS[challengerRankTier(value)]
-}
-
 export type RankProgress = {
   percentage: number
   color: string
@@ -58,25 +36,8 @@ export function hasEloChange(value: number | undefined): value is number {
   return value !== undefined && Number.isFinite(value) && value !== 0
 }
 
-export function isChallengerRank(rank: WidgetData["rank"]) {
-  const rankPosition = rank.regionRank
-
-  return rank.level === 10
-    && rankPosition !== undefined
-    && rankPosition >= 1
-    && rankPosition <= CHALLENGER_RANK_LIMIT
-}
-
 export function getRankProgress(rank: WidgetData["rank"]): RankProgress {
   const level = Math.min(10, Math.max(1, Math.round(rank.level || 1))) as keyof typeof FACEIT_LEVEL_RANGES
-
-  if (isChallengerRank(rank)) {
-    return {
-      percentage: 100,
-      color: getChallengerRankColor(rank.regionRank),
-      label: "Challenger",
-    }
-  }
 
   if (level === 10) {
     return {

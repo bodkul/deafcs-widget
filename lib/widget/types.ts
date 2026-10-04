@@ -43,8 +43,6 @@ export type WidgetVisibility = {
   eloIcon: boolean
   regionRank: boolean
   countryRank: boolean
-  challenger: boolean
-  challengerRank: boolean
   kdr: boolean
   todayStats: boolean
   last30Stats: boolean
@@ -103,7 +101,6 @@ export type WidgetData = {
     eloChange?: number
     regionRank?: number
     countryRank?: number
-    isChallenger?: boolean
   }
   lifetime?: {
     avgKills?: number
