@@ -670,7 +670,7 @@ export function BuilderSidebar({
   onFeedback,
 }: BuilderSidebarProps) {
   return (
-    <aside className="scrollbar-hidden border-b border-border/70 bg-surface/55 lg:sticky lg:top-12 lg:h-[calc(100vh-3rem)] lg:w-90 lg:shrink-0 lg:overflow-y-auto lg:overscroll-contain lg:border-b-0 lg:border-r">
+    <aside className="scrollbar-hidden border-b border-border/70 bg-surface/55 lg:sticky lg:top-0 lg:h-screen lg:w-90 lg:shrink-0 lg:overflow-y-auto lg:overscroll-contain lg:border-b-0 lg:border-r">
       <div className="flex min-h-full flex-col px-4 py-5 sm:px-6 lg:px-7 lg:py-6">
         <header>
           <h1 className="inline-flex items-center text-2xl font-semibold tracking-[-0.03em] text-on-surface">
