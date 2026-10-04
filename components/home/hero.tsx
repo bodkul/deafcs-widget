@@ -33,7 +33,7 @@ function LiveBadge() {
 
 function HeroTitle() {
   return (
-    <h1 id="hero-title" className="mt-6 max-w-155 text-[clamp(3rem,6.5vw,6.5rem)] font-semibold leading-[0.96] tracking-[-0.075em] text-foreground">
+    <h1 id="hero-title" className="mt-6 max-w-155 text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.96] tracking-[-0.075em] text-foreground">
       <span className="block whitespace-nowrap">DEAFCS Widget</span>
       <span className="mt-2 flex max-w-full items-center gap-[0.18em] whitespace-nowrap text-[0.7em] leading-[0.92] text-muted-foreground">
         <span aria-hidden="true">for</span>
