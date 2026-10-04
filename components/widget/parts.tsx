@@ -73,29 +73,6 @@ export function LevelMark({
     </span>
   )
 }
-export function Identity({
-  data,
-  visibility,
-  className,
-}: {
-  data: WidgetData
-  visibility: WidgetVisibility
-  className?: string
-}) {
-  if (!visibility.nickname && !visibility.level) {
-    return null
-  }
-
-  return (
-    <div className={cn("flex min-w-0 items-center gap-2", className)}>
-      <LevelMark data={data} visibility={visibility} />
-      {visibility.nickname ? (
-        <PlayerNickname data={data} showVerifiedBadge={visibility.verifiedBadge} />
-      ) : null}
-    </div>
-  )
-}
-
 export function EloValue({
   data,
   visibility,

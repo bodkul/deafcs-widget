@@ -396,14 +396,13 @@ function StyleTab({ config, onStyleChange }: StyleTabProps) {
   )
 }
 
-function BackgroundsTab({ config, nickname, onBackdropChange }: {
+function BackgroundsTab({ config, onBackdropChange }: {
   config: WidgetConfig
-  nickname: string
   onBackdropChange: (patch: Partial<WidgetBackdropConfig>) => void
 }) {
   return (
     <TabsContent value="backgrounds" className="mt-4 pb-5">
-      <BackdropControl value={config.backdrop} nickname={nickname} onChange={onBackdropChange} />
+      <BackdropControl value={config.backdrop} onChange={onBackdropChange} />
     </TabsContent>
   )
 }
@@ -566,9 +565,8 @@ function SidebarTabs({
   onVisibilityChange,
   onStyleChange,
   onBackdropChange,
-  nickname,
   onRotationChange,
-}: Pick<BuilderSidebarProps, "config" | "nickname" | "rank" | "verifiedBadge" | "rotationAvailable" | "onPresetChange" | "onVisibilityChange" | "onStyleChange" | "onBackdropChange" | "onRotationChange">) {
+}: Pick<BuilderSidebarProps, "config" | "rank" | "verifiedBadge" | "rotationAvailable" | "onPresetChange" | "onVisibilityChange" | "onStyleChange" | "onBackdropChange" | "onRotationChange">) {
   return (
     <Tabs key={config.preset} className="mt-6" defaultValue="content">
       <TabsList className="w-full justify-between p-0" variant="line">
@@ -595,7 +593,7 @@ function SidebarTabs({
       />
       <StyleTab config={config} onStyleChange={onStyleChange} />
       {rotationAvailable ? <MotionTab config={config} onRotationChange={onRotationChange} /> : null}
-      <BackgroundsTab config={config} nickname={nickname} onBackdropChange={onBackdropChange} />
+      <BackgroundsTab config={config} onBackdropChange={onBackdropChange} />
     </Tabs>
   )
 }
@@ -688,7 +686,6 @@ export function BuilderSidebar({
         <SidebarPlayer nickname={nickname} onNicknameChange={onNicknameChange} />
         <SidebarTabs
           config={config}
-          nickname={nickname}
           rank={rank}
           verifiedBadge={verifiedBadge}
           rotationAvailable={rotationAvailable}

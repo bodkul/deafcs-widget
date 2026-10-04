@@ -14,11 +14,8 @@ export const WIDGET_BACKDROP_IDS = [
   "ambient-12",
 ] as const
 
-export type CustomWidgetBackdropId = string & {
-  readonly __brand: "CustomWidgetBackdropId"
-}
-export type WidgetBackdropId = (typeof WIDGET_BACKDROP_IDS)[number] | CustomWidgetBackdropId
-export type WidgetBackdropMedia = "image" | "video"
+export type WidgetBackdropId = (typeof WIDGET_BACKDROP_IDS)[number]
+export type WidgetBackdropMedia = "video"
 
 export type WidgetBackdropPosition = {
   x: number
@@ -28,7 +25,6 @@ export type WidgetBackdropPosition = {
 export type WidgetBackdropConfig = {
   id: WidgetBackdropId
   position: WidgetBackdropPosition
-  media?: WidgetBackdropMedia
 }
 
 export type WidgetBackdropAsset = {
@@ -37,5 +33,4 @@ export type WidgetBackdropAsset = {
   media: WidgetBackdropMedia | null
   src: string | null
   posterSrc: string | null
-  custom?: boolean
 }

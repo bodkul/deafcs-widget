@@ -2,10 +2,7 @@ import {
   WIDGET_BACKDROP_IDS,
   type WidgetBackdropAsset,
   type WidgetBackdropId,
-  type WidgetBackdropMedia,
 } from "./types"
-import { createCustomBackdropAsset } from "./custom"
-import { isCustomBackdropId } from "./custom-contract"
 
 const BACKDROP_PATH = "/backgrounds"
 type AmbientBackdropId = Exclude<(typeof WIDGET_BACKDROP_IDS)[number], "none">
@@ -39,16 +36,9 @@ export const WIDGET_BACKDROPS: readonly WidgetBackdropAsset[] = [
 ]
 
 export function isWidgetBackdropId(value: unknown): value is WidgetBackdropId {
-  return (
-    typeof value === "string" &&
-    (WIDGET_BACKDROP_IDS.includes(value as (typeof WIDGET_BACKDROP_IDS)[number]) ||
-      isCustomBackdropId(value))
-  )
+  return typeof value === "string" && WIDGET_BACKDROP_IDS.includes(value as WidgetBackdropId)
 }
 
-export function getWidgetBackdrop(id: WidgetBackdropId, media?: WidgetBackdropMedia) {
-  const curated = WIDGET_BACKDROPS.find((backdrop) => backdrop.id === id)
-  if (curated) return curated
-  if (isCustomBackdropId(id)) return createCustomBackdropAsset(id, media ?? "image")
-  return WIDGET_BACKDROPS[0]
+export function getWidgetBackdrop(id: WidgetBackdropId) {
+  return WIDGET_BACKDROPS.find((backdrop) => backdrop.id === id) ?? WIDGET_BACKDROPS[0]
 }

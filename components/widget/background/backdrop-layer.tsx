@@ -29,14 +29,13 @@ function pointerPosition(event: PointerEvent<HTMLDivElement>): WidgetBackdropPos
 }
 
 export function BackdropLayer({ config, interaction }: BackdropLayerProps) {
-  const backdrop = getWidgetBackdrop(config.id, config.media)
+  const backdrop = getWidgetBackdrop(config.id)
   const [dragging, setDragging] = useState(false)
-  const [readyBackdropKey, setReadyBackdropKey] = useState<string | null>(null)
+  const [readyBackdropId, setReadyBackdropId] = useState<string | null>(null)
 
-  if (!backdrop.src || !backdrop.media || !backdrop.posterSrc) return null
+  if (!backdrop.src || !backdrop.posterSrc) return null
 
   const draggable = Boolean(interaction)
-  const backdropKey = `${backdrop.id}:${backdrop.media}`
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (!interaction || event.button !== 0) return
     event.currentTarget.setPointerCapture(event.pointerId)
@@ -70,50 +69,35 @@ export function BackdropLayer({ config, interaction }: BackdropLayerProps) {
       onPointerMove={handlePointerMove}
       onPointerUp={stopDragging}
     >
-      {backdrop.media === "image" ? (
-        <Image
-          src={backdrop.src}
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          unoptimized
-          className="object-cover"
-          style={{ objectPosition: `${config.position.x}% ${config.position.y}%` }}
-        />
-      ) : (
-        <>
-          <Image
-            src={backdrop.posterSrc}
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes="100vw"
-            unoptimized
-            className="object-cover"
-            style={{ objectPosition: `${config.position.x}% ${config.position.y}%` }}
-          />
-          <video
-            key={backdropKey}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={backdrop.posterSrc}
-            aria-hidden="true"
-            className={cn(
-              "absolute inset-0 size-full object-cover",
-              readyBackdropKey === backdropKey ? "opacity-100" : "opacity-0",
-            )}
-            style={{ objectPosition: `${config.position.x}% ${config.position.y}%` }}
-            onCanPlay={() => setReadyBackdropKey(backdropKey)}
-            onError={() => setReadyBackdropKey(null)}
-          >
-            <source src={backdrop.src} type="video/mp4" />
-          </video>
-        </>
-      )}
+      <Image
+        src={backdrop.posterSrc}
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        unoptimized
+        className="object-cover"
+        style={{ objectPosition: `${config.position.x}% ${config.position.y}%` }}
+      />
+      <video
+        key={backdrop.id}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster={backdrop.posterSrc}
+        aria-hidden="true"
+        className={cn(
+          "absolute inset-0 size-full object-cover",
+          readyBackdropId === backdrop.id ? "opacity-100" : "opacity-0",
+        )}
+        style={{ objectPosition: `${config.position.x}% ${config.position.y}%` }}
+        onCanPlay={() => setReadyBackdropId(backdrop.id)}
+        onError={() => setReadyBackdropId(null)}
+      >
+        <source src={backdrop.src} type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(0_0_0/34%),rgb(0_0_0/68%))]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgb(0_0_0/22%)_100%)]" />
     </div>

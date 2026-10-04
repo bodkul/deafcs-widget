@@ -56,7 +56,6 @@ type CompactRotation = {
 
 type CompactBackdrop = {
   i?: string
-  m?: "i" | "v"
   x?: number
   y?: number
 }
@@ -145,7 +144,6 @@ function compactBackdrop(
 ): CompactBackdrop | undefined {
   const backdrop: CompactBackdrop = {}
   if (current.id !== defaults.id) backdrop.i = current.id
-  if (current.media) backdrop.m = current.media === "video" ? "v" : "i"
   if (current.position.x !== defaults.position.x) backdrop.x = current.position.x
   if (current.position.y !== defaults.position.y) backdrop.y = current.position.y
   return Object.keys(backdrop).length > 0 ? backdrop : undefined
@@ -205,7 +203,6 @@ function expandBackdropPatch(value: unknown) {
   if (!isRecord(value)) return backdrop
 
   if (typeof value.i === "string") backdrop.id = value.i
-  if (value.m === "i" || value.m === "v") backdrop.media = value.m === "v" ? "video" : "image"
   if (typeof value.x === "number" || typeof value.y === "number") {
     backdrop.position = {
       ...(typeof value.x === "number" ? { x: value.x } : {}),

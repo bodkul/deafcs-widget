@@ -1,5 +1,4 @@
 import { isRecord } from "../../utils"
-import { isCustomBackdropId } from "../backgrounds/custom-contract"
 import { isWidgetBackdropId } from "../backgrounds/registry"
 import { getRotationFields, supportsWidgetRotation, WIDGET_PRESET_MAP } from "./presets"
 import {
@@ -169,18 +168,13 @@ function normalizeBackdrop(
   defaults: WidgetBackdropConfig,
 ): WidgetBackdropConfig {
   const position = asRecord(value.position)
-  const id = isWidgetBackdropId(value.id) ? value.id : defaults.id
-  const media = isCustomBackdropId(id) && (value.media === "image" || value.media === "video")
-    ? value.media
-    : undefined
 
   return {
-    id,
+    id: isWidgetBackdropId(value.id) ? value.id : defaults.id,
     position: {
       x: clamp(position.x, 0, 100, defaults.position.x),
       y: clamp(position.y, 0, 100, defaults.position.y),
     },
-    ...(media ? { media } : {}),
   }
 }
 

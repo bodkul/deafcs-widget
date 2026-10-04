@@ -3,7 +3,6 @@ import type {
 } from "./backgrounds/types"
 
 export type {
-  CustomWidgetBackdropId,
   WidgetBackdropConfig,
   WidgetBackdropId,
   WidgetBackdropMedia,
