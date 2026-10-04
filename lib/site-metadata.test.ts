@@ -27,7 +27,7 @@ describe("indexable routes", () => {
       "https://deafcs-widget.vercel.app/",
       "https://deafcs-widget.vercel.app/builder/",
       "https://deafcs-widget.vercel.app/deafcs-widget-obs/",
-      "https://deafcs-widget.vercel.app/live-faceit-stats/",
+      "https://deafcs-widget.vercel.app/live-deafcs-stats/",
       "https://deafcs-widget.vercel.app/about/",
       "https://deafcs-widget.vercel.app/contact/",
       "https://deafcs-widget.vercel.app/privacy/",

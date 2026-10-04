@@ -12,7 +12,7 @@ describe("parsePlayerLookup", () => {
     expect(parsePlayerLookup(" Bodkul ")).toEqual({ kind: "nickname", value: "Bodkul" })
   })
 
-  it("rejects values that cannot be sent to FACEIT", () => {
+  it("rejects values that cannot be sent to DEAFCS", () => {
     expect(parsePlayerLookup("")).toBeNull()
     expect(parsePlayerLookup("name with spaces")).toBeNull()
     expect(parsePlayerLookup("x".repeat(33))).toBeNull()

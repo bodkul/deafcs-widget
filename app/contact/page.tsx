@@ -21,7 +21,7 @@ export default function ContactPage() {
       </p>
       <p>
         For a broken widget, use the <a href={SITE_LINKS.bugReport} target="_blank" rel="noreferrer">bug report template</a>. Include the browser or streaming
-        software version, the widget URL, the preset name, the FACEIT nickname if it is safe to share, and the exact behavior you
+        software version, the widget URL, the preset name, the DEAFCS nickname if it is safe to share, and the exact behavior you
         expected. Do not include passwords, API keys, private tokens, or information from someone else&apos;s account.
       </p>
 
@@ -29,18 +29,18 @@ export default function ContactPage() {
       <p>
         Feature requests belong in the <a href={SITE_LINKS.suggestIdea} target="_blank" rel="noreferrer">feedback template</a>. A useful request explains the stream
         setup, the preset being used, and the result you want viewers to see. Screenshots are welcome when they show the widget
-        itself. Keep FACEIT account credentials and unrelated personal information out of screenshots.
+        itself. Keep DEAFCS account credentials and unrelated personal information out of screenshots.
       </p>
 
       <h2>Before opening an issue</h2>
       <ul>
         <li>Check the <Link href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup guide</Link> for browser-source settings.</li>
-        <li>Check the <Link href={SITE_PATHS.liveFaceitStatsGuide}>live stats guide</Link> when a completed match is not visible yet.</li>
-        <li>Confirm that the nickname resolves to the intended public FACEIT CS2 profile.</li>
+        <li>Check the <Link href={SITE_PATHS.liveDeafcsStatsGuide}>live stats guide</Link> when a completed match is not visible yet.</li>
+        <li>Confirm that the nickname resolves to the intended public DEAFCS CS2 profile.</li>
       </ul>
       <p>
-        This project does not provide official FACEIT support. Account, matchmaking, moderation, and platform problems belong with
-        FACEIT directly.
+        This project does not provide official DEAFCS support. Account, matchmaking, moderation, and platform problems belong with
+        DEAFCS directly.
       </p>
     </SitePage>
   )

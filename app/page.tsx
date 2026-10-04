@@ -60,7 +60,7 @@ const structuredData = {
       sameAs: [SITE_LINKS.github, SITE_AUTHOR.url],
       founder: { "@id": `${SITE_AUTHOR.url}#person` },
       dateModified: SITE_LAST_MODIFIED,
-      knowsAbout: ["FACEIT CS2 statistics", "OBS browser-source overlays"],
+      knowsAbout: ["DEAFCS CS2 statistics", "OBS browser-source overlays"],
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "Technical support",
@@ -105,7 +105,7 @@ const structuredData = {
           name: "Does DEAFCS Widget need my account?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "No. DEAFCS Widget uses the public statistics associated with the nickname you enter. It does not require a FACEIT password, API key, or private token.",
+            text: "No. DEAFCS Widget uses the public statistics associated with the nickname you enter. It does not require a DEAFCS password, API key, or private token.",
           },
         },
         {

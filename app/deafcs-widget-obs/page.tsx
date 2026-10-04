@@ -8,7 +8,7 @@ import { createLandingMetadata, SITE_PATHS } from "@/lib/site-metadata"
 const path = SITE_PATHS.deafcsWidgetObsGuide
 const title = "How to add a DEAFCS Widget to OBS"
 const description =
-  "Add a free FACEIT stats widget to OBS as a Browser source. Create a transparent CS2 overlay with live ELO, rank, K/D, and recent match stats, without a plugin."
+  "Add a free DEAFCS stats widget to OBS as a Browser source. Create a transparent CS2 overlay with live ELO, rank, K/D, and recent match stats, without a plugin."
 
 export const metadata: Metadata = createLandingMetadata({ title, description, path })
 
@@ -21,7 +21,7 @@ export default function DeafcsWidgetObsGuide() {
     >
       <h2>Create the widget</h2>
       <ol>
-        <li>Open the builder and enter the exact FACEIT nickname.</li>
+        <li>Open the builder and enter the exact DEAFCS nickname.</li>
         <li>Choose a layout and keep only the stats you want on stream.</li>
         <li>Select <strong>Transparent</strong> if the game should remain visible behind the overlay.</li>
         <li>Use <strong>Copy URL</strong> when the preview is ready.</li>
@@ -57,7 +57,7 @@ export default function DeafcsWidgetObsGuide() {
       />
       <p>
         Keep the browser source active if you want its values to update while it is outside the current scene. Read the{" "}
-        <Link href={SITE_PATHS.liveFaceitStatsGuide}>live stats guide</Link> if you want to know what appears after a match.
+        <Link href={SITE_PATHS.liveDeafcsStatsGuide}>live stats guide</Link> if you want to know what appears after a match.
       </p>
 
       <h2>Transparent overlays</h2>
@@ -66,15 +66,15 @@ export default function DeafcsWidgetObsGuide() {
       </p>
       <GuideImage
         image={GUIDE_IMAGES.widgetOverlay}
-        alt="FACEIT rank and ELO widget displayed transparently over Counter-Strike 2 in OBS"
+        alt="DEAFCS rank and ELO widget displayed transparently over Counter-Strike 2 in OBS"
         caption="The game remains visible through the widget while the stats stay readable."
       />
 
       <h2>If the widget does not update</h2>
       <ul>
-        <li>Check that the nickname matches the FACEIT profile.</li>
+        <li>Check that the nickname matches the DEAFCS profile.</li>
         <li>Refresh the browser source after replacing its URL.</li>
-        <li>Wait for FACEIT to publish the finished match.</li>
+        <li>Wait for DEAFCS to publish the finished match.</li>
       </ul>
     </GuidePage>
   )

@@ -80,7 +80,7 @@ export function Widget({
       )}
       style={style}
       data-background={config.style.background}
-      aria-label={`${data.profile.nickname} FACEIT stats`}
+      aria-label={`${data.profile.nickname} DEAFCS stats`}
     >
       <div
         data-widget-surface

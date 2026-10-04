@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 export const SITE_METADATA = {
   name: "DEAFCS Widget",
   url: "https://deafcs-widget.vercel.app",
-  title: "DEAFCS Widget | CS2 FACEIT Stats for OBS & Streamers",
+  title: "DEAFCS Widget | CS2 DEAFCS Stats for OBS & Streamers",
   description:
     "Create a free DEAFCS Widget for OBS and Streamlabs. Show live CS2 ELO, level, rank, K/D, and recent matches in a browser source with no plugin or login.",
 } as const
@@ -25,7 +25,7 @@ export const SOCIAL_IMAGE = {
 export const SITE_PATHS = {
   home: "/",
   deafcsWidgetObsGuide: "/deafcs-widget-obs/",
-  liveFaceitStatsGuide: "/live-faceit-stats/",
+  liveDeafcsStatsGuide: "/live-deafcs-stats/",
   about: "/about/",
   contact: "/contact/",
   privacy: "/privacy/",
@@ -40,7 +40,7 @@ export const INDEXABLE_PATHS = [
   SITE_PATHS.home,
   APP_PATHS.builder,
   SITE_PATHS.deafcsWidgetObsGuide,
-  SITE_PATHS.liveFaceitStatsGuide,
+  SITE_PATHS.liveDeafcsStatsGuide,
   SITE_PATHS.about,
   SITE_PATHS.contact,
   SITE_PATHS.privacy,

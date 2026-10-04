@@ -52,7 +52,7 @@ export function SiteFooter() {
           <Link href={SITE_PATHS.contact} className={SITE_NAV_LINK_CLASS}>Contact</Link>
           <Link href={SITE_PATHS.privacy} className={SITE_NAV_LINK_CLASS}>Privacy</Link>
         </nav>
-        <p className="text-center text-[10px] text-text-muted">Unofficial community project. Not affiliated with FACEIT.</p>
+        <p className="text-center text-[10px] text-text-muted">Unofficial community project. Not affiliated with DEAFCS.</p>
       </div>
     </footer>
   )

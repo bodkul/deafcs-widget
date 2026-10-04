@@ -25,7 +25,7 @@ export function WhiteVerificationBadge({ className }: BadgeIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       role="img"
-      aria-label="FACEIT verified badge"
+      aria-label="DEAFCS verified badge"
       className={cn("size-3.5 shrink-0 text-white", className)}
     >
       <path
@@ -50,7 +50,7 @@ export function GoldVerificationBadge({ className }: BadgeIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       role="img"
-      aria-label="FACEIT gold verification badge"
+      aria-label="DEAFCS gold verification badge"
       className={cn("size-3.5 shrink-0", className)}
     >
       <path

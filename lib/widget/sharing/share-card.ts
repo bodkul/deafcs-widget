@@ -26,7 +26,7 @@ export async function createWidgetShare(
 
 export function xShareIntent(shareUrl: string) {
   const params = new URLSearchParams({
-    text: "My live FACEIT stats widget",
+    text: "My live DEAFCS stats widget",
     url: shareUrl,
   })
 

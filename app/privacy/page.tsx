@@ -15,27 +15,27 @@ export default function PrivacyPage() {
     <SitePage title={title} description={description} path={SITE_PATHS.privacy}>
       <h2>What the widget uses</h2>
       <p>
-        The widget uses public FACEIT profile and CS2 statistics to render the layout selected in the builder. The service may
-        receive a FACEIT nickname or player ID and the selected widget configuration so it can display the requested
+        The widget uses public DEAFCS profile and CS2 statistics to render the layout selected in the builder. The service may
+        receive a DEAFCS nickname or player ID and the selected widget configuration so it can display the requested
         public statistics in the browser source.
       </p>
       <p>
-        DEAFCS Widget does not ask for a FACEIT password, OAuth token, private account permission, or payment details. It does not
-        modify a FACEIT profile. Do not put secrets or private information in a widget URL, GitHub issue, or feedback message.
+        DEAFCS Widget does not ask for a DEAFCS password, OAuth token, private account permission, or payment details. It does not
+        modify a DEAFCS profile. Do not put secrets or private information in a widget URL, GitHub issue, or feedback message.
       </p>
 
       <h2>Technical data</h2>
       <p>
         Hosting and security providers may process limited technical request data needed to deliver and protect the site. This
-        project does not use that information to build profiles of players or identify people. It does not contain a FACEIT
+        project does not use that information to build profiles of players or identify people. It does not contain a DEAFCS
         password or account access token.
       </p>
 
       <h2>Questions and requests</h2>
       <p>
-        This is an independent open-source project and is not affiliated with FACEIT. For questions about the site or a request to
-        correct project content, use the <a href={SITE_LINKS.github} target="_blank" rel="noreferrer">GitHub repository</a>. FACEIT account and platform requests
-        should go to FACEIT support. See the <Link href={SITE_PATHS.contact}>contact page</Link> for issue templates and the information
+        This is an independent open-source project and is not affiliated with DEAFCS. For questions about the site or a request to
+        correct project content, use the <a href={SITE_LINKS.github} target="_blank" rel="noreferrer">GitHub repository</a>. DEAFCS account and platform requests
+        should go to DEAFCS support. See the <Link href={SITE_PATHS.contact}>contact page</Link> for issue templates and the information
         that helps reproduce a widget problem.
       </p>
     </SitePage>

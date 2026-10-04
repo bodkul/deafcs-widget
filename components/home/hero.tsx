@@ -13,7 +13,7 @@ import { Showcase } from "./showcase"
 function LiveBadge() {
   return (
     <Link
-      href={SITE_PATHS.liveFaceitStatsGuide}
+      href={SITE_PATHS.liveDeafcsStatsGuide}
       prefetch={false}
       className="group/live-badge inline-flex rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
     >

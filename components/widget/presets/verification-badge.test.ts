@@ -31,27 +31,27 @@ function renderPreset(preset: NicknamePreset, overrides: Partial<ReturnType<type
 
 describe("verification badge in nickname presets", () => {
   it.each(Object.keys(nicknamePresets) as NicknamePreset[])("renders when enabled in %s", (preset) => {
-    expect(renderPreset(preset)).toContain('aria-label="FACEIT verified badge"')
+    expect(renderPreset(preset)).toContain('aria-label="DEAFCS verified badge"')
   })
 
   it("does not render when the badge setting is off", () => {
-    expect(renderPreset("profile-card", { verifiedBadge: false })).not.toContain("FACEIT verified badge")
+    expect(renderPreset("profile-card", { verifiedBadge: false })).not.toContain("DEAFCS verified badge")
   })
 
   it("does not render when the nickname is hidden", () => {
-    expect(renderPreset("profile-card", { nickname: false })).not.toContain("FACEIT verified badge")
+    expect(renderPreset("profile-card", { nickname: false })).not.toContain("DEAFCS verified badge")
   })
 
-  it("renders the gold variant when FACEIT reports gold verification", () => {
+  it("renders the gold variant when DEAFCS reports gold verification", () => {
     const goldData: WidgetData = {
       ...data,
       profile: { ...data.profile, verifiedBadge: "gold" },
     }
 
-    expect(renderPreset("performance-card", {}, goldData)).toContain('aria-label="FACEIT gold verification badge"')
+    expect(renderPreset("performance-card", {}, goldData)).toContain('aria-label="DEAFCS gold verification badge"')
   })
 
-  it("omits the icon when FACEIT reports no verification badge", () => {
+  it("omits the icon when DEAFCS reports no verification badge", () => {
     const unverifiedData: WidgetData = {
       ...data,
       profile: { ...data.profile, verifiedBadge: "none" },

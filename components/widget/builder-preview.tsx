@@ -160,8 +160,8 @@ function PreviewStage({
       >
         <PlayerDataBoundary
           state={playerSnapshot}
-          idle={<WidgetDataStatus message="Enter a FACEIT nickname." />}
-          pending={<WidgetDataStatus loading message="Loading FACEIT stats..." />}
+          idle={<WidgetDataStatus message="Enter a DEAFCS nickname." />}
+          pending={<WidgetDataStatus loading message="Loading DEAFCS stats..." />}
           failed={(message) => <WidgetDataStatus message={message} />}
         >
           {(data) => (

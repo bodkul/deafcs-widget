@@ -548,7 +548,7 @@ function SidebarPlayer({ nickname, onNicknameChange }: Pick<BuilderSidebarProps,
   return (
     <div className="mt-8 flex flex-col gap-2">
       <Label className={controlLabelClass} htmlFor="nickname">
-        FACEIT Nickname
+        DEAFCS Nickname
       </Label>
       <Input
         id="nickname"
@@ -639,7 +639,7 @@ function SidebarActions({
         iconPosition="end"
         onClick={onCopy}
         disabled={!canCopy}
-        title={canCopy ? "Copy widget URL" : "Waiting for the FACEIT profile"}
+        title={canCopy ? "Copy widget URL" : "Waiting for the DEAFCS profile"}
       >
         {copied ? "Copied" : "Copy URL"}
       </Button>

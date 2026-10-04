@@ -37,7 +37,7 @@ const FAQS = [
         <a target="_blank" rel="noreferrer" className="text-foreground underline underline-offset-4" href={SITE_LINKS.github}>
           public GitHub repository
         </a>
-        . It is not affiliated with FACEIT.
+        . It is not affiliated with DEAFCS.
       </>
     ),
   },

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description: SITE_METADATA.description,
   applicationName: SITE_METADATA.name,
   category: "gaming",
-  keywords: ["DEAFCS Widget", "DEAFCS Widget for OBS", "FACEIT CS2 overlay", "live FACEIT stats"],
+  keywords: ["DEAFCS Widget", "DEAFCS Widget for OBS", "DEAFCS CS2 overlay", "live DEAFCS stats"],
   authors: [SITE_AUTHOR],
   creator: SITE_AUTHOR.name,
   publisher: SITE_METADATA.name,

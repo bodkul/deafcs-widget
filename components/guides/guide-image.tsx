@@ -3,8 +3,8 @@ import Image from "next/image"
 import { cn } from "cn"
 
 export const GUIDE_IMAGES = {
-  builderSettings: { src: "/guides/faceit-widget-builder-settings.webp", width: 351, height: 910 },
-  copyUrl: { src: "/guides/faceit-widget-copy-url.webp", width: 1538, height: 913 },
+  builderSettings: { src: "/guides/deafcs-widget-builder-settings.webp", width: 351, height: 910 },
+  copyUrl: { src: "/guides/deafcs-widget-copy-url.webp", width: 1538, height: 913 },
   liveStats: { src: "/guides/live-stats-rich-profile.webp", width: 1892, height: 915 },
   addBrowserSource: { src: "/guides/obs-add-browser-source.webp", width: 1039, height: 649 },
   browserSettings: { src: "/guides/obs-browser-source-settings.webp", width: 1273, height: 991 },

@@ -100,7 +100,7 @@ export class WidgetApiClient implements WidgetDataSource {
 
     if (!response.ok) {
       const body = await response.json().catch(() => null) as { error?: string } | null
-      throw new WidgetApiError(body?.error ?? "Unable to load FACEIT stats.", response.status)
+      throw new WidgetApiError(body?.error ?? "Unable to load DEAFCS stats.", response.status)
     }
 
     const snapshot = widgetSnapshotSchema.parse(await response.json())

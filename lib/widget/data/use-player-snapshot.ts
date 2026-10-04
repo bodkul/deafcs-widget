@@ -76,7 +76,7 @@ function snapshotReducer(
 function errorMessage(error: unknown) {
   return error instanceof WidgetApiError
     ? error.message
-    : "Unable to load FACEIT stats."
+    : "Unable to load DEAFCS stats."
 }
 
 function shouldRetry(error: unknown) {
