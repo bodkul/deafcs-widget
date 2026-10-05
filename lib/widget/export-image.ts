@@ -4,7 +4,7 @@ function safeFileSegment(value: string) {
   return value
     .trim()
     .toLowerCase()
-    .replace(/[^a-z0-9_-]+/g, "-")
+    .replace(/[^\p{L}\p{N}_-]+/gu, "-")
     .replace(/^-+|-+$/g, "")
 }
 
