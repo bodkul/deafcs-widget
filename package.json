@@ -37,7 +37,8 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "lint": "eslint"
+    "lint": "eslint",
+    "codegen": "graphql-codegen --config lib/deafcs/codegen.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -53,12 +54,16 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^7.4.3",
+    "@graphql-codegen/client-preset": "^6.2.0",
+    "@graphql-codegen/schema-ast": "^6.1.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.1",
+    "graphql": "^16.14.2",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.11"

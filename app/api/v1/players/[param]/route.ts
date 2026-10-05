@@ -1,80 +1,99 @@
 import { gql } from "@/lib/deafcs";
+import { graphql } from "@/lib/deafcs/generated";
+import type { PlayerFieldsFragment } from "@/lib/deafcs/generated/graphql";
 import { widgetSnapshotSchema } from "@/lib/widget/data/api-client";
 import { NextRequest, NextResponse } from "next/server";
 
-const FIELDS = `
-  steam_id
-  name
-  country
-  role
-  elo(path: "competitive")
-  elo_history(
-    limit: 30 
-    order_by: { match_created_at: desc }
-    where: { match: { status: { _eq: Finished } } }
-  ) {
-    damage
-    deaths
-    elo_change
-    kills
-    match_result
-    match {
-      id
-      ended_at
-      match_maps {
-        rounds {
-          id
+graphql(`
+  fragment PlayerFields on players {
+    steam_id
+    name
+    country
+    role
+    elo(path: "competitive")
+    elo_history(
+      limit: 30
+      order_by: { match_created_at: desc }
+      where: { match: { status: { _eq: Finished } } }
+    ) {
+      damage
+      deaths
+      elo_change
+      kills
+      match_result
+      match {
+        id
+        ended_at
+        match_maps {
+          rounds {
+            id
+          }
         }
       }
     }
+    stats {
+      deaths
+      headshot_percentage
+      kills
+    }
   }
-  stats {
-    deaths
-    headshot_percentage
-    kills
-  }
-`;
+`);
 
-const BY_NAME = `
+const BY_NAME = graphql(`
   query PlayerByName($value: String!) {
-    players(where: { name: { _eq: $value } }, limit: 1) { ${FIELDS} }
+    players(where: { name: { _eq: $value } }, limit: 1) {
+      ...PlayerFields
+    }
   }
-`;
+`);
 
-const BY_STEAM_ID = `
+const BY_STEAM_ID = graphql(`
   query PlayerBySteamId($value: bigint!) {
-    players(where: { steam_id: { _eq: $value } }, limit: 1) { ${FIELDS} }
+    players(where: { steam_id: { _eq: $value } }, limit: 1) {
+      ...PlayerFields
+    }
   }
-`;
+`);
 
-type Player = {
-  steam_id: string;
-  name: string;
-  country: string | null;
-  role: string;
-  elo: number | null;
-  elo_history: {
-    damage: number | null;
-    deaths: number | null;
-    elo_change: number | null;
-    kills: number | null;
-    match_result: string | null;
-    match: {
-      id: string;
-      ended_at: string | null;
-      match_maps: {
-        rounds: {
-          id: string;
-        }[];
-      }[];
-    } | null;
-  }[];
-  stats: {
-    deaths: number;
-    headshot_percentage: number;
-    kills: number;
+// DEAFCS has no regions, so the global ELO leaderboard stands in for the
+// regional rank. Country rank counts same-country players with a higher ELO.
+const RANKS = graphql(`
+  query PlayerRanks($steamId: String!, $country: String!, $hasCountry: Boolean!, $elo: float8!) {
+    world: get_player_leaderboard_rank(
+      args: {
+        _player_steam_id: $steamId
+        _category: "elo"
+        _elo_view: "current"
+        _source: "matchmaking"
+        _match_type: "Competitive"
+        _exclude_tournaments: false
+        _season_id: null
+        _window_days: null
+      }
+    ) {
+      rank
+    }
+    country: get_leaderboard_aggregate(
+      args: {
+        _role: null
+        _category: "elo"
+        _elo_view: "current"
+        _source: "matchmaking"
+        _match_type: "Competitive"
+        _exclude_tournaments: false
+        _season_id: null
+        _window_days: null
+      }
+      where: { player_country: { _eq: $country }, value: { _gt: $elo } }
+    ) @include(if: $hasCountry) {
+      aggregate {
+        count
+      }
+    }
   }
-};
+`);
+
+type Player = PlayerFieldsFragment;
 
 const STEAM_ID_RE = /^\d{17}$/;
 
@@ -131,6 +150,43 @@ function sessionStats(history: Player["elo_history"]) {
   };
 }
 
+// `elo` is a jsonb path lookup, so the schema can't type it.
+const eloOf = (player: Player) => (typeof player.elo === "number" ? player.elo : 0);
+
+// bigint and float8 come back as strings.
+function lifetimeStats(stats: Player["stats"]) {
+  if (!stats) return undefined;
+
+  const kills = Number(stats.kills);
+  const deaths = Number(stats.deaths);
+
+  return {
+    headshotRate: Math.round(Number(stats.headshot_percentage) * 100),
+    kdr: deaths ? round(kills / deaths) : kills,
+  };
+}
+
+async function fetchRanks(player: Player) {
+  try {
+    const data = await gql(RANKS, {
+      steamId: player.steam_id,
+      country: player.country ?? "",
+      hasCountry: Boolean(player.country),
+      elo: eloOf(player),
+    });
+    const worldRank = data.world[0]?.rank;
+    // Players without a leaderboard entry have no rank in their country either.
+    if (worldRank == null) return {};
+
+    return {
+      worldRank,
+      countryRank: data.country?.aggregate ? data.country.aggregate.count + 1 : undefined,
+    };
+  } catch {
+    return {};
+  }
+}
+
 export async function GET(_: NextRequest, { params }: { params: Promise<{ param: string }> }) {
   const { param } = await params;
 
@@ -139,13 +195,17 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ param:
   }
 
   const isSteamId = STEAM_ID_RE.test(param);
-  const data = await gql<{ players: Player[] }>(isSteamId ? BY_STEAM_ID : BY_NAME, { value: param });
-  const player = data.players[0];
+  const { players } = isSteamId
+    ? await gql(BY_STEAM_ID, { value: param })
+    : await gql(BY_NAME, { value: param });
+  const player = players[0];
 
   if (!player) {
     return NextResponse.json({ error: "not found" }, { status: 404 });
   }
 
+  const elo = eloOf(player);
+  const ranks = await fetchRanks(player);
   const last30 = player.elo_history;
   const wins30 = last30.filter((m) => m.match_result?.toLowerCase() === "win").length;
   const latestMatchId = last30[0]?.match?.id;
@@ -159,15 +219,11 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ param:
       },
       rank: {
         level: 10,
-        elo: player.elo ?? 0,
+        elo,
         eloChange: last30[0]?.elo_change ?? 0,
+        ...ranks,
       },
-      lifetime: {
-        headshotRate: Math.round(player.stats.headshot_percentage * 100),
-        kdr: player.stats.deaths
-          ? round(player.stats.kills / player.stats.deaths)
-          : player.stats.kills,
-      },
+      lifetime: lifetimeStats(player.stats),
       last30: {
         winRate: last30.length ? Math.round((wins30 / last30.length) * 100) : 0,
         ...matchStats(last30),
@@ -179,7 +235,7 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ param:
     },
     meta: {
       playerId: player.steam_id,
-      revision: `${latestMatchId ?? "none"}:${player.elo ?? 0}`,
+      revision: `${latestMatchId ?? "none"}:${elo}`,
       generatedAt: new Date().toISOString(),
       stale: false,
       latestMatchId,

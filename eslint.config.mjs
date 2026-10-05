@@ -15,6 +15,7 @@ const eslintConfig = defineConfig([
     ".next/**",
     "build/**",
     "next-env.d.ts",
+    "lib/deafcs/generated/**",
   ]),
 ]);
 
