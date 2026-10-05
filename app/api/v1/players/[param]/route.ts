@@ -1,4 +1,4 @@
-import { gql } from "@/lib/deafcs";
+import { DeafcsApiError, gql } from "@/lib/deafcs";
 import { graphql } from "@/lib/deafcs/generated";
 import type { PlayerFieldsFragment } from "@/lib/deafcs/generated/graphql";
 import { widgetSnapshotSchema } from "@/lib/widget/data/api-client";
@@ -40,8 +40,8 @@ graphql(`
 `);
 
 const BY_NAME = graphql(`
-  query PlayerByName($value: String!) {
-    players(where: { name: { _eq: $value } }, limit: 1) {
+  query PlayerByName($pattern: String!) {
+    players(where: { name: { _ilike: $pattern } }, limit: 5) {
       ...PlayerFields
     }
   }
@@ -96,8 +96,13 @@ const RANKS = graphql(`
 type Player = PlayerFieldsFragment;
 
 const STEAM_ID_RE = /^\d{17}$/;
+const CONTROL_CHAR_RE = /\p{Cc}/u;
 
 const SESSION_GAP_MS = 4 * 60 * 60 * 1000;
+const REFRESH_AFTER_MS = 120_000;
+
+const CACHE_FOUND = "public, max-age=0, s-maxage=60, stale-while-revalidate=60";
+const CACHE_NOT_FOUND = "public, max-age=0, s-maxage=60";
 
 const round = (n: number, digits = 2) => {
   const k = 10 ** digits;
@@ -112,6 +117,7 @@ function matchStats(matches: Player["elo_history"]) {
   if (!count) return { avgKills: 0, avgKD: 0, avgKR: 0, adr: 0 };
 
   const totalKills = matches.reduce((s, m) => s + (m.kills ?? 0), 0);
+  const killCount = matches.filter((m) => m.kills != null).length;
   const totalDamage = matches.reduce((s, m) => s + (m.damage ?? 0), 0);
   const totalRounds = matches.reduce((s, m) => s + roundsOf(m), 0);
 
@@ -120,7 +126,7 @@ function matchStats(matches: Player["elo_history"]) {
     .map((m) => m.kills! / Math.max(m.deaths!, 1));
 
   return {
-    avgKills: round(totalKills / count, 1),
+    avgKills: killCount ? round(totalKills / killCount, 1) : 0,
     avgKD: kdPerMatch.length
       ? round(kdPerMatch.reduce((a, b) => a + b, 0) / kdPerMatch.length)
       : 0,
@@ -187,28 +193,59 @@ async function fetchRanks(player: Player) {
   }
 }
 
-export async function GET(_: NextRequest, { params }: { params: Promise<{ param: string }> }) {
-  const { param } = await params;
+// `_ilike` treats `%` and `_` as wildcards, so escape them to match literally.
+const ilikeExact = (value: string) => value.replace(/[\\%_]/g, "\\$&");
 
-  if (param.length > 64) {
-    return NextResponse.json({ error: "invalid player" }, { status: 400 });
+async function findPlayer(lookup: string) {
+  if (STEAM_ID_RE.test(lookup)) {
+    const { players } = await gql(BY_STEAM_ID, { value: lookup });
+    return players[0];
   }
 
-  const isSteamId = STEAM_ID_RE.test(param);
-  const { players } = isSteamId
-    ? await gql(BY_STEAM_ID, { value: param })
-    : await gql(BY_NAME, { value: param });
-  const player = players[0];
+  // Names match case-insensitively, but an exact-case match wins.
+  const { players } = await gql(BY_NAME, { pattern: ilikeExact(lookup) });
+  return players.find((p) => p.name === lookup) ?? players[0];
+}
 
-  if (!player) {
-    return NextResponse.json({ error: "not found" }, { status: 404 });
+export async function GET(req: NextRequest, { params }: { params: Promise<{ param: string }> }) {
+  const param = (await params).param.trim();
+
+  if (!param || param.length > 64 || CONTROL_CHAR_RE.test(param)) {
+    return NextResponse.json({ error: "Invalid player." }, { status: 400 });
+  }
+
+  let player: Player | undefined;
+  let ranks: Awaited<ReturnType<typeof fetchRanks>>;
+  try {
+    player = await findPlayer(param);
+    if (!player) {
+      return NextResponse.json(
+        { error: "Player not found on DEAFCS." },
+        { status: 404, headers: { "Cache-Control": CACHE_NOT_FOUND } },
+      );
+    }
+    ranks = await fetchRanks(player);
+  } catch (error) {
+    if (!(error instanceof DeafcsApiError)) throw error;
+    console.error(`DEAFCS lookup failed for "${param}":`, error);
+    return NextResponse.json(
+      { error: "DEAFCS is unavailable. Retrying soon." },
+      { status: 502, headers: { "Cache-Control": "no-store" } },
+    );
   }
 
   const elo = eloOf(player);
-  const ranks = await fetchRanks(player);
   const last30 = player.elo_history;
   const wins30 = last30.filter((m) => m.match_result?.toLowerCase() === "win").length;
   const latestMatchId = last30[0]?.match?.id;
+
+  const revision = `${latestMatchId ?? "none"}:${elo}:${ranks.worldRank ?? ""}:${ranks.countryRank ?? ""}`;
+  const etag = `W/"${revision}"`;
+  const cacheHeaders = { ETag: etag, "Cache-Control": CACHE_FOUND };
+
+  if (req.headers.get("If-None-Match") === etag) {
+    return new NextResponse(null, { status: 304, headers: cacheHeaders });
+  }
 
   const parsed = widgetSnapshotSchema.parse({
     data: {
@@ -235,13 +272,13 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ param:
     },
     meta: {
       playerId: player.steam_id,
-      revision: `${latestMatchId ?? "none"}:${elo}`,
+      revision,
       generatedAt: new Date().toISOString(),
       stale: false,
       latestMatchId,
-      refreshAfterMs: 120000,
+      refreshAfterMs: REFRESH_AFTER_MS,
     },
   });
 
-  return NextResponse.json(parsed);
+  return NextResponse.json(parsed, { headers: cacheHeaders });
 }

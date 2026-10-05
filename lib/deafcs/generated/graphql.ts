@@ -23,7 +23,7 @@ export type E_Player_Roles_Enum =
 export type PlayerFieldsFragment = { steam_id: string, name: string, country: string | null, role: E_Player_Roles_Enum, elo: unknown, elo_history: Array<{ damage: number | null, deaths: number | null, elo_change: number | null, kills: number | null, match_result: string | null, match: { id: string, ended_at: string | null, match_maps: Array<{ rounds: Array<{ id: string }> }> } | null }>, stats: { deaths: string, headshot_percentage: string, kills: string } | null };
 
 export type PlayerByNameQueryVariables = Exact<{
-  value: string;
+  pattern: string;
 }>;
 
 
@@ -99,8 +99,8 @@ export const PlayerFieldsFragmentDoc = new TypedDocumentString(`
 }
     `, {"fragmentName":"PlayerFields"}) as unknown as TypedDocumentString<PlayerFieldsFragment, unknown>;
 export const PlayerByNameDocument = new TypedDocumentString(`
-    query PlayerByName($value: String!) {
-  players(where: {name: {_eq: $value}}, limit: 1) {
+    query PlayerByName($pattern: String!) {
+  players(where: {name: {_ilike: $pattern}}, limit: 5) {
     ...PlayerFields
   }
 }
