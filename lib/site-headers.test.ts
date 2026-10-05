@@ -1,13 +1,15 @@
-import { readFileSync } from "node:fs"
-import { resolve } from "node:path"
-
 import { describe, expect, it } from "vitest"
 
-describe("public response headers", () => {
-  it("serves the Open Graph image as PNG", () => {
-    const headers = readFileSync(resolve(process.cwd(), "public", "_headers"), "utf8")
+import nextConfig from "../next.config"
 
-    expect(headers).toContain("/opengraph-image*")
-    expect(headers).toContain("Content-Type: image/png")
+describe("public response headers", () => {
+  it("caches static assets and serves llms.txt as Markdown", async () => {
+    const rules = await nextConfig.headers!()
+    const header = (source: string, key: string) =>
+      rules.find((rule) => rule.source === source)?.headers.find((h) => h.key === key)?.value
+
+    expect(header("/maps/:path*", "Cache-Control")).toContain("max-age=86400")
+    expect(header("/backgrounds/:path*", "Cache-Control")).toContain("immutable")
+    expect(header("/llms.txt", "Content-Type")).toBe("text/markdown; charset=utf-8")
   })
 })
