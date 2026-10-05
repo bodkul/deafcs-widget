@@ -3,6 +3,16 @@ import type { ReactNode } from "react"
 import { cn } from "cn"
 
 const regionArtwork: Record<string, ReactNode> = {
+  WORLD: (
+    <>
+      <path fill="#4A88DC" d="M24 0H0v16h24z" />
+      <g fill="none" stroke="#fff" strokeWidth="1">
+        <circle cx="12" cy="8" r="5.5" />
+        <ellipse cx="12" cy="8" rx="2.25" ry="5.5" />
+        <path d="M6.5 8h11M7.25 5.25h9.5M7.25 10.75h9.5" />
+      </g>
+    </>
+  ),
   SA: (
     <>
       <path fill="#4A88DC" d="M24 0H0v16h24z" />

@@ -533,7 +533,7 @@ export function RegionRank({
         ? `Regional Ranking (${data.profile.regionCode.toUpperCase()})`
         : "Regional Ranking"}
       value={data.rank.regionRank}
-      icon={<RegionLogo region={data.profile.regionCode ?? ""} size={iconSize} />}
+      icon={<RegionLogo region={data.profile.regionCode || "WORLD"} size={iconSize} />}
       className={className}
       valueClassName={valueClassName}
       format={formatRankNumber}
