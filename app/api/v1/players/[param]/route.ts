@@ -118,8 +118,11 @@ function matchStats(matches: Player["elo_history"]) {
 
   const totalKills = matches.reduce((s, m) => s + (m.kills ?? 0), 0);
   const killCount = matches.filter((m) => m.kills != null).length;
-  const totalDamage = matches.reduce((s, m) => s + (m.damage ?? 0), 0);
-  const totalRounds = matches.reduce((s, m) => s + roundsOf(m), 0);
+  // Per-round stats only count matches whose rounds are known.
+  const withRounds = matches.filter((m) => roundsOf(m) > 0);
+  const roundKills = withRounds.reduce((s, m) => s + (m.kills ?? 0), 0);
+  const totalDamage = withRounds.reduce((s, m) => s + (m.damage ?? 0), 0);
+  const totalRounds = withRounds.reduce((s, m) => s + roundsOf(m), 0);
 
   const kdPerMatch = matches
     .filter((m) => m.kills != null && m.deaths != null)
@@ -130,7 +133,7 @@ function matchStats(matches: Player["elo_history"]) {
     avgKD: kdPerMatch.length
       ? round(kdPerMatch.reduce((a, b) => a + b, 0) / kdPerMatch.length)
       : 0,
-    avgKR: totalRounds ? round(totalKills / totalRounds) : 0,
+    avgKR: totalRounds ? round(roundKills / totalRounds) : 0,
     adr: totalRounds ? round(totalDamage / totalRounds) : 0,
   };
 }
