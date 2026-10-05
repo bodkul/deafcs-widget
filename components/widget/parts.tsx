@@ -513,7 +513,7 @@ function RankItem({
 export function RegionRank({
   data,
   visibility,
-  iconSize = 14,
+  iconSize = 20,
   className,
   valueClassName,
 }: {

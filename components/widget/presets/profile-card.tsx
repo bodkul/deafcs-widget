@@ -34,6 +34,7 @@ export function ProfileCardPreset({ data, config }: PresetViewProps) {
               <RegionRank
                 data={data}
                 visibility={config.visibility}
+                iconSize={17}
                 className={compactRankClass}
                 valueClassName={compactRankValueClass}
               />

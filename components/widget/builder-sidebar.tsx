@@ -678,7 +678,7 @@ export function BuilderSidebar({
               href={SITE_PATHS.home}
               className="inline-flex items-center gap-2.5 transition-colors hover:text-foreground/80"
             >
-              <Image src="/logo.svg" alt="" width={28} height={28} className="size-7 shrink-0" priority />
+              <Image src="/logo.svg" alt={`${SITE_METADATA.name} logo`} width={28} height={28} className="size-7 shrink-0" priority />
               <span>{SITE_METADATA.name}</span>
             </Link>
           </h1>
