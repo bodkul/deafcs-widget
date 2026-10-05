@@ -1,13 +1,15 @@
 import type { PlayerLookup } from "../types"
 
-const PLAYER_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
-const NICKNAME_PATTERN = /^[a-z0-9_-]{1,32}$/i
+const STEAM_ID_PATTERN = /^\d{17}$/
+// Steam names allow almost anything, so only reject control characters and
+// anything longer than the API route accepts.
+const NICKNAME_PATTERN = /^[^\p{Cc}]{1,64}$/u
 
 export function parsePlayerLookup(value: string): PlayerLookup | null {
   const normalized = value.trim()
 
-  if (PLAYER_ID_PATTERN.test(normalized)) {
-    return { kind: "id", value: normalized.toLowerCase() }
+  if (STEAM_ID_PATTERN.test(normalized)) {
+    return { kind: "id", value: normalized }
   }
 
   if (NICKNAME_PATTERN.test(normalized)) {
