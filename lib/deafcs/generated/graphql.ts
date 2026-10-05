@@ -73,8 +73,8 @@ export const PlayerFieldsFragmentDoc = new TypedDocumentString(`
   elo(path: "competitive")
   elo_history(
     limit: 30
-    order_by: {match_created_at: desc}
-    where: {match: {status: {_eq: Finished}}}
+    order_by: { match_created_at: desc }
+    where: { match: { status: { _eq: Finished } } }
   ) {
     damage
     deaths
@@ -100,7 +100,7 @@ export const PlayerFieldsFragmentDoc = new TypedDocumentString(`
     `, {"fragmentName":"PlayerFields"}) as unknown as TypedDocumentString<PlayerFieldsFragment, unknown>;
 export const PlayerByNameDocument = new TypedDocumentString(`
     query PlayerByName($pattern: String!) {
-  players(where: {name: {_ilike: $pattern}}, limit: 5) {
+  players(where: { name: { _ilike: $pattern } }, limit: 5) {
     ...PlayerFields
   }
 }
@@ -112,8 +112,8 @@ export const PlayerByNameDocument = new TypedDocumentString(`
   elo(path: "competitive")
   elo_history(
     limit: 30
-    order_by: {match_created_at: desc}
-    where: {match: {status: {_eq: Finished}}}
+    order_by: { match_created_at: desc }
+    where: { match: { status: { _eq: Finished } } }
   ) {
     damage
     deaths
@@ -138,7 +138,7 @@ export const PlayerByNameDocument = new TypedDocumentString(`
 }`) as unknown as TypedDocumentString<PlayerByNameQuery, PlayerByNameQueryVariables>;
 export const PlayerBySteamIdDocument = new TypedDocumentString(`
     query PlayerBySteamId($value: bigint!) {
-  players(where: {steam_id: {_eq: $value}}, limit: 1) {
+  players(where: { steam_id: { _eq: $value } }, limit: 1) {
     ...PlayerFields
   }
 }
@@ -150,8 +150,8 @@ export const PlayerBySteamIdDocument = new TypedDocumentString(`
   elo(path: "competitive")
   elo_history(
     limit: 30
-    order_by: {match_created_at: desc}
-    where: {match: {status: {_eq: Finished}}}
+    order_by: { match_created_at: desc }
+    where: { match: { status: { _eq: Finished } } }
   ) {
     damage
     deaths
@@ -177,13 +177,31 @@ export const PlayerBySteamIdDocument = new TypedDocumentString(`
 export const PlayerRanksDocument = new TypedDocumentString(`
     query PlayerRanks($steamId: String!, $country: String!, $hasCountry: Boolean!, $elo: float8!) {
   world: get_player_leaderboard_rank(
-    args: {_player_steam_id: $steamId, _category: "elo", _elo_view: "current", _source: "matchmaking", _match_type: "Competitive", _exclude_tournaments: false, _season_id: null, _window_days: null}
+    args: {
+      _player_steam_id: $steamId
+      _category: "elo"
+      _elo_view: "current"
+      _source: "matchmaking"
+      _match_type: "Competitive"
+      _exclude_tournaments: false
+      _season_id: null
+      _window_days: null
+    }
   ) {
     rank
   }
   country: get_leaderboard_aggregate(
-    args: {_role: null, _category: "elo", _elo_view: "current", _source: "matchmaking", _match_type: "Competitive", _exclude_tournaments: false, _season_id: null, _window_days: null}
-    where: {player_country: {_eq: $country}, value: {_gt: $elo}}
+    args: {
+      _role: null
+      _category: "elo"
+      _elo_view: "current"
+      _source: "matchmaking"
+      _match_type: "Competitive"
+      _exclude_tournaments: false
+      _season_id: null
+      _window_days: null
+    }
+    where: { player_country: { _eq: $country }, value: { _gt: $elo } }
   ) @include(if: $hasCountry) {
     aggregate {
       count

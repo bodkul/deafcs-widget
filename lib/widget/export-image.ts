@@ -122,7 +122,6 @@ export async function createWidgetPng(node: HTMLElement) {
       embedFonts: true,
       reconcile: true,
       fast: false,
-      compress: false,
       outerTransforms: true,
       outerShadows: false,
     })

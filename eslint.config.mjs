@@ -6,6 +6,11 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   {
+    settings: {
+      react: { version: "19.3" },
+    },
+  },
+  {
     files: ["app/opengraph-image.tsx"],
     rules: {
       "@next/next/no-img-element": "off",
