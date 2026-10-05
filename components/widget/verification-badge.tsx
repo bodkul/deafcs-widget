@@ -40,10 +40,10 @@ export function WhiteVerificationBadge({ className }: BadgeIconProps) {
 
 export function GoldVerificationBadge({ className }: BadgeIconProps) {
   const generatedId = useId().replace(/[^a-zA-Z0-9_-]/g, "")
-  const baseGradientId = `faceit-gold-base-${generatedId}`
-  const maskGradientId = `faceit-gold-mask-${generatedId}`
-  const maskId = `faceit-gold-shape-${generatedId}`
-  const shineGradientId = `faceit-gold-shine-${generatedId}`
+  const baseGradientId = `deafcs-gold-base-${generatedId}`
+  const maskGradientId = `deafcs-gold-mask-${generatedId}`
+  const maskId = `deafcs-gold-shape-${generatedId}`
+  const shineGradientId = `deafcs-gold-shine-${generatedId}`
 
   return (
     <svg

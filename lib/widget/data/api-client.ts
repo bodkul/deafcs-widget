@@ -2,7 +2,6 @@ import { z } from "zod"
 
 import type { WidgetDataSource } from "./data-source"
 import type { WidgetSnapshot } from "../types"
-import { getWidgetInstanceId } from "./widget-instance"
 
 const widgetDataSchema = z.object({
   profile: z.object({
@@ -82,8 +81,6 @@ export class WidgetApiClient implements WidgetDataSource {
     options: { signal?: AbortSignal; } = {},
   ): Promise<WidgetSnapshot> {
     const headers = new Headers({ Accept: "application/json" })
-    const instanceId = getWidgetInstanceId()
-    if (instanceId) headers.set("X-Widget-Instance", instanceId)
     const cacheKey = lookup.toLowerCase()
     const cached = this.snapshotCache.get(cacheKey)
     if (cached) headers.set("If-None-Match", cached.etag)

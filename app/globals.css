@@ -141,11 +141,11 @@
   --text-label-sm--font-weight: 600;
   --text-label-sm--line-height: 16px;
 
-  --spacing-faceit-xs: 8px;
-  --spacing-faceit-sm: 16px;
-  --spacing-faceit-md: 40px;
-  --spacing-faceit-lg: 56px;
-  --spacing-faceit-xl: 96px;
+  --spacing-deafcs-xs: 8px;
+  --spacing-deafcs-sm: 16px;
+  --spacing-deafcs-md: 40px;
+  --spacing-deafcs-lg: 56px;
+  --spacing-deafcs-xl: 96px;
 
   --radius-none: 0px;
   --radius-sm: var(--radius-radius-xs);
