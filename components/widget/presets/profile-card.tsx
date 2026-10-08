@@ -55,7 +55,11 @@ export function ProfileCardPreset({ data, config }: PresetViewProps) {
         </div>
       </div>
       {config.visibility.todayStats ? (
-        <div className="grid shrink-0 grid-cols-[repeat(2,34px)] gap-1.25" aria-label="Wins and losses">
+        <div
+          className="grid shrink-0 grid-cols-[repeat(2,34px)] gap-1.25"
+          aria-label="Wins and losses"
+          role="group"
+        >
           <RecordStat label="wins" value={data.today?.wins} tone="positive" />
           <RecordStat label="losses" value={data.today?.losses} tone="negative" />
         </div>

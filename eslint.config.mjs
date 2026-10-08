@@ -1,6 +1,6 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+import { defineConfig, globalIgnores } from "eslint/config"
+import nextVitals from "eslint-config-next/core-web-vitals"
+import nextTs from "eslint-config-next/typescript"
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -16,12 +16,7 @@ const eslintConfig = defineConfig([
       "@next/next/no-img-element": "off",
     },
   },
-  globalIgnores([
-    ".next/**",
-    "build/**",
-    "next-env.d.ts",
-    "lib/deafcs/generated/**",
-  ]),
-]);
+  globalIgnores([".next/**", "build/**", "next-env.d.ts", "lib/deafcs/generated/**"]),
+])
 
-export default eslintConfig;
+export default eslintConfig

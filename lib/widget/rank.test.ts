@@ -2,11 +2,7 @@ import { describe, expect, it } from "vitest"
 
 import { createDefaultConfig, normalizeConfig, updateVisibilityConfig } from "./config/config"
 import { getEditableFields, getRotationFields } from "./config/presets"
-import {
-  FACEIT_LEVEL_COLORS,
-  getRankProgress,
-  hasEloChange,
-} from "./rank"
+import { FACEIT_LEVEL_COLORS, getRankProgress, hasEloChange } from "./rank"
 import type { WidgetData } from "./types"
 
 function rank(overrides: Partial<WidgetData["rank"]> = {}): WidgetData["rank"] {
@@ -94,14 +90,16 @@ describe("rank preset defaults", () => {
       winRate: true,
       rankProgress: true,
     })
-    expect(getEditableFields("performance-card")).toEqual(expect.arrayContaining([
-      "eloChange",
-      "countryRank",
-      "recordLabels",
-      "avgKills",
-      "headshotRate",
-      "winRate",
-    ]))
+    expect(getEditableFields("performance-card")).toEqual(
+      expect.arrayContaining([
+        "eloChange",
+        "countryRank",
+        "recordLabels",
+        "avgKills",
+        "headshotRate",
+        "winRate",
+      ]),
+    )
     expect(getEditableFields("performance-card", rank())).not.toContain("rankProgress")
   })
 

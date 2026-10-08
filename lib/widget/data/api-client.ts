@@ -1,7 +1,6 @@
 import { z } from "zod"
-
-import type { WidgetDataSource } from "./data-source"
 import type { WidgetSnapshot } from "../types"
+import type { WidgetDataSource } from "./data-source"
 
 const widgetDataSchema = z.object({
   profile: z.object({
@@ -10,39 +9,50 @@ const widgetDataSchema = z.object({
     regionCode: z.string().optional(),
     verifiedBadge: z.enum(["none", "verified", "gold"]).optional(),
   }),
-  rank: z.object({
-    level: z.number(),
-    elo: z.number(),
-    eloChange: z.number().optional(),
-    regionRank: z.number().optional(),
-    worldRank: z.number().optional(),
-    countryRank: z.number().optional(),
-  }).transform(({ worldRank, ...rank }) => ({
-    ...rank,
-    regionRank: rank.regionRank ?? worldRank,
-  })),
-  lifetime: z.object({
-    avgKills: z.number().optional(),
-    headshotRate: z.number().optional(),
-    kdr: z.number().optional(),
-    kr: z.number().optional(),
-  }).optional(),
-  last30: z.object({
-    winRate: z.number().optional(),
-    avgKills: z.number().optional(),
-    adr: z.number().optional(),
-    avgKD: z.number().optional(),
-    avgKR: z.number().optional(),
-  }).optional(),
-  last5Results: z.array(z.enum(["win", "loss"])).max(5).optional(),
-  today: z.object({
-    wins: z.number().optional(),
-    losses: z.number().optional(),
-    avgKills: z.number().optional(),
-    avgKD: z.number().optional(),
-    avgKR: z.number().optional(),
-    adr: z.number().optional(),
-  }).optional(),
+  rank: z
+    .object({
+      level: z.number(),
+      elo: z.number(),
+      eloChange: z.number().optional(),
+      regionRank: z.number().optional(),
+      worldRank: z.number().optional(),
+      countryRank: z.number().optional(),
+    })
+    .transform(({ worldRank, ...rank }) => ({
+      ...rank,
+      regionRank: rank.regionRank ?? worldRank,
+    })),
+  lifetime: z
+    .object({
+      avgKills: z.number().optional(),
+      headshotRate: z.number().optional(),
+      kdr: z.number().optional(),
+      kr: z.number().optional(),
+    })
+    .optional(),
+  last30: z
+    .object({
+      winRate: z.number().optional(),
+      avgKills: z.number().optional(),
+      adr: z.number().optional(),
+      avgKD: z.number().optional(),
+      avgKR: z.number().optional(),
+    })
+    .optional(),
+  last5Results: z
+    .array(z.enum(["win", "loss"]))
+    .max(5)
+    .optional(),
+  today: z
+    .object({
+      wins: z.number().optional(),
+      losses: z.number().optional(),
+      avgKills: z.number().optional(),
+      avgKD: z.number().optional(),
+      avgKR: z.number().optional(),
+      adr: z.number().optional(),
+    })
+    .optional(),
 })
 
 export const widgetSnapshotSchema = z.object({
@@ -78,7 +88,7 @@ export class WidgetApiClient implements WidgetDataSource {
 
   async getPlayerSnapshot(
     lookup: string,
-    options: { signal?: AbortSignal; } = {},
+    options: { signal?: AbortSignal } = {},
   ): Promise<WidgetSnapshot> {
     const headers = new Headers({ Accept: "application/json" })
     const cacheKey = lookup.toLowerCase()
@@ -95,7 +105,7 @@ export class WidgetApiClient implements WidgetDataSource {
     }
 
     if (!response.ok) {
-      const body = await response.json().catch(() => null) as { error?: string } | null
+      const body = (await response.json().catch(() => null)) as { error?: string } | null
       throw new WidgetApiError(body?.error ?? "Unable to load DEAFCS stats.", response.status)
     }
 

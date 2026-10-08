@@ -1,13 +1,13 @@
+import { LEVELS_ENABLED } from "../rank"
 import type {
+  WidgetData,
   WidgetPresetId,
+  WidgetPreviewSize,
   WidgetRotationField,
   WidgetStyle,
-  WidgetData,
-  WidgetPreviewSize,
-  WidgetVisibilityKey,
   WidgetVisibility,
+  WidgetVisibilityKey,
 } from "../types"
-import { LEVELS_ENABLED } from "../rank"
 
 export type WidgetPreset = {
   id: WidgetPresetId
@@ -93,7 +93,15 @@ export const WIDGET_PRESETS: WidgetPreset[] = [
       last30Stats: true,
       last5Results: true,
     },
-    editableFields: ["nickname", "verifiedBadge", "elo", "regionRank", "countryRank", "last30Stats", "last5Results"],
+    editableFields: [
+      "nickname",
+      "verifiedBadge",
+      "elo",
+      "regionRank",
+      "countryRank",
+      "last30Stats",
+      "last5Results",
+    ],
     defaultStyle: { density: "comfortable", radius: 8, borderEnabled: false },
   },
   {
@@ -110,14 +118,7 @@ export const WIDGET_PRESETS: WidgetPreset[] = [
       todayStats: true,
       last30Stats: true,
     },
-    editableFields: [
-      "nickname",
-      "verifiedBadge",
-      "level",
-      "elo",
-      "todayStats",
-      "last30Stats",
-    ],
+    editableFields: ["nickname", "verifiedBadge", "level", "elo", "todayStats", "last30Stats"],
     defaultStyle: { density: "comfortable", radius: 10 },
   },
   {
@@ -212,17 +213,13 @@ function getUnavailableFields(rank?: WidgetData["rank"]) {
   return new Set<WidgetVisibilityKey>(LEVELS_ENABLED ? (rank ? [] : ["level"]) : LEVEL_FIELDS)
 }
 
-export function getEditableFields(
-  presetId: WidgetPresetId,
-  rank?: WidgetData["rank"],
-) {
+export function getEditableFields(presetId: WidgetPresetId, rank?: WidgetData["rank"]) {
   const unavailableFields = getUnavailableFields(rank)
   const presetFields = WIDGET_PRESET_MAP[presetId].editableFields
-  const editableFields: WidgetVisibilityKey[] = presetFields.includes("elo") && !presetFields.includes("eloIcon")
-    ? [...presetFields, "eloIcon"]
-    : presetFields
+  const editableFields: WidgetVisibilityKey[] =
+    presetFields.includes("elo") && !presetFields.includes("eloIcon")
+      ? [...presetFields, "eloIcon"]
+      : presetFields
 
-  return editableFields.filter(
-    (field) => !unavailableFields.has(field),
-  )
+  return editableFields.filter((field) => !unavailableFields.has(field))
 }

@@ -16,8 +16,14 @@ describe("parsePlayerLookup", () => {
   })
 
   it("accepts Steam-style nicknames", () => {
-    expect(parsePlayerLookup("name with spaces")).toEqual({ kind: "nickname", value: "name with spaces" })
-    expect(parsePlayerLookup("[TAG] Вася.Пупкин")).toEqual({ kind: "nickname", value: "[TAG] Вася.Пупкин" })
+    expect(parsePlayerLookup("name with spaces")).toEqual({
+      kind: "nickname",
+      value: "name with spaces",
+    })
+    expect(parsePlayerLookup("[TAG] Вася.Пупкин")).toEqual({
+      kind: "nickname",
+      value: "[TAG] Вася.Пупкин",
+    })
   })
 
   it("rejects values that cannot be sent to DEAFCS", () => {

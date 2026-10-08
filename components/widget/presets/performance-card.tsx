@@ -2,13 +2,7 @@ import type { CSSProperties } from "react"
 
 import { getRankProgress, LEVELS_ENABLED } from "@/lib/widget"
 
-import {
-  CountryRank,
-  EloSummary,
-  LevelMark,
-  PlayerNickname,
-  RecordStat,
-} from "../parts"
+import { CountryRank, EloSummary, LevelMark, PlayerNickname, RecordStat } from "../parts"
 import { PerformanceMetric } from "./shared/performance-metric"
 import type { PresetViewProps } from "./types"
 
@@ -57,13 +51,19 @@ export function PerformanceCardPreset({ data, config }: PresetViewProps) {
 
   return (
     <div className="flex min-w-[320px] max-w-full flex-col gap-(--widget-layout-gap)">
-      <div className={config.visibility.todayStats
-        ? "grid min-w-0 grid-cols-4 gap-2"
-        : "flex min-w-0 items-center"}
+      <div
+        className={
+          config.visibility.todayStats
+            ? "grid min-w-0 grid-cols-4 gap-2"
+            : "flex min-w-0 items-center"
+        }
       >
-        <div className={config.visibility.todayStats
-          ? "col-span-3 flex min-w-0 items-center gap-2"
-          : "flex min-w-0 items-center gap-2"}
+        <div
+          className={
+            config.visibility.todayStats
+              ? "col-span-3 flex min-w-0 items-center gap-2"
+              : "flex min-w-0 items-center gap-2"
+          }
         >
           <LevelMark data={data} visibility={config.visibility} className="size-10" />
           <div className="flex min-w-0 flex-col gap-1.25">
@@ -91,7 +91,11 @@ export function PerformanceCardPreset({ data, config }: PresetViewProps) {
         </div>
 
         {config.visibility.todayStats ? (
-          <div className="col-start-4 flex shrink-0 items-start justify-start gap-1.25" aria-label="Wins and losses">
+          <div
+            className="col-start-4 flex shrink-0 items-start justify-start gap-1.25"
+            aria-label="Wins and losses"
+            role="group"
+          >
             <RecordStat
               label="wins"
               value={data.today?.wins}

@@ -1,47 +1,52 @@
-import {
-  Check,
-  Copy,
-  MessageSquare,
-  RotateCcw,
-} from "lucide-react"
+import { cn } from "cn"
+import { Check, Copy, MessageSquare, RotateCcw } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-
-import {
-  getEditableFields,
-  getRotationFields,
-  WIDGET_PRESETS,
-  type WidgetConfig,
-  type WidgetBackdropConfig,
-  type WidgetData,
-  type WidgetPresetId,
-  type WidgetRotationField,
-  type WidgetStyle,
-  type WidgetVisibilityKey,
-} from "@/lib/widget"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { SITE_METADATA, SITE_PATHS } from "@/lib/site-metadata"
+import {
+  getEditableFields,
+  getRotationFields,
+  WIDGET_PRESETS,
+  type WidgetBackdropConfig,
+  type WidgetConfig,
+  type WidgetData,
+  type WidgetPresetId,
+  type WidgetRotationField,
+  type WidgetStyle,
+  type WidgetVisibilityKey,
+} from "@/lib/widget"
 import { WIDGET_VISIBILITY_LABELS } from "@/lib/widget/visibility-labels"
-import { cn } from "cn"
 
 import { BackdropControl } from "./background"
 
-const controlLabelClass = "text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground"
-const sectionHeadingClass = "text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/80"
+const controlLabelClass =
+  "text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+const sectionHeadingClass =
+  "text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/80"
 const fieldLabelClass = "text-[12px] font-medium text-muted-foreground"
-const fieldRowClass = "flex items-center justify-between gap-2 rounded-md border border-transparent px-2 py-2 text-xs text-muted-foreground transition-[border-color,background-color,color] duration-150 ease-out hover:border-border hover:bg-surface-2 hover:text-foreground"
+const fieldRowClass =
+  "flex items-center justify-between gap-2 rounded-md border border-transparent px-2 py-2 text-xs text-muted-foreground transition-[border-color,background-color,color] duration-150 ease-out hover:border-border hover:bg-surface-2 hover:text-foreground"
 
-const visibilityLabels = Object.entries(WIDGET_VISIBILITY_LABELS) as Array<[WidgetVisibilityKey, string]>
+const visibilityLabels = Object.entries(WIDGET_VISIBILITY_LABELS) as Array<
+  [WidgetVisibilityKey, string]
+>
 
 const rotationFields: Array<[WidgetRotationField, string]> = [
   ["today", "Today"],
@@ -87,7 +92,9 @@ function SettingsSectionHeading({ label, detail }: { label: string; detail?: str
   return (
     <div className="flex items-center justify-between gap-3">
       <span className={sectionHeadingClass}>{label}</span>
-      {detail ? <span className="text-[11px] tabular-nums text-muted-foreground">{detail}</span> : null}
+      {detail ? (
+        <span className="text-[11px] tabular-nums text-muted-foreground">{detail}</span>
+      ) : null}
     </div>
   )
 }
@@ -127,14 +134,20 @@ type ContentTabProps = {
   onVisibilityChange: (key: WidgetVisibilityKey, value: boolean) => void
 }
 
-function ContentTab({ config, rank, verifiedBadge, onPresetChange, onVisibilityChange }: ContentTabProps) {
+function ContentTab({
+  config,
+  rank,
+  verifiedBadge,
+  onPresetChange,
+  onVisibilityChange,
+}: ContentTabProps) {
   const editableFields = getEditableFields(config.preset, rank)
   const hasVerifiedBadge = verifiedBadge === "verified" || verifiedBadge === "gold"
-  const fields = visibilityLabels.filter(([key]) =>
-    editableFields.includes(key) && (key !== "verifiedBadge" || hasVerifiedBadge),
+  const fields = visibilityLabels.filter(
+    ([key]) => editableFields.includes(key) && (key !== "verifiedBadge" || hasVerifiedBadge),
   )
-  const activeCount = fields.filter(([key]) =>
-    config.visibility[key] && (key !== "verifiedBadge" || config.visibility.nickname),
+  const activeCount = fields.filter(
+    ([key]) => config.visibility[key] && (key !== "verifiedBadge" || config.visibility.nickname),
   ).length
   const groupedFields = visibilityGroupOrder
     .map((group) => ({
@@ -186,10 +199,10 @@ function ContentTab({ config, rank, verifiedBadge, onPresetChange, onVisibilityC
                       checked={config.visibility[key] ?? false}
                       onCheckedChange={(checked) => onVisibilityChange(key, checked)}
                       disabled={
-                        (key === "eloChange" && !config.visibility.elo)
-                        || (key === "eloIcon" && !config.visibility.elo)
-                        || (key === "recordLabels" && !config.visibility.todayStats)
-                        || (key === "verifiedBadge" && !config.visibility.nickname)
+                        (key === "eloChange" && !config.visibility.elo) ||
+                        (key === "eloIcon" && !config.visibility.elo) ||
+                        (key === "recordLabels" && !config.visibility.todayStats) ||
+                        (key === "verifiedBadge" && !config.visibility.nickname)
                       }
                       ariaLabel={`Show ${label}`}
                     />
@@ -228,7 +241,9 @@ function SurfaceFillControl({
           { value: "none", label: "Transparent" },
         ]}
         value={value}
-        onValueChange={(nextValue) => onChange({ background: nextValue === "none" ? "none" : "solid" })}
+        onValueChange={(nextValue) =>
+          onChange({ background: nextValue === "none" ? "none" : "solid" })
+        }
       >
         <SelectTrigger className="w-full">
           <SelectValue />
@@ -242,14 +257,16 @@ function SurfaceFillControl({
   )
 }
 
-function BorderControl({
-  enabled,
-  onChange,
-}: StyleChangeProps & { enabled: boolean }) {
+function BorderControl({ enabled, onChange }: StyleChangeProps & { enabled: boolean }) {
   return (
     <label className="flex items-center justify-between gap-3 rounded-md border border-border/70 px-2.5 py-2.5 text-xs text-muted-foreground">
       <span className="text-foreground">Border</span>
-      <Switch size="sm" checked={enabled} onCheckedChange={(borderEnabled) => onChange({ borderEnabled })} aria-label="Show widget border" />
+      <Switch
+        size="sm"
+        checked={enabled}
+        onCheckedChange={(borderEnabled) => onChange({ borderEnabled })}
+        aria-label="Show widget border"
+      />
     </label>
   )
 }
@@ -329,7 +346,9 @@ function ColorControls({ config, onStyleChange }: StyleControlsProps) {
             style={{ backgroundColor: config.style[key] }}
           />
           <span className="min-w-0 truncate text-xs font-medium text-foreground">{label}</span>
-          <code className="ml-auto text-[9px] uppercase tabular-nums text-muted-foreground">{config.style[key]}</code>
+          <code className="ml-auto text-[9px] uppercase tabular-nums text-muted-foreground">
+            {config.style[key]}
+          </code>
           <Input
             id={`color-${key}`}
             type="color"
@@ -379,7 +398,10 @@ function StyleTab({ config, onStyleChange }: StyleTabProps) {
   )
 }
 
-function BackgroundsTab({ config, onBackdropChange }: {
+function BackgroundsTab({
+  config,
+  onBackdropChange,
+}: {
   config: WidgetConfig
   onBackdropChange: (patch: Partial<WidgetBackdropConfig>) => void
 }) {
@@ -437,7 +459,9 @@ function RotationToggle({ config, onRotationChange }: MotionTabProps) {
     <label className="flex items-center justify-between gap-3 rounded-md border border-border/70 px-2.5 py-2.5 text-xs text-muted-foreground">
       <span>
         <strong className="block text-sm text-foreground">Auto rotate</strong>
-        <small className="mt-1 block text-xs leading-4 text-muted-foreground">Cycle through selected stats.</small>
+        <small className="mt-1 block text-xs leading-4 text-muted-foreground">
+          Cycle through selected stats.
+        </small>
       </span>
       <Switch
         checked={config.rotation.enabled}
@@ -450,27 +474,31 @@ function RotationToggle({ config, onRotationChange }: MotionTabProps) {
 
 function RotationFields({ config, onRotationChange }: MotionTabProps) {
   const availableFields = getRotationFields(config.preset)
-  const selectedCount = config.rotation.fields.filter((field) => availableFields.includes(field)).length
+  const selectedCount = config.rotation.fields.filter((field) =>
+    availableFields.includes(field),
+  ).length
 
   return (
     <div className="flex flex-col gap-3">
       <SettingsSectionHeading label="Fields" detail={`${selectedCount} selected`} />
       <div className="grid grid-cols-2 gap-1.5">
-        {rotationFields.filter(([field]) => availableFields.includes(field)).map(([field, label]) => (
-          <FieldSwitch
-            key={field}
-            label={label}
-            checked={config.rotation.fields.includes(field)}
-            onCheckedChange={(checked) => {
-              const fields = checked
-                ? [...config.rotation.fields, field]
-                : config.rotation.fields.filter((current) => current !== field)
-              onRotationChange({ fields })
-            }}
-            disabled={!config.rotation.enabled}
-            ariaLabel={`Rotate ${label}`}
-          />
-        ))}
+        {rotationFields
+          .filter(([field]) => availableFields.includes(field))
+          .map(([field, label]) => (
+            <FieldSwitch
+              key={field}
+              label={label}
+              checked={config.rotation.fields.includes(field)}
+              onCheckedChange={(checked) => {
+                const fields = checked
+                  ? [...config.rotation.fields, field]
+                  : config.rotation.fields.filter((current) => current !== field)
+                onRotationChange({ fields })
+              }}
+              disabled={!config.rotation.enabled}
+              ariaLabel={`Rotate ${label}`}
+            />
+          ))}
       </div>
     </div>
   )
@@ -522,7 +550,10 @@ type BuilderSidebarProps = {
   onFeedback: () => void
 }
 
-function SidebarPlayer({ nickname, onNicknameChange }: Pick<BuilderSidebarProps, "nickname" | "onNicknameChange">) {
+function SidebarPlayer({
+  nickname,
+  onNicknameChange,
+}: Pick<BuilderSidebarProps, "nickname" | "onNicknameChange">) {
   return (
     <div className="mt-8 flex flex-col gap-2">
       <Label className={controlLabelClass} htmlFor="nickname">
@@ -549,7 +580,18 @@ function SidebarTabs({
   onStyleChange,
   onBackdropChange,
   onRotationChange,
-}: Pick<BuilderSidebarProps, "config" | "rank" | "verifiedBadge" | "rotationAvailable" | "onPresetChange" | "onVisibilityChange" | "onStyleChange" | "onBackdropChange" | "onRotationChange">) {
+}: Pick<
+  BuilderSidebarProps,
+  | "config"
+  | "rank"
+  | "verifiedBadge"
+  | "rotationAvailable"
+  | "onPresetChange"
+  | "onVisibilityChange"
+  | "onStyleChange"
+  | "onBackdropChange"
+  | "onRotationChange"
+>) {
   return (
     <Tabs key={config.preset} className="mt-6" defaultValue="content">
       <TabsList className="w-full justify-between p-0" variant="line">
@@ -588,18 +630,28 @@ function SidebarActions({
   onReset,
   onCopy,
   onFeedback,
-}: Pick<BuilderSidebarProps, "copied" | "canCopy" | "resetAnimationKey" | "onReset" | "onCopy" | "onFeedback">) {
+}: Pick<
+  BuilderSidebarProps,
+  "copied" | "canCopy" | "resetAnimationKey" | "onReset" | "onCopy" | "onFeedback"
+>) {
   return (
     <div className="mt-auto border-t border-border/70 pt-4">
       <div className="mb-2 flex items-center justify-between">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">Actions</span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          Actions
+        </span>
         <Tooltip>
           <TooltipTrigger
             render={
               <Button
                 variant="ghost"
                 size="icon-sm"
-                icon={<RotateCcw key={resetAnimationKey} className={cn(resetAnimationKey > 0 && "animate-[spin_500ms_ease-out]")} />}
+                icon={
+                  <RotateCcw
+                    key={resetAnimationKey}
+                    className={cn(resetAnimationKey > 0 && "animate-[spin_500ms_ease-out]")}
+                  />
+                }
                 onClick={onReset}
                 aria-label="Reset widget"
                 className="text-muted-foreground hover:text-foreground"
@@ -661,7 +713,14 @@ export function BuilderSidebar({
               href={SITE_PATHS.home}
               className="inline-flex items-center gap-2.5 transition-colors hover:text-foreground/80"
             >
-              <Image src="/logo.svg" alt={`${SITE_METADATA.name} logo`} width={28} height={28} className="size-7 shrink-0" priority />
+              <Image
+                src="/logo.svg"
+                alt={`${SITE_METADATA.name} logo`}
+                width={28}
+                height={28}
+                className="size-7 shrink-0"
+                priority
+              />
               <span>{SITE_METADATA.name}</span>
             </Link>
           </h1>

@@ -1,17 +1,17 @@
-import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
-import type { ReactNode } from "react";
+import type { Metadata } from "next"
+import { Outfit } from "next/font/google"
+import type { ReactNode } from "react"
 
-import { SITE_AUTHOR, SITE_METADATA, SOCIAL_IMAGE } from "@/lib/site-metadata";
+import { SITE_AUTHOR, SITE_METADATA, SOCIAL_IMAGE } from "@/lib/site-metadata"
 
-import "./globals.css";
+import "./globals.css"
 
 const outfit = Outfit({
   variable: "--font-outfit-loaded",
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
-});
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_METADATA.url),
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   verification: process.env.GOOGLE_SITE_VERIFICATION
     ? { google: process.env.GOOGLE_SITE_VERIFICATION }
     : undefined,
-};
+}
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
@@ -52,5 +52,5 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         {children}
       </body>
     </html>
-  );
+  )
 }

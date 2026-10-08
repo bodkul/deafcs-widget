@@ -1,8 +1,4 @@
-import {
-  WIDGET_BACKDROP_IDS,
-  type WidgetBackdropAsset,
-  type WidgetBackdropId,
-} from "./types"
+import { WIDGET_BACKDROP_IDS, type WidgetBackdropAsset, type WidgetBackdropId } from "./types"
 
 const BACKDROP_PATH = "/backgrounds"
 type AmbientBackdropId = Exclude<(typeof WIDGET_BACKDROP_IDS)[number], "none">

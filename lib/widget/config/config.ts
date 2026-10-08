@@ -1,10 +1,9 @@
 import { isRecord } from "../../utils"
 import { isWidgetBackdropId } from "../backgrounds/registry"
-import { getRotationFields, supportsWidgetRotation, WIDGET_PRESET_MAP } from "./presets"
 import {
   isWidgetPresetId,
-  type WidgetBackground,
   type WidgetBackdropConfig,
+  type WidgetBackground,
   type WidgetConfig,
   type WidgetDensity,
   type WidgetFontId,
@@ -14,6 +13,7 @@ import {
   type WidgetVisibility,
   type WidgetVisibilityKey,
 } from "../types"
+import { getRotationFields, supportsWidgetRotation, WIDGET_PRESET_MAP } from "./presets"
 
 const DEFAULT_COLORS = {
   accent: "#3a3a3a",
@@ -227,9 +227,7 @@ export function createDefaultConfig(preset: WidgetConfig["preset"] = "elo-pill")
     rotation: {
       ...DEFAULT_WIDGET_CONFIG.rotation,
       enabled: selectedPreset.supportsRotation,
-      fields: [
-        ...(selectedPreset.defaultRotationFields ?? DEFAULT_WIDGET_CONFIG.rotation.fields),
-      ],
+      fields: [...(selectedPreset.defaultRotationFields ?? DEFAULT_WIDGET_CONFIG.rotation.fields)],
     },
     backdrop: {
       ...DEFAULT_WIDGET_CONFIG.backdrop,
@@ -244,12 +242,13 @@ export function updateVisibilityConfig(
   value: boolean,
 ) {
   const rotationField = ROTATION_VISIBILITY_FIELDS[key]
-  const rotation = rotationField && supportsWidgetRotation(config.preset)
-    ? {
-        ...config.rotation,
-        fields: toggleRotationField(config.rotation.fields, rotationField, value),
-      }
-    : config.rotation
+  const rotation =
+    rotationField && supportsWidgetRotation(config.preset)
+      ? {
+          ...config.rotation,
+          fields: toggleRotationField(config.rotation.fields, rotationField, value),
+        }
+      : config.rotation
 
   return normalizeConfig({
     ...config,

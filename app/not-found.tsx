@@ -21,17 +21,37 @@ export default function NotFound() {
         <p className="mt-16 text-sm font-medium tracking-[0.18em] text-muted-foreground">404</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tighter sm:text-5xl">Page not found</h1>
         <p className="mx-auto mt-5 max-w-130 text-base leading-7 text-muted-foreground">
-          This URL is not part of the public site. Use one of the links below to find the widget, documentation, or machine-readable site files.
+          This URL is not part of the public site. Use one of the links below to find the widget,
+          documentation, or machine-readable site files.
         </p>
-        <nav aria-label="Recovery links" className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3">
-          <Link className={recoveryLinkClass} href={SITE_PATHS.home}>Homepage</Link>
-          <Link className={recoveryLinkClass} href={APP_PATHS.builder}>Widget builder</Link>
-          <Link className={recoveryLinkClass} href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup</Link>
-          <Link className={recoveryLinkClass} href={SITE_PATHS.deafcsWidgetStreamlabsGuide}>Streamlabs setup</Link>
-          <Link className={recoveryLinkClass} href={SITE_PATHS.liveDeafcsStatsGuide}>Live stats</Link>
-          <Link className={recoveryLinkClass} href={SITE_PATHS.presets}>Presets</Link>
-          <Link className={recoveryLinkClass} href="/sitemap.xml">Sitemap</Link>
-          <Link className={recoveryLinkClass} href="/llms.txt">llms.txt</Link>
+        <nav
+          aria-label="Recovery links"
+          className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3"
+        >
+          <Link className={recoveryLinkClass} href={SITE_PATHS.home}>
+            Homepage
+          </Link>
+          <Link className={recoveryLinkClass} href={APP_PATHS.builder}>
+            Widget builder
+          </Link>
+          <Link className={recoveryLinkClass} href={SITE_PATHS.deafcsWidgetObsGuide}>
+            OBS setup
+          </Link>
+          <Link className={recoveryLinkClass} href={SITE_PATHS.deafcsWidgetStreamlabsGuide}>
+            Streamlabs setup
+          </Link>
+          <Link className={recoveryLinkClass} href={SITE_PATHS.liveDeafcsStatsGuide}>
+            Live stats
+          </Link>
+          <Link className={recoveryLinkClass} href={SITE_PATHS.presets}>
+            Presets
+          </Link>
+          <Link className={recoveryLinkClass} href="/sitemap.xml">
+            Sitemap
+          </Link>
+          <Link className={recoveryLinkClass} href="/llms.txt">
+            llms.txt
+          </Link>
         </nav>
       </div>
     </main>

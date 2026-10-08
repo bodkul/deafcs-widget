@@ -18,6 +18,8 @@ describe("RankEloPreset", () => {
 
     const markup = renderToStaticMarkup(createElement(RankEloPreset, { data, config }))
 
-    expect(markup.indexOf('title="Country rank"')).toBeLessThan(markup.indexOf('title="Regional Ranking (SA)"'))
+    expect(markup.indexOf('title="Country rank"')).toBeLessThan(
+      markup.indexOf('title="Regional Ranking (SA)"'),
+    )
   })
 })

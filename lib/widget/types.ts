@@ -1,6 +1,4 @@
-import type {
-  WidgetBackdropConfig,
-} from "./backgrounds/types"
+import type { WidgetBackdropConfig } from "./backgrounds/types"
 
 export type {
   WidgetBackdropConfig,
@@ -125,9 +123,7 @@ export type WidgetData = {
   }
 }
 
-export type PlayerLookup =
-  | { kind: "nickname"; value: string }
-  | { kind: "id"; value: string }
+export type PlayerLookup = { kind: "nickname"; value: string } | { kind: "id"; value: string }
 
 export type WidgetSnapshot = {
   data: WidgetData

@@ -1,5 +1,10 @@
 import { APP_PATHS } from "@/lib/site-metadata"
-import { getEditableFields, LEVEL_FIELDS, WIDGET_PRESETS, type WidgetPreset } from "@/lib/widget/config/presets"
+import {
+  getEditableFields,
+  LEVEL_FIELDS,
+  WIDGET_PRESETS,
+  type WidgetPreset,
+} from "@/lib/widget/config/presets"
 import { LEVELS_ENABLED } from "@/lib/widget/rank"
 import type { WidgetVisibilityKey } from "@/lib/widget/types"
 import { visibilityLabel } from "@/lib/widget/visibility-labels"

@@ -1,10 +1,15 @@
-import Link from "next/link"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import Link from "next/link"
 import type { ReactNode } from "react"
-
-import { Button } from "@/components/ui/button"
 import { SITE_NAV_LINK_CLASS } from "@/components/site/link-styles"
-import { APP_PATHS, SITE_AUTHOR, SITE_LAST_MODIFIED, SITE_METADATA, SITE_PATHS } from "@/lib/site-metadata"
+import { Button } from "@/components/ui/button"
+import {
+  APP_PATHS,
+  SITE_AUTHOR,
+  SITE_LAST_MODIFIED,
+  SITE_METADATA,
+  SITE_PATHS,
+} from "@/lib/site-metadata"
 
 type SitePageProps = {
   title: string
@@ -45,7 +50,12 @@ export function SitePage({
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: SITE_METADATA.name, item: `${SITE_METADATA.url}/` },
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: SITE_METADATA.name,
+            item: `${SITE_METADATA.url}/`,
+          },
           { "@type": "ListItem", position: 2, name: title, item: `${SITE_METADATA.url}${path}` },
         ],
       },
@@ -56,7 +66,10 @@ export function SitePage({
     <main className="min-h-screen bg-background text-foreground">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replaceAll("<", "\\u003c") }}
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD escapes < before embedding it into the script.
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replaceAll("<", "\\u003c"),
+        }}
       />
       <article className="mx-auto w-full max-w-190 px-5 py-10 sm:px-8 sm:py-16">
         <Link
@@ -70,7 +83,9 @@ export function SitePage({
         {lead ? <div className="mt-8">{lead}</div> : null}
 
         <header className={`${lead ? "mt-10" : "mt-12"} border-b border-border pb-10`}>
-          <h1 className="text-4xl font-semibold leading-tight tracking-[-0.045em] sm:text-5xl">{title}</h1>
+          <h1 className="text-4xl font-semibold leading-tight tracking-[-0.045em] sm:text-5xl">
+            {title}
+          </h1>
           <p className="mt-5 max-w-160 text-base leading-7 text-muted-foreground">{description}</p>
         </header>
 
@@ -79,14 +94,31 @@ export function SitePage({
         </div>
 
         <footer className="border-t border-border pt-8">
-          <nav aria-label="Site pages" className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
-            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.about}>About</Link>
-            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup</Link>
-            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.deafcsWidgetStreamlabsGuide}>Streamlabs setup</Link>
-            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.liveDeafcsStatsGuide}>Live stats</Link>
-            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.presets}>Presets</Link>
-            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.contact}>Contact</Link>
-            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.privacy}>Privacy</Link>
+          <nav
+            aria-label="Site pages"
+            className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground"
+          >
+            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.about}>
+              About
+            </Link>
+            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.deafcsWidgetObsGuide}>
+              OBS setup
+            </Link>
+            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.deafcsWidgetStreamlabsGuide}>
+              Streamlabs setup
+            </Link>
+            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.liveDeafcsStatsGuide}>
+              Live stats
+            </Link>
+            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.presets}>
+              Presets
+            </Link>
+            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.contact}>
+              Contact
+            </Link>
+            <Link className={SITE_NAV_LINK_CLASS} href={SITE_PATHS.privacy}>
+              Privacy
+            </Link>
           </nav>
           <p className="mt-6 text-sm leading-6 text-muted-foreground">
             DEAFCS Widget is an unofficial community project and is not affiliated with DEAFCS.

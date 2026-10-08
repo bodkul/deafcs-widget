@@ -1,9 +1,8 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-
-import { Widget } from "@/components/widget/widget"
 import { PlayerDataBoundary } from "@/components/widget/player-data-boundary"
+import { Widget } from "@/components/widget/widget"
 import { deserializeConfig, OBS_OUTPUT_SCALE, usePlayerSnapshot } from "@/lib/widget"
 
 export function WidgetClient() {

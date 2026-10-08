@@ -1,7 +1,7 @@
-import type { CodegenConfig } from "@graphql-codegen/cli";
+import type { CodegenConfig } from "@graphql-codegen/cli"
 
 try {
-  process.loadEnvFile(".env.local");
+  process.loadEnvFile(".env.local")
 } catch {}
 
 const config: CodegenConfig = {
@@ -34,6 +34,6 @@ const config: CodegenConfig = {
       },
     },
   },
-};
+}
 
-export default config;
+export default config

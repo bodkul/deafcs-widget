@@ -126,7 +126,10 @@ export default function Home() {
       <div className="relative flex min-h-svh flex-col overflow-hidden">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replaceAll("<", "\\u003c") }}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD escapes < before embedding it into the script.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replaceAll("<", "\\u003c"),
+          }}
         />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_15%,rgb(255_255_255/10%),transparent_30%),radial-gradient(circle_at_78%_58%,rgb(255_255_255/3%),transparent_34%)]" />
         <div className="pointer-events-none absolute inset-0 opacity-30 bg-[linear-gradient(to_right,rgb(255_255_255/4%)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/4%)_1px,transparent_1px)] bg-size-[92px_92px] mask-[linear-gradient(to_bottom,black,transparent_72%)]" />

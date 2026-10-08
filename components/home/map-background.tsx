@@ -1,10 +1,9 @@
 "use client"
 
+import { cn } from "cn"
 import Image from "next/image"
 import { useEffect, useState } from "react"
-
 import { WIDGET_MAPS } from "@/lib/widget/maps"
-import { cn } from "cn"
 
 const mapSources = WIDGET_MAPS.flatMap((map) => (map.src ? [{ id: map.id, src: map.src }] : []))
 
@@ -30,7 +29,10 @@ export function MapBackground({ className }: MapBackgroundProps) {
   }
 
   return (
-    <div className={cn("pointer-events-none absolute overflow-hidden", className)} aria-hidden="true">
+    <div
+      className={cn("pointer-events-none absolute overflow-hidden", className)}
+      aria-hidden="true"
+    >
       <Image
         key={activeMap.id}
         src={activeMap.src}

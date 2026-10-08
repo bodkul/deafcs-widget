@@ -1,6 +1,5 @@
-import Image from "next/image"
-
 import { cn } from "cn"
+import Image from "next/image"
 
 export const GUIDE_IMAGES = {
   builderSettings: { src: "/guides/deafcs-widget-builder-settings.webp", width: 351, height: 910 },

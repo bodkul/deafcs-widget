@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type RefObject } from "react"
+import { type RefObject, useState } from "react"
 
 import { buildWidgetUrl, type WidgetConfig } from "@/lib/widget"
 import { downloadWidgetPng } from "@/lib/widget/export-image"
@@ -50,7 +50,12 @@ function useWidgetExport({ config, nickname, previewWidgetRef }: PreviewActionOp
   return { exportingImage, downloadPreview }
 }
 
-export function useBuilderActions({ config, nickname, playerId, previewWidgetRef }: PreviewActionOptions) {
+export function useBuilderActions({
+  config,
+  nickname,
+  playerId,
+  previewWidgetRef,
+}: PreviewActionOptions) {
   const [copyDialogOpen, setCopyDialogOpen] = useState(false)
   const [feedbackDialogOpen, setFeedbackDialogOpen] = useState(false)
   const [widgetUrl, setWidgetUrl] = useState("")

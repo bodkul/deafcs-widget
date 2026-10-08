@@ -1,12 +1,11 @@
 "use client"
 
+import { cn } from "cn"
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-
-import { SITE_PATHS } from "@/lib/site-metadata"
 import { SITE_LINKS } from "@/lib/site-links"
-import { cn } from "cn"
+import { SITE_PATHS } from "@/lib/site-metadata"
 
 const FAQS = [
   {
@@ -14,12 +13,19 @@ const FAQS = [
     question: "Does it work with OBS and Streamlabs?",
     answer: (
       <>
-        Yes. The generated page is intended for a Browser source, so it works in OBS Studio and Streamlabs Desktop without installing a separate plugin. Follow the{" "}
-        <Link className="text-foreground underline underline-offset-4" href={SITE_PATHS.deafcsWidgetObsGuide}>
+        Yes. The generated page is intended for a Browser source, so it works in OBS Studio and
+        Streamlabs Desktop without installing a separate plugin. Follow the{" "}
+        <Link
+          className="text-foreground underline underline-offset-4"
+          href={SITE_PATHS.deafcsWidgetObsGuide}
+        >
           OBS setup guide
         </Link>{" "}
         or the{" "}
-        <Link className="text-foreground underline underline-offset-4" href={SITE_PATHS.deafcsWidgetStreamlabsGuide}>
+        <Link
+          className="text-foreground underline underline-offset-4"
+          href={SITE_PATHS.deafcsWidgetStreamlabsGuide}
+        >
           Streamlabs setup guide
         </Link>{" "}
         for the recommended source settings.
@@ -37,8 +43,14 @@ const FAQS = [
     question: "Is DEAFCS Widget open source?",
     answer: (
       <>
-        Yes. DEAFCS Widget is an independent open-source community project. You can inspect the source code, report bugs, suggest improvements, and propose changes in the{" "}
-        <a target="_blank" rel="noreferrer" className="text-foreground underline underline-offset-4" href={SITE_LINKS.github}>
+        Yes. DEAFCS Widget is an independent open-source community project. You can inspect the
+        source code, report bugs, suggest improvements, and propose changes in the{" "}
+        <a
+          target="_blank"
+          rel="noreferrer"
+          className="text-foreground underline underline-offset-4"
+          href={SITE_LINKS.github}
+        >
           public GitHub repository
         </a>
         . It is not affiliated with DEAFCS.

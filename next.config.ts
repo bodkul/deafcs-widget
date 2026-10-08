@@ -1,11 +1,11 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
-const DAY_SWR = "public, max-age=86400, stale-while-revalidate=604800";
+const DAY_SWR = "public, max-age=86400, stale-while-revalidate=604800"
 
 const cache = (source: string, value: string) => ({
   source,
   headers: [{ key: "Cache-Control", value }],
-});
+})
 
 const nextConfig: NextConfig = {
   devIndicators: false,
@@ -24,8 +24,8 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
         ],
       },
-    ];
+    ]
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

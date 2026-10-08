@@ -104,6 +104,12 @@ public/              Level icons, flags, maps, and static assets
 | `npm test` | Run the Vitest suite. |
 | `npm run typecheck` | Check TypeScript without emitting files. |
 | `npm run lint` | Run ESLint. |
+| `npm run check` | Check formatting, lint rules, and imports across the project with Biome. |
+| `npm run check:fix` | Apply Biome formatting, import organization, and safe lint fixes. |
+| `npm run format` | Format the project with Biome. |
+| `npm run format:check` | Check formatting across the project. |
+
+Biome uses two-space indentation, double quotes, and no optional semicolons. CI checks the whole project. Generated GraphQL files and static assets are excluded. ESLint keeps the Next.js rules.
 
 ## Contributing
 

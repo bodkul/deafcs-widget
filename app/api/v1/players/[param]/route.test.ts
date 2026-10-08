@@ -33,7 +33,9 @@ const historyEntry = ({ id, ended_at, rounds = 20, ...m }: Match) => ({
   match: {
     id,
     ended_at,
-    match_maps: rounds ? [{ rounds: Array.from({ length: rounds }, (_, i) => ({ id: String(i) })) }] : [],
+    match_maps: rounds
+      ? [{ rounds: Array.from({ length: rounds }, (_, i) => ({ id: String(i) })) }]
+      : [],
   },
 })
 
@@ -46,7 +48,13 @@ function player(overrides: Record<string, unknown> = {}) {
     elo: 2_000,
     elo_history: [
       historyEntry({ id: "m1", ended_at: hoursAgo(1), match_result: "Win" }),
-      historyEntry({ id: "m2", ended_at: hoursAgo(2), match_result: "Loss", kills: 10, deaths: 20 }),
+      historyEntry({
+        id: "m2",
+        ended_at: hoursAgo(2),
+        match_result: "Loss",
+        kills: 10,
+        deaths: 20,
+      }),
       // Over four hours before m2, so it starts an earlier session.
       historyEntry({ id: "m3", ended_at: hoursAgo(7), match_result: "Win" }),
     ],
@@ -61,7 +69,11 @@ type Responses = {
   countryAbove?: number
 }
 
-function mockApi({ players = [player()], world = [{ rank: 42 }], countryAbove = 3 }: Responses = {}) {
+function mockApi({
+  players = [player()],
+  world = [{ rank: 42 }],
+  countryAbove = 3,
+}: Responses = {}) {
   gql.mockImplementation(async (query: { toString(): string }) => {
     const text = query.toString()
     if (text.includes("PlayerRanks")) {
@@ -71,11 +83,13 @@ function mockApi({ players = [player()], world = [{ rank: 42 }], countryAbove = 
   })
 }
 
-const queryNamed = (name: string) =>
-  gql.mock.calls.find(([query]) => String(query).includes(name))
+const queryNamed = (name: string) => gql.mock.calls.find(([query]) => String(query).includes(name))
 
 function get(param: string, headers?: HeadersInit) {
-  const req = new NextRequest(`https://deafcs-widget.vercel.app/api/v1/players/${encodeURIComponent(param)}`, { headers })
+  const req = new NextRequest(
+    `https://deafcs-widget.vercel.app/api/v1/players/${encodeURIComponent(param)}`,
+    { headers },
+  )
   return GET(req, { params: Promise.resolve({ param }) })
 }
 
@@ -112,7 +126,12 @@ describe("GET /api/v1/players/[param]", () => {
   })
 
   it("prefers an exact-case name match", async () => {
-    mockApi({ players: [player({ name: "BODKUL" }), player({ name: "bodkul", steam_id: "76561198000000002" })] })
+    mockApi({
+      players: [
+        player({ name: "BODKUL" }),
+        player({ name: "bodkul", steam_id: "76561198000000002" }),
+      ],
+    })
     const body = await (await get("bodkul")).json()
 
     expect(body.meta.playerId).toBe("76561198000000002")
@@ -145,24 +164,43 @@ describe("GET /api/v1/players/[param]", () => {
     mockApi()
     const { data, meta } = await (await get("bodkul")).json()
 
-    expect(data.profile).toEqual({ nickname: "bodkul", countryCode: "DE", verifiedBadge: "verified" })
+    expect(data.profile).toEqual({
+      nickname: "bodkul",
+      countryCode: "DE",
+      verifiedBadge: "verified",
+    })
     expect(data.rank).toMatchObject({ elo: 2_000, eloChange: 25, regionRank: 42, countryRank: 4 })
     expect(data.lifetime).toEqual({ headshotRate: 46, kdr: 1.2 })
     expect(data.last30).toEqual({ winRate: 67, avgKills: 16.7, avgKD: 1.5, avgKR: 0.83, adr: 80 })
     expect(data.last5Results).toEqual(["win", "loss", "win"])
-    expect(data.today).toEqual({ wins: 1, losses: 1, avgKills: 15, avgKD: 1.25, avgKR: 0.75, adr: 80 })
+    expect(data.today).toEqual({
+      wins: 1,
+      losses: 1,
+      avgKills: 15,
+      avgKD: 1.25,
+      avgKR: 0.75,
+      adr: 80,
+    })
     expect(meta).toMatchObject({ playerId: "76561198000000001", latestMatchId: "m1", stale: false })
   })
 
   it("ignores missing kills and rounds when averaging", async () => {
     mockApi({
-      players: [player({
-        elo_history: [
-          historyEntry({ id: "m1", ended_at: hoursAgo(1), match_result: "Win", kills: null }),
-          historyEntry({ id: "m2", ended_at: hoursAgo(2), match_result: "Win", kills: 30, rounds: 0 }),
-          historyEntry({ id: "m3", ended_at: hoursAgo(3), match_result: "Win", kills: 10 }),
-        ],
-      })],
+      players: [
+        player({
+          elo_history: [
+            historyEntry({ id: "m1", ended_at: hoursAgo(1), match_result: "Win", kills: null }),
+            historyEntry({
+              id: "m2",
+              ended_at: hoursAgo(2),
+              match_result: "Win",
+              kills: 30,
+              rounds: 0,
+            }),
+            historyEntry({ id: "m3", ended_at: hoursAgo(3), match_result: "Win", kills: 10 }),
+          ],
+        }),
+      ],
     })
     const { data } = await (await get("bodkul")).json()
 
@@ -171,7 +209,13 @@ describe("GET /api/v1/players/[param]", () => {
   })
 
   it("starts no session when the latest match is over four hours old", async () => {
-    mockApi({ players: [player({ elo_history: [historyEntry({ id: "m1", ended_at: hoursAgo(5), match_result: "Win" })] })] })
+    mockApi({
+      players: [
+        player({
+          elo_history: [historyEntry({ id: "m1", ended_at: hoursAgo(5), match_result: "Win" })],
+        }),
+      ],
+    })
     const { data } = await (await get("bodkul")).json()
 
     expect(data.today).toEqual({ wins: 0, losses: 0, avgKills: 0, avgKD: 0, avgKR: 0, adr: 0 })

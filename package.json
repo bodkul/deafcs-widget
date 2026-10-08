@@ -38,6 +38,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "lint": "eslint",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
     "codegen": "graphql-codegen --config lib/deafcs/codegen.ts"
   },
   "dependencies": {
@@ -54,6 +58,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.15",
     "@graphql-codegen/cli": "^7.4.3",
     "@graphql-codegen/client-preset": "^6.2.0",
     "@graphql-codegen/schema-ast": "^6.1.0",

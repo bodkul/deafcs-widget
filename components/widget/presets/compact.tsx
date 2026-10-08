@@ -1,5 +1,12 @@
 import { AnimatedNumber } from "../animated-number"
-import { CountryRank, EloIcon, LastFiveResults, LevelMark, PlayerNickname, RegionRank } from "../parts"
+import {
+  CountryRank,
+  EloIcon,
+  LastFiveResults,
+  LevelMark,
+  PlayerNickname,
+  RegionRank,
+} from "../parts"
 import { PerformanceMetric, type PerformanceMetricProps } from "./shared/performance-metric"
 import type { PresetViewProps } from "./types"
 
@@ -78,7 +85,11 @@ export function CompactPreset({ data, config }: PresetViewProps) {
             ) : null}
           </div>
           {config.visibility.last5Results ? (
-            <LastFiveResults data={data} className="mr-2 gap-1.25" resultClassName="text-[20px] tracking-wide" />
+            <LastFiveResults
+              data={data}
+              className="mr-2 gap-1.25"
+              resultClassName="text-[20px] tracking-wide"
+            />
           ) : null}
         </div>
       ) : null}

@@ -1,9 +1,8 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-
-import { Builder } from "@/components/widget/builder"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { Builder } from "@/components/widget/builder"
 import {
   createDefaultConfig,
   deserializeConfig,

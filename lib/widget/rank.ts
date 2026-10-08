@@ -41,7 +41,10 @@ export function hasEloChange(value: number | undefined): value is number {
 }
 
 export function getRankProgress(rank: WidgetData["rank"]): RankProgress {
-  const level = Math.min(10, Math.max(1, Math.round(rank.level || 1))) as keyof typeof FACEIT_LEVEL_RANGES
+  const level = Math.min(
+    10,
+    Math.max(1, Math.round(rank.level || 1)),
+  ) as keyof typeof FACEIT_LEVEL_RANGES
 
   if (level === 10) {
     return {

@@ -45,7 +45,10 @@ describe("WidgetApiClient", () => {
         profile: { nickname: "nachete", verifiedBadge: "verified" },
       },
     }
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(JSON.stringify(verifiedSnapshot))))
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(new Response(JSON.stringify(verifiedSnapshot))),
+    )
     vi.stubGlobal("window", { location: { origin: "https://deafcs-widget.vercel.app" } })
 
     const result = await new WidgetApiClient().getPlayerSnapshot("nachete")

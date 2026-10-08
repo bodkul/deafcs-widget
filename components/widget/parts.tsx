@@ -1,19 +1,13 @@
-import type { ReactNode } from "react"
-import Image from "next/image"
 import { cn } from "cn"
-
-import {
-  hasEloChange,
-  LEVELS_ENABLED,
-  type WidgetData,
-  type WidgetVisibility,
-} from "@/lib/widget"
+import Image from "next/image"
+import type { ReactNode } from "react"
 import { formatNumber, formatRankNumber } from "@/lib/format"
+import { hasEloChange, LEVELS_ENABLED, type WidgetData, type WidgetVisibility } from "@/lib/widget"
 
 import { AnimatedNumber } from "./animated-number"
+import { RegionLogo } from "./region-logo"
 import { getWinRateTone } from "./stat-tone"
 import { VerificationBadge } from "./verification-badge"
-import { RegionLogo } from "./region-logo"
 
 const levelAsset = (data: WidgetData) => {
   const level = Math.min(10, Math.max(1, Math.round(data.rank.level || 1)))
@@ -124,7 +118,12 @@ export function EloSummary({
   const eloChange = data.rank.eloChange
 
   return (
-    <span className={cn("inline-flex min-w-0 items-center gap-0.75 whitespace-nowrap text-[9px] leading-none text-(--widget-muted)", className)}>
+    <span
+      className={cn(
+        "inline-flex min-w-0 items-center gap-0.75 whitespace-nowrap text-[9px] leading-none text-(--widget-muted)",
+        className,
+      )}
+    >
       <strong className="inline-flex items-center font-bold leading-none text-(--widget-text) tabular-nums">
         <span className="inline-flex items-center gap-[2px] leading-none">
           {visibility.eloIcon ? <EloIcon small /> : null}
@@ -205,19 +204,15 @@ export function LevelRankBadge({
 
 function countryName(code: string) {
   try {
-    return new Intl.DisplayNames(["en"], { type: "region" }).of(code.toUpperCase()) ?? code.toUpperCase()
+    return (
+      new Intl.DisplayNames(["en"], { type: "region" }).of(code.toUpperCase()) ?? code.toUpperCase()
+    )
   } catch {
     return code.toUpperCase()
   }
 }
 
-export function CountryFlag({
-  data,
-  className,
-}: {
-  data: WidgetData
-  className?: string
-}) {
+export function CountryFlag({ data, className }: { data: WidgetData; className?: string }) {
   const code = data.profile.countryCode?.toLowerCase().replace(/[^a-z]/g, "")
 
   if (!code) {
@@ -325,11 +320,7 @@ function AnimatedMetricPair({
 }
 
 function StatGrid({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <div className={cn("grid grid-cols-3 gap-1.5", className)}>
-      {children}
-    </div>
-  )
+  return <div className={cn("grid grid-cols-3 gap-1.5", className)}>{children}</div>
 }
 
 export function RecordStat({
@@ -375,13 +366,20 @@ export function TodayStats({ data }: { data: WidgetData }) {
     <StatGrid>
       <span className="grid min-w-16 grid-cols-2 gap-[10px]">
         <Stat label="Wins" value={<AnimatedNumber value={data.today?.wins} />} tone="positive" />
-        <Stat label="Losses" value={<AnimatedNumber value={data.today?.losses} />} tone="negative" />
+        <Stat
+          label="Losses"
+          value={<AnimatedNumber value={data.today?.losses} />}
+          tone="negative"
+        />
       </span>
       <Stat
         label="Avg. Kills / ADR"
         value={<AnimatedMetricPair first={data.today?.avgKills} second={data.today?.adr} />}
       />
-      <Stat label="K/D" value={<AnimatedNumber value={data.today?.avgKD} maximumFractionDigits={2} />} />
+      <Stat
+        label="K/D"
+        value={<AnimatedNumber value={data.today?.avgKD} maximumFractionDigits={2} />}
+      />
     </StatGrid>
   )
 }
@@ -391,7 +389,11 @@ export function Last30Stats({ data }: { data: WidgetData }) {
     <StatGrid>
       <Stat
         label="Win rate"
-        value={<><AnimatedNumber value={data.last30?.winRate} />%</>}
+        value={
+          <>
+            <AnimatedNumber value={data.last30?.winRate} />%
+          </>
+        }
         tone={getWinRateTone(data.last30?.winRate)}
       />
       <Stat
@@ -409,13 +411,26 @@ export function Last30Stats({ data }: { data: WidgetData }) {
 export function PerformanceStats({ data }: { data: WidgetData }) {
   return (
     <StatGrid className="grid-cols-4">
-      <Stat label="AVG" value={<AnimatedNumber value={data.lifetime?.avgKills} maximumFractionDigits={2} />} />
+      <Stat
+        label="AVG"
+        value={<AnimatedNumber value={data.lifetime?.avgKills} maximumFractionDigits={2} />}
+      />
       <Stat
         label="HS"
-        value={<><AnimatedNumber value={data.lifetime?.headshotRate} maximumFractionDigits={1} />%</>}
+        value={
+          <>
+            <AnimatedNumber value={data.lifetime?.headshotRate} maximumFractionDigits={1} />%
+          </>
+        }
       />
-      <Stat label="K/D" value={<AnimatedNumber value={data.lifetime?.kdr} maximumFractionDigits={2} />} />
-      <Stat label="K/R" value={<AnimatedNumber value={data.lifetime?.kr} maximumFractionDigits={2} />} />
+      <Stat
+        label="K/D"
+        value={<AnimatedNumber value={data.lifetime?.kdr} maximumFractionDigits={2} />}
+      />
+      <Stat
+        label="K/R"
+        value={<AnimatedNumber value={data.lifetime?.kr} maximumFractionDigits={2} />}
+      />
     </StatGrid>
   )
 }
@@ -439,11 +454,19 @@ export function LastFiveResults({
   if (results.length === 0) return null
 
   return (
-    <div className={cn("flex shrink-0 items-center gap-0.75", className)} aria-label="Last 5 matches">
+    <div
+      className={cn("flex shrink-0 items-center gap-0.75", className)}
+      aria-label="Last 5 matches"
+      role="group"
+    >
       {results.map((result, index) => (
         <span
           key={`${result}-${index}`}
-          className={cn("text-[9px] font-extrabold leading-none", resultClassName, matchResultStyles[result])}
+          className={cn(
+            "text-[9px] font-extrabold leading-none",
+            resultClassName,
+            matchResultStyles[result],
+          )}
           title={result === "win" ? "Win" : "Loss"}
         >
           {result === "win" ? "W" : "L"}
@@ -466,10 +489,7 @@ export function StatsPanel({
 }) {
   return (
     <section
-      className={cn(
-        "flex flex-col gap-1.75 border-t border-(--widget-border) pt-1.75",
-        className,
-      )}
+      className={cn("flex flex-col gap-1.75 border-t border-(--widget-border) pt-1.75", className)}
       aria-label={title}
     >
       {title ? (
@@ -529,9 +549,11 @@ export function RegionRank({
 
   return (
     <RankItem
-      label={data.profile.regionCode
-        ? `Regional Ranking (${data.profile.regionCode.toUpperCase()})`
-        : "Regional Ranking"}
+      label={
+        data.profile.regionCode
+          ? `Regional Ranking (${data.profile.regionCode.toUpperCase()})`
+          : "Regional Ranking"
+      }
       value={data.rank.regionRank}
       icon={<RegionLogo region={data.profile.regionCode || "WORLD"} size={iconSize} />}
       className={className}

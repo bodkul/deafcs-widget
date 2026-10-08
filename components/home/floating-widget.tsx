@@ -1,13 +1,12 @@
+import { cn } from "cn"
 import Link from "next/link"
-
+import { APP_PATHS } from "@/lib/site-metadata"
 import {
   createDefaultConfig,
   WIDGET_PRESET_MAP,
   type WidgetData,
   type WidgetPresetId,
 } from "@/lib/widget"
-import { APP_PATHS } from "@/lib/site-metadata"
-import { cn } from "cn"
 
 import { Widget, type WidgetShadow } from "../widget/widget"
 

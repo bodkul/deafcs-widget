@@ -2,11 +2,7 @@ import { cn } from "cn"
 
 import { LEVELS_ENABLED } from "@/lib/widget"
 
-import {
-  EloValue,
-  LevelMark,
-  LevelRankBadge,
-} from "../../parts"
+import { EloValue, LevelMark, LevelRankBadge } from "../../parts"
 import type { PresetViewProps } from "../types"
 
 type CoreLineProps = PresetViewProps & {

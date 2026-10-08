@@ -1,8 +1,4 @@
-import {
-  CountryRank,
-  KdrValue,
-  RegionRank,
-} from "../parts"
+import { CountryRank, KdrValue, RegionRank } from "../parts"
 
 import { CoreLine } from "./shared/core-line"
 import { RotatingDetails } from "./shared/rotation-details"
@@ -28,9 +24,11 @@ function RichHeader({ data, config }: PresetViewProps) {
         labelClassName="text-[9px] tracking-[0.04em]"
       />
       <div
-        className={config.visibility.kdr
-          ? "flex min-w-0 shrink-0 items-center justify-end gap-2"
-          : "ml-auto flex min-w-0 shrink-0 items-center justify-end gap-2"}
+        className={
+          config.visibility.kdr
+            ? "flex min-w-0 shrink-0 items-center justify-end gap-2"
+            : "ml-auto flex min-w-0 shrink-0 items-center justify-end gap-2"
+        }
       >
         <CountryRank data={data} visibility={config.visibility} />
         <RegionRank data={data} visibility={config.visibility} />

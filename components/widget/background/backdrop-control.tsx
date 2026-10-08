@@ -1,20 +1,19 @@
 "use client"
 
-import Image from "next/image"
+import { cn } from "cn"
 import { Check, RotateCcw } from "lucide-react"
+import Image from "next/image"
 
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Slider } from "@/components/ui/slider"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import {
   WIDGET_BACKDROPS,
   type WidgetBackdropAsset,
   type WidgetBackdropConfig,
   type WidgetBackdropPosition,
 } from "@/lib/widget"
-
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { cn } from "cn"
 
 import { BackgroundSuggestionCard } from "../background-suggestion-card"
 
@@ -24,9 +23,14 @@ type BackdropControlProps = {
 }
 
 const fieldLabelClass = "text-[12px] font-medium text-muted-foreground"
-const sectionHeadingClass = "text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/80"
+const sectionHeadingClass =
+  "text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/80"
 
-function BackdropCard({ backdrop, selected, onSelect }: {
+function BackdropCard({
+  backdrop,
+  selected,
+  onSelect,
+}: {
   backdrop: WidgetBackdropAsset
   selected: boolean
   onSelect: () => void
@@ -98,7 +102,11 @@ function BackdropPicker({ value, onChange }: BackdropControlProps) {
   )
 }
 
-function PositionSlider({ axis, value, onChange }: {
+function PositionSlider({
+  axis,
+  value,
+  onChange,
+}: {
   axis: "x" | "y"
   value: number
   onChange: (value: number) => void
@@ -116,7 +124,9 @@ function PositionSlider({ axis, value, onChange }: {
         max={100}
         step={1}
         value={[value]}
-        onValueChange={(nextValue) => onChange(typeof nextValue === "number" ? nextValue : nextValue[0])}
+        onValueChange={(nextValue) =>
+          onChange(typeof nextValue === "number" ? nextValue : nextValue[0])
+        }
         aria-label={`${label} background position`}
       />
     </div>
@@ -135,7 +145,9 @@ function PositionControls({ value, onChange }: BackdropControlProps) {
       <div className="mb-3 flex items-center justify-between gap-3">
         <div>
           <p className="text-xs font-semibold text-foreground">Position</p>
-          <p className="mt-1 text-[11px] leading-4 text-muted-foreground">Drag the preview to reframe it.</p>
+          <p className="mt-1 text-[11px] leading-4 text-muted-foreground">
+            Drag the preview to reframe it.
+          </p>
         </div>
         <Tooltip>
           <TooltipTrigger
@@ -165,7 +177,9 @@ export function BackdropControl({ value, onChange }: BackdropControlProps) {
     <div className="flex flex-col gap-4">
       <div>
         <p className={sectionHeadingClass}>Backgrounds</p>
-        <p className="mt-1 text-[11px] leading-4 text-muted-foreground">A subtle layer behind the stats.</p>
+        <p className="mt-1 text-[11px] leading-4 text-muted-foreground">
+          A subtle layer behind the stats.
+        </p>
       </div>
       <BackdropPicker value={value} onChange={onChange} />
       <PositionControls value={value} onChange={onChange} />

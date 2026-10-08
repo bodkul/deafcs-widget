@@ -26,11 +26,13 @@ function renderPerformanceCard(
 
 describe("PerformanceCardPreset", () => {
   it("falls back to recent match kills when lifetime kills are missing", () => {
-    expect(getPerformanceKills({
-      ...data,
-      lifetime: { kdr: 2, headshotRate: 50 },
-      last30: { avgKills: 18, winRate: 50 },
-    })).toBe(18)
+    expect(
+      getPerformanceKills({
+        ...data,
+        lifetime: { kdr: 2, headshotRate: 50 },
+        last30: { avgKills: 18, winRate: 50 },
+      }),
+    ).toBe(18)
   })
 
   it("renders the performance metrics without the level progress bar", () => {
