@@ -34,7 +34,7 @@ export default function AboutPage() {
         <li>The browser-source page renders the overlay and checks for changed values about every two minutes while it is open.</li>
       </ol>
       <p>
-        A completed match can take a little time to appear because the result must first be published by DEAFCS. The <Link href={SITE_PATHS.liveDeafcsStatsGuide}>live stats guide</Link> explains what the refresh can update, and the <Link href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup guide</Link> covers the Browser source configuration.
+        A completed match can take a little time to appear because the result must first be published by DEAFCS. The <Link href={SITE_PATHS.liveDeafcsStatsGuide}>live stats guide</Link> explains what the refresh can update. The <Link href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup guide</Link> and <Link href={SITE_PATHS.deafcsWidgetStreamlabsGuide}>Streamlabs setup guide</Link> cover Browser Source configuration, and the <Link href={SITE_PATHS.presets}>presets gallery</Link> lists the available layouts.
       </p>
 
       <h2>Maintainer and source code</h2>

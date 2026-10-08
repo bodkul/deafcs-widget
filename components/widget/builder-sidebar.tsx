@@ -31,6 +31,7 @@ import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { SITE_METADATA, SITE_PATHS } from "@/lib/site-metadata"
+import { WIDGET_VISIBILITY_LABELS } from "@/lib/widget/visibility-labels"
 import { cn } from "cn"
 
 import { BackdropControl } from "./background"
@@ -40,25 +41,7 @@ const sectionHeadingClass = "text-[10px] font-semibold uppercase tracking-[0.14e
 const fieldLabelClass = "text-[12px] font-medium text-muted-foreground"
 const fieldRowClass = "flex items-center justify-between gap-2 rounded-md border border-transparent px-2 py-2 text-xs text-muted-foreground transition-[border-color,background-color,color] duration-150 ease-out hover:border-border hover:bg-surface-2 hover:text-foreground"
 
-const visibilityLabels: Array<[WidgetVisibilityKey, string]> = [
-  ["nickname", "Nickname"],
-  ["verifiedBadge", "Verification badge"],
-  ["level", "Level"],
-  ["elo", "ELO"],
-  ["eloIcon", "ELO icon"],
-  ["eloChange", "ELO change"],
-  ["regionRank", "Regional Ranking"],
-  ["countryRank", "Country rank"],
-  ["kdr", "K/D"],
-  ["todayStats", "Wins / losses"],
-  ["recordLabels", "W/L labels"],
-  ["avgKills", "Kills"],
-  ["headshotRate", "HS %"],
-  ["winRate", "Wins %"],
-  ["rankProgress", "Rank progress"],
-  ["last30Stats", "Last 30"],
-  ["last5Results", "Last 5 results"],
-]
+const visibilityLabels = Object.entries(WIDGET_VISIBILITY_LABELS) as Array<[WidgetVisibilityKey, string]>
 
 const rotationFields: Array<[WidgetRotationField, string]> = [
   ["today", "Today"],

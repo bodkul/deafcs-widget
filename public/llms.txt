@@ -15,8 +15,10 @@ DEAFCS Widget is not an account-login service. It does not provide private DEAFC
 
 - [Homepage](https://deafcs-widget.vercel.app/): product overview and server-rendered description.
 - [Widget builder](https://deafcs-widget.vercel.app/builder/): create and configure an overlay.
-- [OBS setup](https://deafcs-widget.vercel.app/deafcs-widget-obs/): add the URL as a Browser source.
+- [OBS setup](https://deafcs-widget.vercel.app/deafcs-widget-obs/): add the URL as a Browser source in OBS Studio.
+- [Streamlabs setup](https://deafcs-widget.vercel.app/deafcs-widget-streamlabs/): add the URL as a Browser Source in Streamlabs Desktop.
 - [Live stats](https://deafcs-widget.vercel.app/live-deafcs-stats/): understand what appears after a match.
+- [Presets](https://deafcs-widget.vercel.app/presets/): browse layout presets such as ELO Pill, Rank + ELO, Compact, Profile, Performance, Rich stats, and Today.
 - [About](https://deafcs-widget.vercel.app/about/): learn how the project works, who maintains it, and its limits.
 - [Contact](https://deafcs-widget.vercel.app/contact/): GitHub issue templates and support channel.
 - [Privacy](https://deafcs-widget.vercel.app/privacy/): analytics and service data details.

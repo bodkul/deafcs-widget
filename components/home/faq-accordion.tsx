@@ -18,6 +18,10 @@ const FAQS = [
         <Link className="text-foreground underline underline-offset-4" href={SITE_PATHS.deafcsWidgetObsGuide}>
           OBS setup guide
         </Link>{" "}
+        or the{" "}
+        <Link className="text-foreground underline underline-offset-4" href={SITE_PATHS.deafcsWidgetStreamlabsGuide}>
+          Streamlabs setup guide
+        </Link>{" "}
         for the recommended source settings.
       </>
     ),

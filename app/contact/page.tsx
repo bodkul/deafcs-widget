@@ -34,7 +34,8 @@ export default function ContactPage() {
 
       <h2>Before opening an issue</h2>
       <ul>
-        <li>Check the <Link href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup guide</Link> for browser-source settings.</li>
+        <li>Check the <Link href={SITE_PATHS.deafcsWidgetObsGuide}>OBS setup guide</Link> or <Link href={SITE_PATHS.deafcsWidgetStreamlabsGuide}>Streamlabs setup guide</Link> for browser-source settings.</li>
+        <li>Browse the <Link href={SITE_PATHS.presets}>preset gallery</Link> if you need a different layout.</li>
         <li>Check the <Link href={SITE_PATHS.liveDeafcsStatsGuide}>live stats guide</Link> when a completed match is not visible yet.</li>
         <li>Confirm that the nickname resolves to the intended public DEAFCS CS2 profile.</li>
       </ul>

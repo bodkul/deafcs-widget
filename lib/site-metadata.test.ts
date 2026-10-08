@@ -1,21 +1,34 @@
 import { describe, expect, it } from "vitest"
 
+import { WIDGET_PRESET_IDS } from "@/lib/widget/types"
+
 import {
   absoluteSiteUrl,
   APP_PATHS,
   createLandingMetadata,
   INDEXABLE_PATHS,
+  PRESET_PATHS,
   SOCIAL_IMAGE,
   SITE_LAST_MODIFIED,
   SITE_PATHS,
+  presetPath,
 } from "./site-metadata"
 
 describe("indexable routes", () => {
   it("contains every canonical public page exactly once", () => {
     const paths = [...INDEXABLE_PATHS]
 
-    expect(new Set(paths)).toEqual(new Set([...Object.values(SITE_PATHS), APP_PATHS.builder]))
+    expect(new Set(paths)).toEqual(
+      new Set([...Object.values(SITE_PATHS), APP_PATHS.builder, ...PRESET_PATHS]),
+    )
     expect(new Set(paths).size).toBe(paths.length)
+  })
+
+  it("includes a landing page for every widget preset", () => {
+    expect(PRESET_PATHS).toEqual(WIDGET_PRESET_IDS.map((id) => presetPath(id)))
+    for (const path of PRESET_PATHS) {
+      expect(INDEXABLE_PATHS).toContain(path)
+    }
   })
 
   it("keeps the generated widget route outside the indexable sitemap", () => {
@@ -27,7 +40,17 @@ describe("indexable routes", () => {
       "https://deafcs-widget.vercel.app/",
       "https://deafcs-widget.vercel.app/builder/",
       "https://deafcs-widget.vercel.app/deafcs-widget-obs/",
+      "https://deafcs-widget.vercel.app/deafcs-widget-streamlabs/",
       "https://deafcs-widget.vercel.app/live-deafcs-stats/",
+      "https://deafcs-widget.vercel.app/presets/",
+      "https://deafcs-widget.vercel.app/presets/elo-pill/",
+      "https://deafcs-widget.vercel.app/presets/rank-elo/",
+      "https://deafcs-widget.vercel.app/presets/rank-country/",
+      "https://deafcs-widget.vercel.app/presets/compact/",
+      "https://deafcs-widget.vercel.app/presets/today-stats/",
+      "https://deafcs-widget.vercel.app/presets/rich-profile/",
+      "https://deafcs-widget.vercel.app/presets/profile-card/",
+      "https://deafcs-widget.vercel.app/presets/performance-card/",
       "https://deafcs-widget.vercel.app/about/",
       "https://deafcs-widget.vercel.app/contact/",
       "https://deafcs-widget.vercel.app/privacy/",

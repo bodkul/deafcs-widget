@@ -206,10 +206,10 @@ export function supportsWidgetRotation(preset: WidgetPresetId) {
   return WIDGET_PRESET_MAP[preset]?.supportsRotation === true
 }
 
-const levelFields: WidgetVisibilityKey[] = ["level", "rankProgress"]
+export const LEVEL_FIELDS: WidgetVisibilityKey[] = ["level", "rankProgress"]
 
 function getUnavailableFields(rank?: WidgetData["rank"]) {
-  return new Set<WidgetVisibilityKey>(LEVELS_ENABLED ? (rank ? [] : ["level"]) : levelFields)
+  return new Set<WidgetVisibilityKey>(LEVELS_ENABLED ? (rank ? [] : ["level"]) : LEVEL_FIELDS)
 }
 
 export function getEditableFields(

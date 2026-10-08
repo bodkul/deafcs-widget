@@ -1,14 +1,16 @@
 import type { Metadata } from "next"
 
+import { WIDGET_PRESET_IDS } from "@/lib/widget/types"
+
 export const SITE_METADATA = {
   name: "DEAFCS Widget",
   url: "https://deafcs-widget.vercel.app",
-  title: "DEAFCS Widget | CS2 DEAFCS Stats for OBS & Streamers",
+  title: "DEAFCS Widget – Free CS2 ELO & Stats Overlay for OBS/Streamlabs",
   description:
     "Create a free DEAFCS Widget for OBS and Streamlabs. Show live CS2 ELO, rank, K/D, and recent matches in a browser source with no plugin or login.",
 } as const
 
-export const SITE_LAST_MODIFIED = "2026-09-20"
+export const SITE_LAST_MODIFIED = "2026-10-09"
 
 export const SITE_AUTHOR = {
   name: "bodkul",
@@ -25,7 +27,9 @@ export const SOCIAL_IMAGE = {
 export const SITE_PATHS = {
   home: "/",
   deafcsWidgetObsGuide: "/deafcs-widget-obs/",
+  deafcsWidgetStreamlabsGuide: "/deafcs-widget-streamlabs/",
   liveDeafcsStatsGuide: "/live-deafcs-stats/",
+  presets: "/presets/",
   about: "/about/",
   contact: "/contact/",
   privacy: "/privacy/",
@@ -36,11 +40,20 @@ export const APP_PATHS = {
   widget: "/widget/",
 } as const
 
+export function presetPath(presetId: string) {
+  return `${SITE_PATHS.presets}${presetId}/`
+}
+
+export const PRESET_PATHS = WIDGET_PRESET_IDS.map((presetId) => presetPath(presetId))
+
 export const INDEXABLE_PATHS = [
   SITE_PATHS.home,
   APP_PATHS.builder,
   SITE_PATHS.deafcsWidgetObsGuide,
+  SITE_PATHS.deafcsWidgetStreamlabsGuide,
   SITE_PATHS.liveDeafcsStatsGuide,
+  SITE_PATHS.presets,
+  ...PRESET_PATHS,
   SITE_PATHS.about,
   SITE_PATHS.contact,
   SITE_PATHS.privacy,
