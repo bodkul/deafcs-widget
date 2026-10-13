@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 
-import { ApiOutageNotice } from "@/components/home/api-outage-notice"
 import { Hero } from "@/components/home/hero"
 import { HomeStory } from "@/components/home/home-story"
 import { SiteFooter } from "@/components/home/site-footer"
@@ -124,7 +123,6 @@ const structuredData = {
 export default function Home() {
   return (
     <main data-home-page className="relative min-h-svh overflow-x-clip bg-background">
-      <ApiOutageNotice />
       <div className="relative flex min-h-svh flex-col overflow-hidden">
         <script
           type="application/ld+json"

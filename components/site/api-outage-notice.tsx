@@ -1,7 +1,14 @@
+"use client"
+
 import { TriangleAlert } from "lucide-react"
+import { usePathname } from "next/navigation"
 
 // Temporary: DEAFCS currently rejects requests from our servers (403), so live stats are down.
 export function ApiOutageNotice() {
+  const pathname = usePathname()
+  // The widget itself is embedded in OBS, so the banner would end up on stream.
+  if (pathname?.startsWith("/widget")) return null
+
   return (
     <div
       role="status"
@@ -13,9 +20,9 @@ export function ApiOutageNotice() {
           className="mt-0.5 size-4 shrink-0 text-amber-400 sm:mt-0"
         />
         <p>
-          Live stats are temporarily unavailable: the DEAFCS API is blocking our requests.
-          We&apos;ve contacted the DEAFCS team, and widgets will start updating again once access is
-          restored.
+          <strong className="font-semibold">Live stats are temporarily unavailable</strong> due to
+          an issue with the DEAFCS API. We&apos;re working on it — widgets will update automatically
+          once it&apos;s fixed.
         </p>
       </div>
     </div>
