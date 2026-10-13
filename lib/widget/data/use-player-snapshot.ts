@@ -126,8 +126,10 @@ export function usePlayerSnapshot(
       }, delayMs)
     }
 
-    const scheduleRetry = () => {
-      const delay = retryDelay(retryAttempt)
+    const scheduleRetry = (error: unknown) => {
+      // Honor the server's Retry-After (sent while DEAFCS is turned off).
+      const delay =
+        (error instanceof WidgetApiError && error.retryAfterMs) || retryDelay(retryAttempt)
       retryAttempt += 1
       schedule(delay, true)
     }
@@ -148,7 +150,7 @@ export function usePlayerSnapshot(
         if (disposed || abortController.signal.aborted) return
 
         dispatch({ type: "failure", lookupKey, message: errorMessage(error) })
-        if (shouldRetry(error)) scheduleRetry()
+        if (shouldRetry(error)) scheduleRetry(error)
       }
     }
 

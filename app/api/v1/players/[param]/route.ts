@@ -103,6 +103,8 @@ const REFRESH_AFTER_MS = 120_000
 
 const CACHE_FOUND = "public, max-age=0, s-maxage=60, stale-while-revalidate=60"
 const CACHE_NOT_FOUND = "public, max-age=0, s-maxage=60"
+// While DEAFCS is turned off, widgets back off for this long between retries.
+const DISABLED_RETRY_AFTER_S = 300
 
 const round = (n: number, digits = 2) => {
   const k = 10 ** digits
@@ -209,6 +211,17 @@ async function findPlayer(lookup: string) {
 }
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ param: string }> }) {
+  // Kill switch: set DEAFCS_API_DISABLED=1 to stop calling DEAFCS (e.g. while it rejects us).
+  if (process.env.DEAFCS_API_DISABLED === "1") {
+    return NextResponse.json(
+      { error: "Live stats are temporarily unavailable." },
+      {
+        status: 503,
+        headers: { "Cache-Control": "no-store", "Retry-After": String(DISABLED_RETRY_AFTER_S) },
+      },
+    )
+  }
+
   const param = (await params).param.trim()
 
   if (!param || param.length > 64 || CONTROL_CHAR_RE.test(param)) {

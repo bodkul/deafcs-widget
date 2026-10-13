@@ -155,6 +155,19 @@ describe("GET /api/v1/players/[param]", () => {
     expect((await res.json()).error).toMatch(/unavailable/)
   })
 
+  it("skips DEAFCS and asks clients to back off when the API is disabled", async () => {
+    vi.stubEnv("DEAFCS_API_DISABLED", "1")
+    try {
+      const res = await get("bodkul")
+
+      expect(res.status).toBe(503)
+      expect(res.headers.get("Retry-After")).toBe("300")
+      expect(gql).not.toHaveBeenCalled()
+    } finally {
+      vi.unstubAllEnvs()
+    }
+  })
+
   it("does not hide unexpected errors", async () => {
     gql.mockRejectedValue(new TypeError("bug"))
     await expect(get("bodkul")).rejects.toThrow("bug")

@@ -71,6 +71,7 @@ export class WidgetApiError extends Error {
   constructor(
     message: string,
     readonly status: number,
+    readonly retryAfterMs?: number,
   ) {
     super(message)
     this.name = "WidgetApiError"
@@ -106,7 +107,12 @@ export class WidgetApiClient implements WidgetDataSource {
 
     if (!response.ok) {
       const body = (await response.json().catch(() => null)) as { error?: string } | null
-      throw new WidgetApiError(body?.error ?? "Unable to load DEAFCS stats.", response.status)
+      const retryAfterS = Number(response.headers.get("Retry-After"))
+      throw new WidgetApiError(
+        body?.error ?? "Unable to load DEAFCS stats.",
+        response.status,
+        retryAfterS > 0 ? retryAfterS * 1000 : undefined,
+      )
     }
 
     const snapshot = widgetSnapshotSchema.parse(await response.json())
