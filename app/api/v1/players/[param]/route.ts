@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { DeafcsApiError, gql } from "@/lib/deafcs"
 import { graphql } from "@/lib/deafcs/generated"
 import type { PlayerFieldsFragment } from "@/lib/deafcs/generated/graphql"
+import { deafcsApiEnabled } from "@/lib/flags"
 import { widgetSnapshotSchema } from "@/lib/widget/data/api-client"
 
 graphql(`
@@ -211,8 +212,7 @@ async function findPlayer(lookup: string) {
 }
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ param: string }> }) {
-  // Kill switch: set DEAFCS_API_DISABLED=1 to stop calling DEAFCS (e.g. while it rejects us).
-  if (process.env.DEAFCS_API_DISABLED === "1") {
+  if (!(await deafcsApiEnabled())) {
     return NextResponse.json(
       { error: "Live stats are temporarily unavailable." },
       {

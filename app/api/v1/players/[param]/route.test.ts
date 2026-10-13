@@ -1,12 +1,14 @@
 import { NextRequest } from "next/server"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
-const { gql, DeafcsApiError } = vi.hoisted(() => ({
+const { gql, DeafcsApiError, deafcsApiEnabled } = vi.hoisted(() => ({
   gql: vi.fn(),
   DeafcsApiError: class DeafcsApiError extends Error {},
+  deafcsApiEnabled: vi.fn(async () => true),
 }))
 
 vi.mock("@/lib/deafcs", () => ({ gql, DeafcsApiError }))
+vi.mock("@/lib/flags", () => ({ deafcsApiEnabled }))
 
 import { GET } from "./route"
 
@@ -156,16 +158,12 @@ describe("GET /api/v1/players/[param]", () => {
   })
 
   it("skips DEAFCS and asks clients to back off when the API is disabled", async () => {
-    vi.stubEnv("DEAFCS_API_DISABLED", "1")
-    try {
-      const res = await get("bodkul")
+    deafcsApiEnabled.mockResolvedValueOnce(false)
+    const res = await get("bodkul")
 
-      expect(res.status).toBe(503)
-      expect(res.headers.get("Retry-After")).toBe("300")
-      expect(gql).not.toHaveBeenCalled()
-    } finally {
-      vi.unstubAllEnvs()
-    }
+    expect(res.status).toBe(503)
+    expect(res.headers.get("Retry-After")).toBe("300")
+    expect(gql).not.toHaveBeenCalled()
   })
 
   it("does not hide unexpected errors", async () => {
