@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { APP_PATHS, SITE_PATHS } from "@/lib/site-metadata"
 
+import { ApiOutageNotice } from "./api-outage-notice"
 import { MapBackground } from "./map-background"
 import { Showcase } from "./showcase"
 
@@ -70,6 +71,7 @@ export function Hero({ player }: HeroProps) {
         <div className="relative z-10 max-w-150">
           <LiveBadge />
           <HeroTitle />
+          <ApiOutageNotice />
           <p className="mt-6 max-w-125 text-[14px] leading-6 text-muted-foreground sm:text-[15px]">
             Build a free{" "}
             <Link
