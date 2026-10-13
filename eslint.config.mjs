@@ -16,6 +16,24 @@ const eslintConfig = defineConfig([
       "@next/next/no-img-element": "off",
     },
   },
+  {
+    // headers.ts reads DEAFCS_WIDGET_TOKEN and can't import "server-only" (codegen runs it in plain
+    // Node), so only the server-only client and codegen may import it.
+    ignores: ["lib/deafcs/**"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: ["**/deafcs/headers"],
+              message: "Import from @/lib/deafcs instead; headers.ts holds a server-only secret.",
+            },
+          ],
+        },
+      ],
+    },
+  },
   globalIgnores([".next/**", "build/**", "next-env.d.ts", "lib/deafcs/generated/**"]),
 ])
 

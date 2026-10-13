@@ -1,5 +1,7 @@
 import type { CodegenConfig } from "@graphql-codegen/cli"
 
+import { deafcsHeaders } from "./headers"
+
 try {
   process.loadEnvFile(".env.local")
 } catch {}
@@ -7,7 +9,7 @@ try {
 const config: CodegenConfig = {
   schema: {
     [process.env.DEAFCS_API_URL!]: {
-      headers: { Authorization: `Bearer ${process.env.DEAFCS_API_KEY}` },
+      headers: deafcsHeaders(),
     },
   },
   documents: ["app/api/**/*.ts"],

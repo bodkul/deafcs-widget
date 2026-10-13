@@ -83,6 +83,7 @@ Copy `.env.example` to `.env.local` and fill in the values.
 | --- | --- | --- | --- |
 | `DEAFCS_API_URL` | Server | Yes | GraphQL endpoint of the DEAFCS API. |
 | `DEAFCS_API_KEY` | Server | Yes | API key for the DEAFCS API. Never expose it to the browser. |
+| `DEAFCS_WIDGET_TOKEN` | Server | No | Sent as the `X-DEAFCS-Widget` header to identify this widget to DEAFCS. Never expose it to the browser. |
 
 ## Project structure
 
