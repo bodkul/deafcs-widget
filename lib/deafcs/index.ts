@@ -27,7 +27,19 @@ export async function gql<TResult, TVariables>(
     throw new DeafcsApiError("API request failed", { cause: error })
   }
 
-  if (!res.ok) throw new DeafcsApiError(`API error ${res.status}`)
+  if (!res.ok) {
+    // Who rejected us: Cloudflare (server: cloudflare, cf-ray, cf-mitigated) or the origin itself.
+    const body = await res.text().catch(() => "")
+    console.error("[deafcs] request rejected", {
+      status: res.status,
+      server: res.headers.get("server"),
+      cfRay: res.headers.get("cf-ray"),
+      cfMitigated: res.headers.get("cf-mitigated"),
+      contentType: res.headers.get("content-type"),
+      body: body.slice(0, 300),
+    })
+    throw new DeafcsApiError(`API error ${res.status}`)
+  }
   const json = await res.json()
   if (json.errors) {
     const messages = (json.errors as { message?: string }[]).map((e) => e.message).join("; ")
