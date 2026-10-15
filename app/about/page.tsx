@@ -79,7 +79,8 @@ export default function AboutPage() {
         The widget uses public DEAFCS statistics for the nickname requested. It does not ask for a
         password, OAuth token, private account permission, or payment details. Hosting and security
         providers may process limited technical request data needed to deliver the service. See the{" "}
-        <Link href={SITE_PATHS.privacy}>privacy page</Link> for details.
+        <Link href={SITE_PATHS.privacy}>privacy page</Link> for the website analytics and data
+        details.
       </p>
       <p>
         This is an independent community project. DEAFCS Widget is not affiliated with, endorsed by,

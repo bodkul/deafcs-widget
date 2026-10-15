@@ -6,7 +6,8 @@ import { SITE_LINKS } from "@/lib/site-links"
 import { createLandingMetadata, SITE_PATHS } from "@/lib/site-metadata"
 
 const title = "Privacy at DEAFCS Widget"
-const description = "What DEAFCS Widget receives and what the widget does not collect."
+const description =
+  "What DEAFCS Widget receives, what website analytics are used, and what the widget does not collect."
 
 export const metadata: Metadata = createLandingMetadata({
   title,
@@ -27,6 +28,17 @@ export default function PrivacyPage() {
         DEAFCS Widget does not ask for a DEAFCS password, OAuth token, private account permission,
         or payment details. It does not modify a DEAFCS profile. Do not put secrets or private
         information in a widget URL, GitHub issue, or feedback message.
+      </p>
+
+      <h2>Website analytics</h2>
+      <p>
+        The public website uses Vercel Web Analytics to measure aggregate traffic and understand
+        which pages and referral links are useful. It counts page views without cookies and does not
+        identify individual visitors. The{" "}
+        <code className="rounded bg-surface-hover px-1 py-0.5 font-mono text-[0.9em] text-foreground">
+          /widget/
+        </code>{" "}
+        browser-source route is excluded so an OBS source does not look like a new website visit.
       </p>
 
       <h2>Technical data</h2>
